@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../../Components/Header/Header';
 import BikeMap from '../BikeMap/BikeMap';
-import PopUp from '../PopUp/PopUp';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import PopUp from '../../Components/PopUp/PopUp';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import '../../normalize.css';
 import '../../main.scss';
 
@@ -22,8 +22,8 @@ class App extends Component {
           <Route exact path='/cities' component={BikeMap} />
           <Route exact path='/trips' component={BikeMap} />
         </Switch>
-        <Route path="/login" render={() => <PopUp title='User Login'/>} />
-        <Route path="/trips" render={() => <PopUp title='My Trips' />} />
+        <Route path="/login" render={() => <PopUp history={this.props.history} title='User Login'/>} />
+        <Route path="/trips" render={() => <PopUp history={this.props.history} title='My Trips' />} />
       </div>
     );
   }
