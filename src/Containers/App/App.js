@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../../Components/Header/Header';
 import BikeMap from '../BikeMap/BikeMap';
-import Login from '../Login/Login';
+import PopUp from '../PopUp/PopUp';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import '../../normalize.css';
 import '../../main.scss';
@@ -22,7 +22,8 @@ class App extends Component {
           <Route exact path='/cities' component={BikeMap} />
           <Route exact path='/trips' component={BikeMap} />
         </Switch>
-        <Route path="/login" component={Login} />
+        <Route path="/login" render={() => <PopUp title='User Login'/>} />
+        <Route path="/trips" render={() => <PopUp title='My Trips' />} />
       </div>
     );
   }

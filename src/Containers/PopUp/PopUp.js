@@ -6,7 +6,7 @@ class Login extends Component {
     return (
       <div className='overlay-div'>
         <div className='login-pop-up'>
-          <h3>User Login</h3>
+          <h3>{this.props.title}</h3>
           <form>
             
           </form>
