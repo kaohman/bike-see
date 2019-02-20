@@ -1,0 +1,53 @@
+label {
+  font-family: $main-font;
+  color: $main-text-color;
+}
+
+input {
+  margin: 5px 0 10px 0;
+  display: block;
+  background-color: $main-text-color;
+  border: 1px solid black;
+  padding: 5px;
+  width: 260px;
+}
+
+button {
+  color: #F2F2F2;
+  font-family: $main-font;
+  background-color: #59A579;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  width: 260px;
+  padding: 5px;
+  
+  &:hover {
+    background-color: $hover-color;
+  }
+}
+
+p {
+  text-align: center;
+  font-family: $main-font;
+  color: #BB6BD9;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.pop-up-link {
+  width: 120px;
+  text-align: center;
+  display: block;
+  font-family: $main-font;
+  color: $main-text-color;
+  margin: 20px auto;
+  color: white;
+
+  &:hover {
+    color: $hover-color;
+  }
+}
+

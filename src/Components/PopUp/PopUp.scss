@@ -1,9 +1,21 @@
 h3 {
   font-family: $main-font;
-  margin: 10px;
+  margin: 15px 0 20px 0;
   text-align: center;
   font-size: 28px;
   color: $header-text-color;
+}
+
+.close-icon {
+  font-size: 18px;
+  color: #BDBDBD;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+
+  &:hover {
+    color: $hover-color;
+  }
 }
 
 .overlay-div {
@@ -19,7 +31,7 @@ h3 {
 .login-pop-up {
   position: fixed;
   width: 300px;
-  height: 500px;
+  height: 410px;
   background-color: $background-color;
   border-radius: 10px;
   padding: 20px;

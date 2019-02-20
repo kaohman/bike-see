@@ -9,6 +9,13 @@ body {
   padding: 0;
 }
 
+input,
+button {
+  &:focus {
+    outline: none;
+  } 
+}
+
 i {
   font-size: 24px;
   font-family: Font Awesome 5 Free;

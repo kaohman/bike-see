@@ -16,14 +16,14 @@ class App extends Component {
       <div>
         <Header />
         <Switch>
-          <Route exact path='/' component={BikeMap} />
-          <Route exact path='/login' component={BikeMap} />
-          <Route exact path='/stations' component={BikeMap} />
-          <Route exact path='/cities' component={BikeMap} />
-          <Route exact path='/trips' component={BikeMap} />
+          <Route path='/' component={BikeMap} />
+          <Route path="/stations" render={() => <BikeMap history={this.props.history} />} />
+          <Route path="/cities" render={() => <BikeMap history={this.props.history} />} />
+          <Route path="/cities" render={() => <BikeMap history={this.props.history} />} />
         </Switch>
-        <Route path="/login" render={() => <PopUp history={this.props.history} title='User Login'/>} />
-        <Route path="/trips" render={() => <PopUp history={this.props.history} title='My Trips' />} />
+        <Route path="/my-trips" render={() => <BikeMap history={this.props.history} />} />
+        {/* <Route path="/login" render={() => <PopUp history={this.props.history} title='User Login'/>} /> */}
+        {/* <Route path="/sign-up" render={() => <PopUp history={this.props.history} title='User Sign Up' />} /> */}
       </div>
     );
   }

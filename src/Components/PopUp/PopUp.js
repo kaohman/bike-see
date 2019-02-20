@@ -5,9 +5,11 @@ import Login from '../../Containers/Login/Login';
 const PopUp = (props) => {
   return (
     <div className='overlay-div'>
-      <div onBlur={() => props.history.push('/')} className='login-pop-up'>
+      <div className='login-pop-up'>
+        <i onClick={() => props.history.replace('/')} className="fas fa-times close-icon"></i>
         <h3>{props.title}</h3>
-        {props.title === 'User Login' && <Login />}
+        {props.title === 'User Login' && <Login login={true}/>}
+        {props.title === 'User Sign Up' && <Login login={false}/>}
       </div>
     </div>
   )
