@@ -1,8 +1,10 @@
 @import './normalize.css';
-@import '../node_modules/react-leaflet-search/lib/react-leaflet-search.css';
 @import './variables.scss';
-@import './Containers/Login/Login.scss';
-@import './Components/PopUp/PopUp.scss';
-@import './Containers/BikeMap/BikeMap.scss';
-@import './Components/Header/Header.scss';
-@import './Containers/App/App.scss';
+@import '../node_modules/react-leaflet-search/lib/react-leaflet-search.css';
+@import './containers/BikeMap/BikeMap.scss';
+@import './containers/Login/Login.scss';
+@import './components/Header/Header.scss';
+// @import './components/MapSearch/MapSearch.scss';
+@import './components/PopUp/PopUp.scss';
+@import './containers/App/App.scss';
+

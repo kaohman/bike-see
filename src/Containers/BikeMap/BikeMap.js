@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Map, Marker, Tooltip, TileLayer } from 'react-leaflet';
+import { ReactLeafletSearch } from 'react-leaflet-search';
+import MapSearch from '../../Components/MapSearch/MapSearch';
 import L from 'leaflet';
 import { connect } from 'react-redux';
 
@@ -7,7 +9,7 @@ export class BikeMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
     }
   }
 
@@ -37,10 +39,10 @@ export class BikeMap extends Component {
   }
 
   render () {
-    // This setTimeout is needed in order for map to render tiles properly. Need css modules to load first.
-    setTimeout(() => {
-      this.setState({ loading: false })
-    }, 100);
+    // This setTimeout is needed in order for map to render tiles properly. Found this suggested fix online - something about needing css modules to load first. It slows down the map a ton though.
+    // setTimeout(() => {
+    //   this.setState({ loading: false })
+    // }, 0);
     return (
       <div className='map-container'>
         {!this.state.loading && 
@@ -52,6 +54,15 @@ export class BikeMap extends Component {
             center={[30, 0]}
             zoom='3'>
             {this.markersToShow()}
+            {/* MapSearch is my withLeaflet wrapper on ReactLeafletZoomIndicator - I also tried wrapping it directly in this file */}
+            <MapSearch />
+            {/* ReactLeaflet search is the search bar component - see BikeMap.scss for styling I added */}
+            <ReactLeafletSearch 
+              id='search-bar'
+              position='topright'
+              inputPlaceholder="Search a location"
+              showMarker={true}
+            />
             <TileLayer
               url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
