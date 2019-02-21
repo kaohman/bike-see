@@ -10,18 +10,14 @@ export class BikeMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 50.7506298,
-      lon: -100.99664349999999,
+      lat: 0,
+      lon: 0,
       loading: true,
-      userChange: false,
     }
   }
 
   getLocation = () => {
-    this.setState({
-      lat: 0,
-      lon: 0
-    })
+    this.setState({ lat: 0, lon: 0});
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({
         lat: position.coords.latitude,
@@ -82,7 +78,6 @@ export class BikeMap extends Component {
         <i onClick={this.getLocation} className="fas fa-location-arrow"></i>
         {!loading && 
           <Map
-            onViewportChange={() => this.setState({ userChange: true})}
             id='map'
             minZoom='3'
             maxZoom='19'
