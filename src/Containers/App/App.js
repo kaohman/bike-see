@@ -25,9 +25,9 @@ class App extends Component {
         <Header />
         <Switch>
           <Route path='/' component={BikeMap} />
-          <Route path="/stations" render={() => <BikeMap history={this.props.history} />} />
-          <Route path="/cities" render={() => <BikeMap history={this.props.history} />} />
-          <Route path="/my-places" render={() => <BikeMap history={this.props.history} />} />
+          <Route path='/cities' render={() => <BikeMap history={this.props.history} />} />
+          <Route path='/stations' render={() => <BikeMap history={this.props.history} />} />
+          <Route path='/my-places' render={() => <BikeMap history={this.props.history} />} />
         </Switch>
         {/* <Route path="/login" render={() => <PopUp history={this.props.history} title='User Login'/>} /> */}
         {/* <Route path="/sign-up" render={() => <PopUp history={this.props.history} title='User Sign Up' />} /> */}
