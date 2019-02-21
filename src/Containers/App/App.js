@@ -6,8 +6,6 @@ import { setCities } from '../../actions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchData } from '../../utils/api';
-import '../../normalize.css';
-import '../../main.scss';
 
 class App extends Component {
   async componentDidMount() {
