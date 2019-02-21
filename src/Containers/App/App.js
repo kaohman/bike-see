@@ -5,16 +5,11 @@ import BikeMap from '../BikeMap/BikeMap';
 import { setCities } from '../../actions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchData } from '../../utils/api';
+import { fetchCities } from '../../thunks/fetchCities';
 
 class App extends Component {
   async componentDidMount() {
-    try {
-      const results = await fetchData('http://api.citybik.es/v2/networks');
-      this.props.setCities(results.networks);
-    } catch (error) {
-      console.log(error)
-    }
+    this.props.fetchCities();
   }
 
   render() {
@@ -35,7 +30,7 @@ class App extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  setCities: (cities) => dispatch(setCities(cities)),
+  fetchCities: (cities) => dispatch(fetchCities(cities)),
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(App));

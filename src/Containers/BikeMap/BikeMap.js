@@ -10,7 +10,7 @@ export class BikeMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
     }
   }
 
@@ -41,9 +41,9 @@ export class BikeMap extends Component {
 
   render () {
     // This setTimeout is needed in order for map to render tiles properly. Found this suggested fix online - something about needing css modules to load first. It slows down the map a ton though.
-    setTimeout(() => {
-      this.setState({ loading: false })
-    }, 100);
+    // setTimeout(() => {
+    //   this.setState({ loading: false })
+    // }, 100);
     return (
       <div className='map-container'>
         {!this.state.loading && 
