@@ -7,10 +7,10 @@ const Header = () => {
     <header>
       <NavLink id='title' to='/'>BikeSee</NavLink>
       <nav>
-        <NavLink className='nav-links' to='/login'>
+        {/* <NavLink className='nav-links' to='/login'>
           <i className="fas fa-user"></i>
           <div>Login</div>
-        </NavLink>
+        </NavLink> */}
         <NavLink className='nav-links' to='/stations'>
           <i className="fas fa-bicycle"></i>
           <div>Stations</div>
@@ -21,7 +21,7 @@ const Header = () => {
         </NavLink>
         <NavLink className='nav-links' to='/trips'>
           <i className="fas fa-clipboard-list"></i>
-          <div>My Trips</div>
+          <div>My Places</div>
         </NavLink>
       </nav>
     </header>
@@ -29,4 +29,3 @@ const Header = () => {
 }
 
 export default Header;
-
