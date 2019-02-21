@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { fetchCities } from '../../thunks/fetchCities';
 
 class App extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     this.props.fetchCities();
   }
 
