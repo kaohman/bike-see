@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import Header from '../../Components/Header/Header';
+import Header from '../Header/Header';
 import BikeMap from '../BikeMap/BikeMap';
 // import PopUp from '../../Components/PopUp/PopUp';
-import { setCities } from '../../actions';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCities } from '../../thunks/fetchCities';

@@ -10,16 +10,45 @@ export class BikeMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
+      lat: 50.7506298,
+      lon: -100.99664349999999,
+      loading: true,
+      userChange: false,
     }
+  }
+
+  getLocation = () => {
+    this.setState({
+      lat: 0,
+      lon: 0
+    })
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+        loading: false,
+      });
+    });
+  }
+
+  showCurrentLocation = () => {
+    const { lat, lon } = this.state;
+    return (
+      <Marker
+        position={[lat, lon]}
+        key={'geoloc'}
+        id={'geoloc'}>
+        <Tooltip>You are here</Tooltip>
+      </Marker>
+    )
   }
 
   markersToShow = () => {
     const cityIcon = new L.icon({
-      iconSize: [15, 24.6],
-      iconAnchor: [7.5, 24.6],
-      popupAnchor: [1, -20],
-      shadowSize: [24.6, 24.6],
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41],
       shadowUrl: require('../../images/marker-shadow.png'),
       iconUrl: require('../../images/marker-icon-violet.png')
     });
@@ -38,28 +67,35 @@ export class BikeMap extends Component {
       )
     });
   }
+  componentDidMount() {
+    this.getLocation();
+  }
 
-  render () {
+  render() {
     // This setTimeout is needed in order for map to render tiles properly. Found this suggested fix online - something about needing css modules to load first. It slows down the map a ton though.
     // setTimeout(() => {
     //   this.setState({ loading: false })
     // }, 100);
+    const { lat, lon, loading } = this.state;
     return (
       <div className='map-container'>
-        {!this.state.loading && 
+        <i onClick={this.getLocation} className="fas fa-location-arrow"></i>
+        {!loading && 
           <Map
-            onresize
+            onViewportChange={() => this.setState({ userChange: true})}
             id='map'
             minZoom='3'
             maxZoom='19'
-            center={[30, 0]}
-            zoom='3'>
+            center={[lat, lon]}
+            zoom='12'>
+            {this.showCurrentLocation()}
             {this.markersToShow()}
             <ReactLeafletSearchWithLeaflet 
-              id='search-bar'
               position='topright'
-              inputPlaceholder="Search a location"
+              inputPlaceholder="Search by location"
               showMarker={false}
+              showPopup={true}
+              openSearchOnLoad={true}
             />
             <TileLayer
               url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'

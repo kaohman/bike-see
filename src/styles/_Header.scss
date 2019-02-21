@@ -6,12 +6,23 @@ header {
   align-items: flex-end;
 }
 
+.title-div {
+  display: flex;
+  align-items: flex-end;
+}
+
 #title {
   font-size: 60px;
   font-weight: 800;
   font-family: $main-font;
   color: $header-text-color;
   text-decoration: none;
+}
+
+.loading-text {
+  margin: 6px 10px;
+  font-size: 18px;
+  color: #BB6BD9;
 }
 
 nav {

@@ -1,5 +1,5 @@
 export const setLoading = (loading) => ({
-  type: 'TYPE_LOADING',
+  type: 'SET_LOADING',
   loading,
 });
 

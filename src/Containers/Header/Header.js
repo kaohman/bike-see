@@ -1,11 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-const Header = () => {
+export const Header = (props) => {
 
   return (
     <header>
-      <NavLink id='title' to='/'>BikeSee</NavLink>
+      <div className='title-div'>
+        <NavLink id='title' to='/'>BikeSee</NavLink>
+        {props.loading && <h3 className='loading-text'>Loading Data...</h3>}
+      </div>
       <nav>
         {/* <NavLink className='nav-links' to='/login'>
           <i className="fas fa-user"></i>
@@ -28,4 +32,8 @@ const Header = () => {
   )
 }
 
-export default Header;
+export const mapStateToProps = (state) => ({
+  loading: state.loading
+});
+
+export default connect(mapStateToProps)(Header);
