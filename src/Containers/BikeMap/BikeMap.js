@@ -5,7 +5,7 @@ import L from 'leaflet';
 import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
 
-const ReactLeafletSearchWithLeaflet = withLeaflet(ReactLeafletSearch);
+const MapSearch = withLeaflet(ReactLeafletSearch);
 
 export class BikeMap extends Component {
   constructor(props) {
@@ -47,23 +47,25 @@ export class BikeMap extends Component {
   }
 
   showMarkers = () => {
-    const cityIcon = new L.icon({
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      shadowSize: [41, 41],
-      shadowUrl: require('../../images/marker-shadow.png'),
-      iconUrl: require('../../images/marker-icon-violet.png')
-    });
+    let icon;
+    if (this.state.markers === 'cities') {
+      icon = new L.icon({
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41],
+        shadowUrl: require('../../images/marker-shadow.png'),
+        iconUrl: require('../../images/marker-icon-violet.png')
+      })
+    } else {
+      icon = new L.icon({
+        iconSize: [25, 25],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        iconUrl: require('../../images/bike.png')
+      })
+    }
 
-    const bikeIcon = new L.icon({
-      iconSize: [25, 25],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      iconUrl: require('../../images/bike.png')
-    })
-
-    const icon = this.state.markers === 'cities' ? cityIcon : bikeIcon;
     const data = this.state.markers === 'cities' ? this.props.cities : this.props.stations;
 
     return data.map(marker => {
@@ -100,10 +102,6 @@ export class BikeMap extends Component {
   }
 
   render() {
-    // This setTimeout is needed in order for map to render tiles properly. Found this suggested fix online - something about needing css modules to load first. It slows down the map a ton though.
-    // setTimeout(() => {
-    //   this.setState({ loading: false })
-    // }, 100);
     const { lat, lon, loading } = this.state;
     return (
       <div className='map-container'>
@@ -114,10 +112,10 @@ export class BikeMap extends Component {
             minZoom='3'
             maxZoom='19'
             center={[lat, lon]}
-            zoom='12'>
+            zoom='13'>
             {this.showCurrentLocation()}
             {this.showMarkers()}
-            <ReactLeafletSearchWithLeaflet 
+            <MapSearch 
               position='topright'
               inputPlaceholder="Search by location"
               showMarker={false}

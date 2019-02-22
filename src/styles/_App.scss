@@ -21,3 +21,8 @@ i {
   font-family: Font Awesome 5 Free;
   margin: 10px;
 }
+
+#app-div {
+  display: grid;
+  grid-template-columns: 1fr;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 export const Header = (props) => {
 
@@ -15,17 +16,17 @@ export const Header = (props) => {
           <i className="fas fa-user"></i>
           <div>Login</div>
         </NavLink> */}
-        <NavLink className='nav-links' to='/cities'>
+        <NavLink exact className='nav-links' to='/cities'>
           <i className="fas fa-map-marker-alt"></i>
           <div>Cities</div>
         </NavLink>
-        <NavLink className='nav-links' to='/stations'>
+        <NavLink exact className='nav-links' to='/stations'>
           <i className="fas fa-bicycle"></i>
           <div>Stations</div>
         </NavLink>
-        <NavLink className='nav-links' to='/my-places'>
+        <NavLink className='nav-links' to='/my-stops'>
           <i className="fas fa-clipboard-list"></i>
-          <div>My Places</div>
+          <div>My Stops</div>
         </NavLink>
       </nav>
     </header>
@@ -36,4 +37,4 @@ export const mapStateToProps = (state) => ({
   loading: state.loading
 });
 
-export default connect(mapStateToProps)(Header);
+export default withRouter(connect(mapStateToProps)(Header));

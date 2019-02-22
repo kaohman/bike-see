@@ -11,6 +11,13 @@ header {
   align-items: flex-end;
 }
 
+.active {
+  i,
+  div {
+    color: #BB6BD9;
+  }
+}
+
 #title {
   font-size: 60px;
   font-weight: 800;
@@ -42,6 +49,41 @@ nav {
 
   &:hover {
     color: $hover-color;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  header {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 670px) {
+  header {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  #title {
+    font-size: 40px;
+  }
+
+  .loading-text {
+    margin: 4px 10px;
+    font-size: 14px;
+    color: #BB6BD9;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  nav {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  }
+
+  .nav-links {
+    font-size: 14px;
+    margin: 5px;
+    width: 75px;
   }
 }
 
