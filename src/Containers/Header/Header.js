@@ -16,7 +16,7 @@ export const Header = (props) => {
           <i className="fas fa-user"></i>
           <div>Login</div>
         </NavLink> */}
-        <NavLink exact className='nav-links' to='/cities'>
+        <NavLink exact className='nav-links' to='/'>
           <i className="fas fa-map-marker-alt"></i>
           <div>Cities</div>
         </NavLink>
