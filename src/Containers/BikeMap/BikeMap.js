@@ -90,7 +90,10 @@ export class BikeMap extends Component {
           </Marker>
         )
       } else {
-        const { name, latitude, longitude, free_bikes, empty_slots, id } = marker;
+        const { name, latitude, longitude, free_bikes, empty_slots, timestamp, id } = marker;
+        const temp = new Date(timestamp);
+        const time = temp.toDateString();
+
         return (
           <Marker
             position={[latitude, longitude]}
@@ -100,8 +103,9 @@ export class BikeMap extends Component {
             <Tooltip className='tooltip'>{
               <div>
                 <h4>{name}</h4>
-                <p>empty slots: {empty_slots},</p>
-                <p>free bikes: {free_bikes}</p>
+                <p>Empty slots: {empty_slots},</p>
+                <p>Free bikes: {free_bikes}</p>
+                <p>Last updated: {time}</p>
                 <p className='click-text'>Click to add to stops</p>
               </div>
             }</Tooltip>
