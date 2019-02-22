@@ -11,6 +11,39 @@
   z-index: 10;
 }
 
+.tooltip {
+  padding: 10px;
+  background-color: $background-color;
+  border: none;
+  border-radius: 10px;
+
+  .stations-link {
+    font-family: $main-font;
+    color: $main-text-color;
+    font-size: 14px;
+    display: block;
+    margin: 5px auto;
+  }
+
+  h4 {
+    font-family: $main-font;
+    font-size: 14px;
+    font-weight: 400;
+    color: $header-text-color;
+    margin: 5px;
+    text-align: center;
+  }
+  
+  p {
+    color: $main-text-color;
+    margin: 5px;
+  }
+
+  .click-text {
+    color: $hover-color;
+  }
+}
+
 .fa-location-arrow {
   font-size: 16px;
   color: grey;

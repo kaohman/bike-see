@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Map, Marker, Tooltip, TileLayer, withLeaflet } from 'react-leaflet';
+import { Link } from 'react-router-dom';
 import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
@@ -36,7 +37,7 @@ export class BikeMap extends Component {
         position={[lat, lon]}
         key={'geoloc'}
         id={'geoloc'}>
-        <Tooltip>You are here</Tooltip>
+        <Tooltip className='tooltip'>{<h4>You Are Here</h4>}</Tooltip>
       </Marker>
     )
   }
@@ -61,7 +62,7 @@ export class BikeMap extends Component {
       icon = new L.icon({
         iconSize: [25, 25],
         iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
+        popupAnchor: [1, -25],
         iconUrl: require('../../images/bike.png')
       })
     }
@@ -79,7 +80,13 @@ export class BikeMap extends Component {
             icon={icon}
             key={id}
             id={id}>
-            <Tooltip>{`${name}, ${city}, ${country}`}</Tooltip>
+            <Tooltip className='tooltip'>{
+              <div>
+                <h4>{name}</h4>
+                <h4>{city}, {country}</h4>
+                <p className='click-text'>Click to view stations</p>
+              </div>}
+            </Tooltip>
           </Marker>
         )
       } else {
@@ -90,7 +97,14 @@ export class BikeMap extends Component {
             icon={icon}
             key={id}
             id={id}>
-            <Tooltip>{`${name}, empty slots: ${empty_slots}, free bikes: ${free_bikes}`}</Tooltip>
+            <Tooltip className='tooltip'>{
+              <div>
+                <h4>{name}</h4>
+                <p>empty slots: {empty_slots},</p>
+                <p>free bikes: {free_bikes}</p>
+                <p className='click-text'>Click to add to stops</p>
+              </div>
+            }</Tooltip>
           </Marker>
         )
       }
@@ -105,7 +119,7 @@ export class BikeMap extends Component {
     const { lat, lon, loading } = this.state;
     return (
       <div className='map-container'>
-        <i onClick={this.getLocation} className="fas fa-location-arrow"></i>
+        {!loading && <i onClick={this.getLocation} className="fas fa-location-arrow"></i>}
         {!loading && 
           <Map
             id='map'
