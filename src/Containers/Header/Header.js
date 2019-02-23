@@ -9,10 +9,10 @@ export const Header = ({ currentCity, loading, location }) => {
       return <h3 className='loading-text'>Loading Data...</h3>
     }
 
-    if (!loading && location.pathname === '/stations') {
+    if (!loading && location.pathname === '/stations' || location.pathname === '/my-stops') {
       return currentCity === '' ? 
-        location.pathname === '/stations' && <h3 className='loading-text'>Choose a city to view stations</h3> :
-        location.pathname === '/stations' && <h3 className='loading-text'>Viewing: {currentCity.toUpperCase()}</h3>
+        <h3 className='loading-text'>Choose a city to view stations</h3> :
+        <h3 className='loading-text'>Viewing: {currentCity.toUpperCase()}</h3>
     }
   }
 
