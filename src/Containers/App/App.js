@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import BikeMap from '../BikeMap/BikeMap';
-// import PopUp from '../../Components/PopUp/PopUp';
+import PopUp from '../../Components/PopUp/PopUp';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
 import { fetchCities } from '../../thunks/fetchCities';
 import { setFavorites } from '../../actions';
+import PropTypes from 'prop-types';
 
 class App extends Component {
   pullFromLocalStorage = () => {
@@ -23,7 +24,6 @@ class App extends Component {
     }
   }
 
-
   componentDidMount() {
     this.props.fetchCities();
     this.pullFromLocalStorage();
@@ -38,8 +38,8 @@ class App extends Component {
           <Route path='/stations' component={BikeMap} />
           <Route path='/my-stops' component={BikeMap} />
         </Switch>
-        {/* <Route path="/login" render={() => <PopUp history={this.props.history} title='User Login'/>} /> */}
-        {/* <Route path="/sign-up" render={() => <PopUp history={this.props.history} title='User Sign Up' />} /> */}
+        <Route path="/login" render={() => <PopUp history={this.props.history} title='User Login'/>} />
+        <Route path="/sign-up" render={() => <PopUp history={this.props.history} title='User Sign Up' />} />
       </div>
     );
   }
@@ -50,5 +50,11 @@ export const mapDispatchToProps = (dispatch) => ({
   fetchStations: (stations) => dispatch(fetchStations(stations)),
   setFavorites: (favorites) => dispatch(setFavorites(favorites))
 });
+
+App.propTypes = {
+  fetchCities: PropTypes.func.isRequired,
+  fetchStations: PropTypes.func.isRequired,
+  setFavorites: PropTypes.func.isRequired,
+}
 
 export default withRouter(connect(null, mapDispatchToProps)(App));

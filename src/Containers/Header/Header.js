@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const Header = ({ currentCity, loading, location }) => {
   const setSubheader = () => {
@@ -31,10 +32,10 @@ export const Header = ({ currentCity, loading, location }) => {
         {setSubheader()}
       </div>
       <nav>
-        {/* <NavLink className='nav-links' to='/login'>
+        <NavLink className='nav-links' to='/login'>
           <i className="fas fa-user"></i>
           <div>Login</div>
-        </NavLink> */}
+        </NavLink>
         <NavLink exact className='nav-links' to='/'>
           <i className="fas fa-map-marker-alt"></i>
           <div>Cities</div>
@@ -56,5 +57,15 @@ export const mapStateToProps = (state) => ({
   loading: state.loading,
   currentCity: state.currentCity,
 });
+
+Header.propTypes = {
+  loading: PropTypes.bool,
+  currentCity: PropTypes.string,
+}
+
+Header.defaultProps = {
+  loading: true,
+  currentCity: '',
+}
 
 export default withRouter(connect(mapStateToProps)(Header));

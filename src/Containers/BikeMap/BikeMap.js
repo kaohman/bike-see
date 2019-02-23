@@ -5,6 +5,7 @@ import L from 'leaflet';
 import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
 import { toggleFavorite } from '../../actions';
+import PropTypes from 'prop-types';
 
 const MapSearch = withLeaflet(ReactLeafletSearch);
 
@@ -202,5 +203,19 @@ export const mapDispatchToProps = (dispatch) => ({
   fetchStations: (id) => dispatch(fetchStations(id)),
   toggleFavorite: (id) => dispatch(toggleFavorite(id)),
 });
+
+BikeMap.propTypes = {
+  cities: PropTypes.array,
+  stations: PropTypes.array,
+  favorites: PropTypes.array,
+  fetchStations: PropTypes.func.isRequired,
+  toggleFavorite: PropTypes.func.isRequired,
+}
+
+BikeMap.defaultProps = {
+  cities: [],
+  stations: [],
+  favorites: []
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(BikeMap);
