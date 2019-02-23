@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should match the correct snapshot 1`] = `
+<div
+  id="app-div"
+>
+  <withRouter(Connect(Header)) />
+  <Switch>
+    <Route
+      component={[Function]}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      path="/stations"
+    />
+    <Route
+      component={[Function]}
+      path="/my-stops"
+    />
+  </Switch>
+  <Route
+    path="/login"
+    render={[Function]}
+  />
+  <Route
+    path="/sign-up"
+    render={[Function]}
+  />
+</div>
+`;

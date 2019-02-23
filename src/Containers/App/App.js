@@ -9,7 +9,7 @@ import { fetchCities } from '../../thunks/fetchCities';
 import { setFavorites } from '../../actions';
 import PropTypes from 'prop-types';
 
-class App extends Component {
+export class App extends Component {
   pullFromLocalStorage = () => {
     if (localStorage.hasOwnProperty('bike-stops')) {
       const savedStops = localStorage.getItem('bike-stops');
