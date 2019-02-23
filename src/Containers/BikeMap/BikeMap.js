@@ -120,6 +120,7 @@ export class BikeMap extends Component {
 
   showMarkers = () => {
     const { pathname } = this.props.location;
+    const { stations, cities, favorites } = this.props;
     let icon = {
       iconSize: [25, 25],
       iconAnchor: [12, 41],
@@ -129,10 +130,10 @@ export class BikeMap extends Component {
 
     switch (pathname) {
       case '/my-stops':
-        data = this.props.cities;
+        data = stations.filter(station => favorites.includes(station.id));
         return this.createStationMarkers(data, icon)
       case '/stations':
-        data = this.props.stations;
+        data = stations;
         return this.createStationMarkers(data, icon)
       default:
         const newIcon = new L.icon({
@@ -143,7 +144,7 @@ export class BikeMap extends Component {
           shadowUrl: require('../../images/marker-shadow.png'),
           iconUrl: require('../../images/marker-icon-violet.png')
         });
-        data = this.props.cities;
+        data = cities;
         return this.createCityMarkers(data, newIcon)
     }
   }
