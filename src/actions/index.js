@@ -13,6 +13,11 @@ export const setCities = (cities) => ({
   cities,
 });
 
+export const setCurrentCity = (city) => ({
+  type: 'SET_CURRENT_CITY',
+  city,
+});
+
 export const setStations = (stations) => ({
   type: 'SET_STATIONS',
   stations,

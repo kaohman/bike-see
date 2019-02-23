@@ -1,11 +1,12 @@
-import { setLoading, setError, setStations } from '../actions';
+import { setLoading, setError, setStations, setCurrentCity } from '../actions';
 import { fetchData } from '../utils/api';
 
-export const fetchStations = (path) => {
+export const fetchStations = (city) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true));
-      const results = await fetchData(`http://api.citybik.es/v2/networks/${path}`);
+      const results = await fetchData(`http://api.citybik.es/v2/networks/${city}`);
+      dispatch(setCurrentCity(city));
       dispatch(setStations(results.network.stations));
     } catch (error) {
       dispatch(setError(error));

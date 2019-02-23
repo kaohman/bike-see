@@ -3,13 +3,24 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-export const Header = (props) => {
+export const Header = ({ currentCity, loading, location }) => {
+  const setSubheader = () => {
+    if (loading) {
+      return <h3 className='loading-text'>Loading Data...</h3>
+    }
+
+    if (!loading && location.pathname === '/stations') {
+      return currentCity === '' ? 
+        location.pathname === '/stations' && <h3 className='loading-text'>Choose a city to view stations</h3> :
+        location.pathname === '/stations' && <h3 className='loading-text'>Viewing: {currentCity.toUpperCase()}</h3>
+    }
+  }
 
   return (
     <header>
       <div className='title-div'>
         <NavLink id='title' to='/'>BikeSee</NavLink>
-        {props.loading && <h3 className='loading-text'>Loading Data...</h3>}
+        {setSubheader()}
       </div>
       <nav>
         {/* <NavLink className='nav-links' to='/login'>
@@ -34,7 +45,8 @@ export const Header = (props) => {
 }
 
 export const mapStateToProps = (state) => ({
-  loading: state.loading
+  loading: state.loading,
+  currentCity: state.currentCity,
 });
 
 export default withRouter(connect(mapStateToProps)(Header));
