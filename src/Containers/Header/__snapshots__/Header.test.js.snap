@@ -1,0 +1,322 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should match the correct snapshot when loading 1`] = `
+<header>
+  <div
+    className="title-div"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      id="title"
+      to="/"
+    >
+      BikeSee
+    </NavLink>
+    <h3
+      className="loading-text"
+    >
+      Loading Data...
+    </h3>
+  </div>
+  <nav>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/"
+    >
+      <i
+        className="fas fa-map-marker-alt"
+      />
+      <div>
+        Cities
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/stations"
+    >
+      <i
+        className="fas fa-bicycle"
+      />
+      <div>
+        Stations
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/my-stops"
+    >
+      <i
+        className="fas fa-clipboard-list"
+      />
+      <div>
+        My Stops
+      </div>
+    </NavLink>
+  </nav>
+</header>
+`;
+
+exports[`Header should match the correct snapshot when on the home page 1`] = `
+<header>
+  <div
+    className="title-div"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      id="title"
+      to="/"
+    >
+      BikeSee
+    </NavLink>
+    <div>
+      <h3
+        className="loading-text"
+      >
+        A bike share sightseeing app.
+      </h3>
+      <h3
+        className="loading-text"
+      >
+        Click on a purple city icon to view a bike share network and get started.
+      </h3>
+    </div>
+  </div>
+  <nav>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/"
+    >
+      <i
+        className="fas fa-map-marker-alt"
+      />
+      <div>
+        Cities
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/stations"
+    >
+      <i
+        className="fas fa-bicycle"
+      />
+      <div>
+        Stations
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/my-stops"
+    >
+      <i
+        className="fas fa-clipboard-list"
+      />
+      <div>
+        My Stops
+      </div>
+    </NavLink>
+  </nav>
+</header>
+`;
+
+exports[`Header should match the correct snapshot when on the my-stops page 1`] = `
+<header>
+  <div
+    className="title-div"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      id="title"
+      to="/"
+    >
+      BikeSee
+    </NavLink>
+    <h3
+      className="loading-text"
+    >
+      Viewing: 
+      DENVER
+    </h3>
+  </div>
+  <nav>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/"
+    >
+      <i
+        className="fas fa-map-marker-alt"
+      />
+      <div>
+        Cities
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/stations"
+    >
+      <i
+        className="fas fa-bicycle"
+      />
+      <div>
+        Stations
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/my-stops"
+    >
+      <i
+        className="fas fa-clipboard-list"
+      />
+      <div>
+        My Stops
+      </div>
+    </NavLink>
+  </nav>
+</header>
+`;
+
+exports[`Header should match the correct snapshot when on the stations page 1`] = `
+<header>
+  <div
+    className="title-div"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      id="title"
+      to="/"
+    >
+      BikeSee
+    </NavLink>
+    <h3
+      className="loading-text"
+    >
+      Viewing: 
+      DENVER
+    </h3>
+  </div>
+  <nav>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/"
+    >
+      <i
+        className="fas fa-map-marker-alt"
+      />
+      <div>
+        Cities
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/stations"
+    >
+      <i
+        className="fas fa-bicycle"
+      />
+      <div>
+        Stations
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/my-stops"
+    >
+      <i
+        className="fas fa-clipboard-list"
+      />
+      <div>
+        My Stops
+      </div>
+    </NavLink>
+  </nav>
+</header>
+`;

@@ -76,7 +76,5 @@ describe('App', () => {
       mappedProps.setFavorites();
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
-  })
-
-
+  });
 });
