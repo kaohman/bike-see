@@ -4,6 +4,7 @@ import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
+import { toggleFavorite } from '../../actions';
 
 const MapSearch = withLeaflet(ReactLeafletSearch);
 
@@ -45,16 +46,34 @@ export class BikeMap extends Component {
     this.setState({ currentCity: e.target.options.id})
   }
 
+  toggleFavorite = (e) => {
+    this.props.toggleFavorite(e.target.options.id);
+    // set favorites in local storage
+  }
+
   createStationMarkers = (data, icon) => {
     return data.map(marker => {
       const { name, latitude, longitude, free_bikes, empty_slots, timestamp, id } = marker;
+      const { favorites } = this.props;
+
+      let newIcon;
+      let buttonText;
+      if (favorites.includes(id)) {
+        newIcon = new L.icon({ ...icon, iconUrl: require('../../images/bike-purple.png') }); 
+        buttonText = 'Click to remove from stops';
+      } else {
+        newIcon = new L.icon({ ...icon, iconUrl: require('../../images/bike.png') });
+        buttonText = 'Click to add to stops';
+      }
+
       const temp = new Date(timestamp);
       const date = temp.toDateString();
       const time = temp.toTimeString().substring(0,5);
       return (
         <Marker
+          onClick={this.toggleFavorite}
           position={[latitude, longitude]}
-          icon={icon}
+          icon={newIcon}
           key={id}
           id={id}>
           <Tooltip className='tooltip'>{
@@ -63,7 +82,7 @@ export class BikeMap extends Component {
               <p>Empty slots: {empty_slots},</p>
               <p>Free bikes: {free_bikes}</p>
               <p>Updated: {date}, {time}</p>
-              <p className='click-text'>Click to add to stops</p>
+              <p className='click-text'>{buttonText}</p>
             </div>
           }</Tooltip>
         </Marker>
@@ -96,32 +115,22 @@ export class BikeMap extends Component {
 
   showMarkers = () => {
     const { pathname } = this.props.location;
-    let icon;
+    let icon = {
+      iconSize: [25, 25],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -25],
+    };
     let data;
 
     switch (pathname) {
       case '/my-stops':
-        icon = new L.icon({
-          iconSize: [25, 41],
-          iconAnchor: [12, 41],
-          popupAnchor: [1, -34],
-          shadowSize: [41, 41],
-          shadowUrl: require('../../images/marker-shadow.png'),
-          iconUrl: require('../../images/marker-icon-violet.png')
-        });
         data = this.props.cities;
         return this.createStationMarkers(data, icon)
       case '/stations':
-        icon = new L.icon({
-          iconSize: [25, 25],
-          iconAnchor: [12, 41],
-          popupAnchor: [1, -25],
-          iconUrl: require('../../images/bike.png')
-        });
         data = this.props.stations;
         return this.createStationMarkers(data, icon)
       default:
-        icon = new L.icon({
+        const newIcon = new L.icon({
           iconSize: [25, 41],
           iconAnchor: [12, 41],
           popupAnchor: [1, -34],
@@ -130,7 +139,7 @@ export class BikeMap extends Component {
           iconUrl: require('../../images/marker-icon-violet.png')
         });
         data = this.props.cities;
-        return this.createCityMarkers(data, icon)
+        return this.createCityMarkers(data, newIcon)
     }
   }
 
@@ -185,6 +194,7 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchStations: (id) => dispatch(fetchStations(id)),
+  toggleFavorite: (id) => dispatch(toggleFavorite(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BikeMap);
