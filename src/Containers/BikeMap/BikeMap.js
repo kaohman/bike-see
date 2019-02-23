@@ -84,7 +84,7 @@ export class BikeMap extends Component {
           <Tooltip className='tooltip'>{
             <div>
               <h4>{name}</h4>
-              <p>Empty slots: {empty_slots},</p>
+              <p>Empty slots: {empty_slots}</p>
               <p>Free bikes: {free_bikes}</p>
               <p>Updated: {date}, {time}</p>
               <p className='click-text'>{buttonText}</p>

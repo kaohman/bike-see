@@ -9,10 +9,18 @@ export const Header = ({ currentCity, loading, location }) => {
       return <h3 className='loading-text'>Loading Data...</h3>
     }
 
-    if (!loading && location.pathname === '/stations' || location.pathname === '/my-stops') {
-      return currentCity === '' ? 
-        <h3 className='loading-text'>Choose a city to view stations</h3> :
-        <h3 className='loading-text'>Viewing: {currentCity.toUpperCase()}</h3>
+    if (!loading) {
+      switch (location.pathname) {
+        case '/':
+          return <div>
+              <h3 className='loading-text'>A bike share sightseeing app.</h3>
+              <h3 className='loading-text'>Click on a purple city icon to view a bike share network and get started.</h3>
+            </div>
+        default:
+          return currentCity === '' ?
+            <h3 className='loading-text'>Choose a city to view stations</h3> :
+            <h3 className='loading-text'>Viewing: {currentCity.toUpperCase()}</h3>
+      }
     }
   }
 
