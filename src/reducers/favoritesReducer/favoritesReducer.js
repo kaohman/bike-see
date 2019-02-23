@@ -10,6 +10,8 @@ export const favoritesReducer = (state = [], action) => {
         newFavorites = [...state, action.favorite]
       }
       return newFavorites
+    case 'SET_FAVORITES':
+      return action.favorites
     default:
       return state
   }

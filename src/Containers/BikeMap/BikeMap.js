@@ -41,14 +41,19 @@ export class BikeMap extends Component {
   }
 
   getStations = (e) => {
-    this.props.fetchStations(e.target.options.id);
-    this.props.history.replace('/stations');
-    this.setState({ currentCity: e.target.options.id})
+    const { fetchStations, history } = this.props;
+    fetchStations(e.target.options.id);
+    localStorage.setItem('current-city', JSON.stringify(e.target.options.id));
+    history.replace('/stations');
   }
 
   toggleFavorite = (e) => {
     this.props.toggleFavorite(e.target.options.id);
-    // set favorites in local storage
+    this.setLocalStorage();
+  }
+
+  setLocalStorage = () => {
+    localStorage.setItem('bike-stops', JSON.stringify(this.props.favorites));
   }
 
   createStationMarkers = (data, icon) => {

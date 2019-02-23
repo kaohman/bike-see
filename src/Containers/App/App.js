@@ -4,11 +4,29 @@ import BikeMap from '../BikeMap/BikeMap';
 // import PopUp from '../../Components/PopUp/PopUp';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { fetchStations } from '../../thunks/fetchStations';
 import { fetchCities } from '../../thunks/fetchCities';
+import { setFavorites } from '../../actions';
 
 class App extends Component {
+  pullFromLocalStorage = () => {
+    if (localStorage.hasOwnProperty('bike-stops')) {
+      const savedStops = localStorage.getItem('bike-stops');
+      const favorites = JSON.parse(savedStops);
+      this.props.setFavorites(favorites);
+    }
+
+    if (localStorage.hasOwnProperty('current-city')) {
+      const savedCity = localStorage.getItem('current-city');
+      const currentCity = JSON.parse(savedCity);
+      this.props.fetchStations(currentCity);
+    }
+  }
+
+
   componentDidMount() {
     this.props.fetchCities();
+    this.pullFromLocalStorage();
   }
 
   render() {
@@ -29,6 +47,8 @@ class App extends Component {
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchCities: (cities) => dispatch(fetchCities(cities)),
+  fetchStations: (stations) => dispatch(fetchStations(stations)),
+  setFavorites: (favorites) => dispatch(setFavorites(favorites))
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(App));
