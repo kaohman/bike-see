@@ -179,8 +179,7 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
     <h3
       className="loading-text"
     >
-      Viewing: 
-      DENVER
+      Choose a city to view stations
     </h3>
   </div>
   <nav>

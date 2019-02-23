@@ -56,7 +56,7 @@ describe('Header', () => {
   it('should match the correct snapshot when on the my-stops page', () => {
     locationMock = { pathname: '/my-stops' };
     loadingMock = false;
-    currentCityMock = 'Denver';
+    currentCityMock = '';
 
     wrapper = shallow(
       <Header
