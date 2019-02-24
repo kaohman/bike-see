@@ -180,7 +180,7 @@ export class BikeMap extends Component {
             />
             <TileLayer
               url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> | <a href="http://api.citybik.es/v2/">CityBikes API</a>'
               subdomains='abcd'
               minZoom='3'
               maxZoom='19'
