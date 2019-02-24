@@ -63,7 +63,6 @@ export class BikeMap extends Component {
       const { name, latitude, longitude, free_bikes, empty_slots, timestamp, id } = marker;
       const { favorites } = this.props;
 
-      
       let newIcon;
       let buttonText;
       if (favorites.includes(id)) {
