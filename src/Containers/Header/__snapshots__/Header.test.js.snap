@@ -24,19 +24,6 @@ exports[`Header should match the correct snapshot when loading 1`] = `
       activeClassName="active"
       aria-current="page"
       className="nav-links"
-      to="/login"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Login
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
       exact={true}
       to="/"
     >
@@ -72,6 +59,19 @@ exports[`Header should match the correct snapshot when loading 1`] = `
       />
       <div>
         My Stops
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
       </div>
     </NavLink>
   </nav>
@@ -98,26 +98,13 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
         A bike share sightseeing app.
       </h3>
       <h3
-        className="loading-text"
+        className="loading-text large-screens"
       >
         Click on a purple city icon to view a bike share network and get started.
       </h3>
     </div>
   </div>
   <nav>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      to="/login"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Login
-      </div>
-    </NavLink>
     <NavLink
       activeClassName="active"
       aria-current="page"
@@ -157,6 +144,19 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
       />
       <div>
         My Stops
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
       </div>
     </NavLink>
   </nav>
@@ -187,19 +187,6 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
       activeClassName="active"
       aria-current="page"
       className="nav-links"
-      to="/login"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Login
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
       exact={true}
       to="/"
     >
@@ -235,6 +222,19 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
       />
       <div>
         My Stops
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
       </div>
     </NavLink>
   </nav>
@@ -266,19 +266,6 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
       activeClassName="active"
       aria-current="page"
       className="nav-links"
-      to="/login"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Login
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
       exact={true}
       to="/"
     >
@@ -314,6 +301,19 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
       />
       <div>
         My Stops
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/login"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Login
       </div>
     </NavLink>
   </nav>
