@@ -15,7 +15,7 @@ export const Header = ({ currentCity, loading, location }) => {
         case '/':
           return <div>
               <h3 className='loading-text'>A bike share sightseeing app.</h3>
-              <h3 className='loading-text'>Click on a purple city icon to view a bike share network and get started.</h3>
+              <h3 className='loading-text large-screens'>Click on a purple city icon to view a bike share network and get started.</h3>
             </div>
         default:
           return currentCity === '' ?
@@ -32,10 +32,6 @@ export const Header = ({ currentCity, loading, location }) => {
         {setSubheader()}
       </div>
       <nav>
-        <NavLink className='nav-links' to='/login'>
-          <i className="fas fa-user"></i>
-          <div>Login</div>
-        </NavLink>
         <NavLink exact className='nav-links' to='/'>
           <i className="fas fa-map-marker-alt"></i>
           <div>Cities</div>
@@ -47,6 +43,10 @@ export const Header = ({ currentCity, loading, location }) => {
         <NavLink className='nav-links' to='/my-stops'>
           <i className="fas fa-clipboard-list"></i>
           <div>My Stops</div>
+        </NavLink>
+        <NavLink className='nav-links' to='/login'>
+          <i className="fas fa-user"></i>
+          <div>Login</div>
         </NavLink>
       </nav>
     </header>

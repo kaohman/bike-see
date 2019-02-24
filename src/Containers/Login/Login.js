@@ -23,7 +23,7 @@ class Login extends Component {
           <Link className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
           <Link className='pop-up-link' to='/login'>Login Here</Link>
         }
-        <p className='hidden'>Please try again</p>
+        <p className='error-text hidden'>Please try again</p>
       </form>
     )
   }

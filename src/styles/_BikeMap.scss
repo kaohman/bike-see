@@ -35,6 +35,7 @@
   }
   
   p {
+    font-family: $main-font;
     color: $main-text-color;
     margin: 5px;
   }
@@ -86,13 +87,19 @@
   }
 }
 
+@media screen and (max-width: 910px) {
+  .fa-location-arrow {
+    top: 236px;
+  }
+}
+
 @media screen and (max-width: 670px) {
   .fa-location-arrow {
     top: 22px;
   }
 
   .map-container {
-    height: 500px;
+    height: 510px;
     order: -1;
   }
 }
