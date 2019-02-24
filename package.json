@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "geodist": "^0.2.1",
     "leaflet": "^1.4.0",
     "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",

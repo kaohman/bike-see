@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
 import { toggleFavorite } from '../../actions';
 import PropTypes from 'prop-types';
+import getDistance from 'geodist';
 
 const MapSearch = withLeaflet(ReactLeafletSearch);
 
@@ -62,6 +63,7 @@ export class BikeMap extends Component {
       const { name, latitude, longitude, free_bikes, empty_slots, timestamp, id } = marker;
       const { favorites } = this.props;
 
+      
       let newIcon;
       let buttonText;
       if (favorites.includes(id)) {
@@ -71,7 +73,8 @@ export class BikeMap extends Component {
         newIcon = new L.icon({ ...icon, iconUrl: require('../../images/bike.png') });
         buttonText = 'Click to add to stops';
       }
-
+      
+      const distance = getDistance({ lat: this.state.lat, lon: this.state.lon }, { lat: latitude, lon: longitude }, { exact: true, unit: 'mi' });
       const temp = new Date(timestamp);
       const date = temp.toDateString();
       const time = temp.toTimeString().substring(0,5);
@@ -85,6 +88,7 @@ export class BikeMap extends Component {
           <Tooltip className='tooltip'>{
             <div>
               <h4>{name}</h4>
+              <p>Distance away: {distance.toFixed(1)} mi</p>
               <p>Empty slots: {empty_slots}</p>
               <p>Free bikes: {free_bikes}</p>
               <p>Updated: {date}, {time}</p>
