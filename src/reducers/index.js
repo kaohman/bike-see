@@ -5,6 +5,7 @@ import { favoritesReducer } from './favoritesReducer/favoritesReducer';
 import { errorReducer } from './errorReducer/errorReducer';
 import { loadingReducer } from './loadingReducer/loadingReducer';
 import { currentCityReducer } from './currentCityReducer/currentCityReducer';
+import { userReducer } from './userReducer/userReducer';
 
 const rootReducer = combineReducers({
   favorites: favoritesReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   error: errorReducer,
   loading: loadingReducer,
   currentCity: currentCityReducer,
+  user: userReducer,
 });
 
 export default rootReducer;

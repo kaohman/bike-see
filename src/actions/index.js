@@ -32,3 +32,8 @@ export const setFavorites = (favorites) => ({
   type: 'SET_FAVORITES',
   favorites,
 });
+
+export const setCurrentUser = (user) => ({
+  type: 'SET_CURRENT_USER',
+  user,
+});
