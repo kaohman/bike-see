@@ -32,9 +32,14 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     this.clearError('');
-    const { login, fetchUser, error, history } = this.props;
+    const { login, fetchUser } = this.props;
     const { name, email, password} = this.state;
     await fetchUser({name, email, password}, login);
+    this.updatePath();
+  }
+  
+  updatePath = () => {
+    const { error, history } = this.props;
     if (error === '') {
       history.replace('/');
     }
