@@ -8,8 +8,8 @@ const PopUp = (props) => {
       <div className='login-pop-up'>
         <i onClick={() => props.history.replace('/')} className="fas fa-times close-icon"></i>
         <h3>{props.title}</h3>
-        {props.title === 'User Login' && <Login login={true}/>}
-        {props.title === 'User Sign Up' && <Login login={false}/>}
+        {props.title === 'User Login' && <Login history={props.history} login={true}/>}
+        {props.title === 'User Sign Up' && <Login history={props.history} login={false}/>}
       </div>
     </div>
   )

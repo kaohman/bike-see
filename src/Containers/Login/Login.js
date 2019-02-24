@@ -1,63 +1,86 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchUser } from '../../thunks/fetchUser';
+import { setError } from '../../actions';
 import { connect } from 'react-redux';
 
 class Login extends Component {
   constructor() {
     super();
     this.state = {
-      user: {
-        name: '',
-        email: '',
-        password: '',
-        verifyPassword: '',
-      },
-      response: ''
+      name: '',
+      email: '',
+      password: '',
+      verifyPassword: ''
     }
+  }
+
+  clearError = () => {
+    this.props.setError('');
   }
 
   updateState = (e) => {
     e.preventDefault();
     const { id, value } = e.target;
-    this.setState({ [id]: value })
+    if (id === 'email') {
+      this.setState({ [id]: value.toLowerCase() })
+    } else {
+      this.setState({ [id]: value })
+    }
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    const { login, fetchUser } = this.props;
-    fetchUser(this.state.user, login);
+    this.clearError('');
+    const { login, fetchUser error, history } = this.props;
+    const { name, email, password} = this.state;
+    await fetchUser({name, email, password}, login);
+    if (error === '') {
+      history.replace('/');
+    }
   }
 
   render() {
-    const { login } = this.props;
-    const { user } = this.state;
+    const { login, error } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
+        {!login &&
+          <label>Name
+            <input onChange={this.updateState} required type='text' placeholder='Enter your name' id='name' />
+          </label>
+        }
         <label>Email
-          <input onChange={this.updateState} required type='text' placeholder='Enter your email' value={user.email} id='email'/>
+          <input onChange={this.updateState} required type='email' placeholder='Enter your email'  id='email'/>
         </label>
         <label>Password
-          <input onChange={this.updateState} required type='password' placeholder='Enter your password' value={user.password} id='password'/>
+          <input onChange={this.updateState} required type='password' placeholder='Enter your password' id='password'/>
         </label>
         {!login &&
           <label>Verify Password
-            <input onChange={this.updateState} required type='password' placeholder='Enter your password' value={user.verifyPassword} id='verifyPassword'/>
+            <input onChange={this.updateState} required type='password' placeholder='Enter your password' id='verifyPassword'/>
           </label>
         }
         <button type='submit'>Submit</button>
         {login ? 
-          <Link className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
-          <Link className='pop-up-link' to='/login'>Login Here</Link>
+          <Link onClick={this.clearError} className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
+          <Link onClick={this.clearError} className='pop-up-link' to='/login'>Login Here</Link>
         }
-        <p className='error-text hidden'>Please try again</p>
+        {login ?
+          error !== '' && <p className='error-text'>Login Unsuccessful. Please sign up or try again.</p> :
+          error !== '' && <p className='error-text'>Sign up unsuccessful. Please try again.</p>
+        }
       </form>
     )
   }
 }
 
-export const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (user) => dispatch(fetchUser(user)),
+export const mapStateToProps = (state) => ({
+  error: state.error
 });
 
-export default connect(null, mapDispatchToProps)(Login);
+export const mapDispatchToProps = (dispatch) => ({
+  fetchUser: (user, login) => dispatch(fetchUser(user, login)),
+  setError: (error) => dispatch(setError(error)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

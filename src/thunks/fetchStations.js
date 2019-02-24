@@ -9,7 +9,7 @@ export const fetchStations = (city) => {
       dispatch(setCurrentCity(city));
       dispatch(setStations(results.network.stations));
     } catch (error) {
-      dispatch(setError(error));
+      dispatch(setError(error.message));
     }
     dispatch(setLoading(false));
   }

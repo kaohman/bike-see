@@ -8,7 +8,7 @@ export const fetchCities = () => {
       const results = await fetchData('http://api.citybik.es/v2/networks', 'GET');
       dispatch(setCities(results.networks));
     } catch (error) {
-      dispatch(setError(error));
+      dispatch(setError(error.message));
     }
     dispatch(setLoading(false));
   }

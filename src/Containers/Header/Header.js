@@ -3,8 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { setCurrentUser } from '../../actions';
 
-export const Header = ({ currentCity, loading, location }) => {
+export const Header = ({ currentCity, loading, location, user, setCurrentUser }) => {
+  const signOut = () => {
+    setCurrentUser({});
+  }
+
   const setSubheader = () => {
     if (loading) {
       return <h3 className='loading-text'>Loading Data...</h3>
@@ -44,10 +49,16 @@ export const Header = ({ currentCity, loading, location }) => {
           <i className="fas fa-clipboard-list"></i>
           <div>My Stops</div>
         </NavLink>
-        <NavLink className='nav-links' to='/login'>
-          <i className="fas fa-user"></i>
-          <div>Login</div>
-        </NavLink>
+        {user.name ?
+          <button onClick={signOut}>
+            <i className="fas fa-user"></i>
+            <div>Sign Out</div>
+          </button> :
+          <NavLink className='nav-links' to='/login'>
+            <i className="fas fa-user"></i>
+            <div>Login</div>
+          </NavLink>
+        }
       </nav>
     </header>
   )
@@ -56,6 +67,11 @@ export const Header = ({ currentCity, loading, location }) => {
 export const mapStateToProps = (state) => ({
   loading: state.loading,
   currentCity: state.currentCity,
+  user: state.user,
+});
+
+export const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
 Header.propTypes = {
@@ -68,4 +84,4 @@ Header.defaultProps = {
   currentCity: '',
 }
 
-export default withRouter(connect(mapStateToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
