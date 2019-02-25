@@ -78,11 +78,14 @@ export const mapDispatchToProps = (dispatch) => ({
 Header.propTypes = {
   loading: PropTypes.bool,
   currentCity: PropTypes.string,
+  user: PropTypes.object,
+  setCurrentUser: PropTypes.func.isRequired,
 }
 
 Header.defaultProps = {
   loading: true,
   currentCity: '',
+  user: {},
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

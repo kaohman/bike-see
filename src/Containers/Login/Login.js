@@ -4,6 +4,7 @@ import { fetchUser } from '../../thunks/fetchUser';
 import { fetchFavorites } from '../../thunks/fetchFavorites';
 import { setError } from '../../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class Login extends Component {
   constructor() {
@@ -91,5 +92,18 @@ export const mapDispatchToProps = (dispatch) => ({
   setError: (error) => dispatch(setError(error)),
   fetchFavorites: (id) => dispatch(fetchFavorites(id)),
 });
+
+Login.propTypes = {
+  error: PropTypes.string,
+  user: PropTypes.object,
+  fetchUser: PropTypes.func.isRequired,
+  setError: PropTypes.func.isRequired,
+  fetchFavorites: PropTypes.func.isRequired,
+}
+
+Login.defaultProps = {
+  error: '',
+  user: {},
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

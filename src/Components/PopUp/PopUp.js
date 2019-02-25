@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from '../../Containers/Login/Login';
-// import Trips from '../../Containers/Trips/Trips';
 
 const PopUp = (props) => {
   return (

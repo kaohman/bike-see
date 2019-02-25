@@ -56,7 +56,6 @@ export class BikeMap extends Component {
     favorites.includes(e.target.options.id) ? 
       deleteFavorite(id, user.id) :
       postFavorite(id, user.id);
-    // this.setLocalStorage();
   }
 
   setLocalStorage = () => {
@@ -218,13 +217,17 @@ BikeMap.propTypes = {
   cities: PropTypes.array,
   stations: PropTypes.array,
   favorites: PropTypes.array,
+  user: PropTypes.object,
   fetchStations: PropTypes.func.isRequired,
+  deleteFavorite: PropTypes.func.isRequired,
+  postFavorite: PropTypes.func.isRequired,
 }
 
 BikeMap.defaultProps = {
   cities: [],
   stations: [],
-  favorites: []
+  favorites: [],
+  user: {},
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(BikeMap);

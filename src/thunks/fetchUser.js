@@ -15,7 +15,3 @@ export const fetchUser = (user, login) => {
     dispatch(setLoading(false));
   }
 }
-
-// fetchCity - GET
-// postCity - POST
-// putCity - PUT
