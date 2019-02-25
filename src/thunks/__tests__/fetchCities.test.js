@@ -19,12 +19,12 @@ describe('fetchCities', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = fetchCities();
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith('http://api.citybik.es/v2/networks');
+    expect(fetchData).toHaveBeenCalledWith('http://api.citybik.es/v2/networks', 'GET');
   });
 
   it('should dispatch setError with message if response is not ok', async () => {
     fetchData.mockImplementation(() => {
-      throw 'Error fetching data'
+      throw {message: 'Error fetching data'}
     });
     const thunk = fetchCities();
     await thunk(mockDispatch);

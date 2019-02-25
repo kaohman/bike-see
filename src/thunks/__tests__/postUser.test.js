@@ -1,41 +1,41 @@
-import { fetchUser } from '../fetchUser';
+import { postUser } from '../postUser';
 import { setLoading, setError, setCurrentUser } from '../../actions';
 import { fetchData } from '../../utils/api';
 jest.mock('../../utils/api');
 
-describe('fetchUser', () => {
+describe('postUser', () => {
   let mockDispatch;
   let mockUser;
 
   beforeEach(() => {
-    mockUser = { email: 'bob@bob', password: 'password' };
+    mockUser = {name: 'Bob', email: 'bob@bob', password: 'password'};
     mockDispatch = jest.fn();
   });
 
   it('should call dispatch with the setLoading action', () => {
-    const thunk = fetchUser(mockUser);
+    const thunk = postUser(mockUser);
     thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(true));
   });
 
   it('should call fetchData with the correct params', async () => {
-    const thunk = fetchUser(mockUser);
+    const thunk = postUser(mockUser);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users`, 'GET', mockUser);
+    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users/new`, 'POST', mockUser);
   });
 
   it('should dispatch setCurrentUser if response is ok', async () => {
-    const expected = { ...mockUser, id: '1', name: 'Bob' };
+    const expected = { ...mockUser, id: '1' };
     fetchData.mockImplementation(() => {
       return expected
     });
-    const thunk = fetchUser(mockUser);
+    const thunk = postUser(mockUser);
     await thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setCurrentUser(expected));
   });
 
   it('should dispatch setLoading(false)', async () => {
-    const thunk = fetchUser(mockUser);
+    const thunk = postUser(mockUser);
     await thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(false));
   });
@@ -44,7 +44,7 @@ describe('fetchUser', () => {
     fetchData.mockImplementation(() => {
       throw { message: 'Error fetching data' }
     });
-    const thunk = fetchUser(mockUser);
+    const thunk = postUser(mockUser);
     await thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
   });

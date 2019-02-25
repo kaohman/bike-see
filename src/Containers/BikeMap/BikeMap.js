@@ -218,9 +218,9 @@ BikeMap.propTypes = {
   stations: PropTypes.array,
   favorites: PropTypes.array,
   user: PropTypes.object,
-  fetchStations: PropTypes.func.isRequired,
-  deleteFavorite: PropTypes.func.isRequired,
-  postFavorite: PropTypes.func.isRequired,
+  fetchStations: PropTypes.func,
+  deleteFavorite: PropTypes.func,
+  postFavorite: PropTypes.func,
 }
 
 BikeMap.defaultProps = {

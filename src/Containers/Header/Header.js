@@ -79,7 +79,7 @@ Header.propTypes = {
   loading: PropTypes.bool,
   currentCity: PropTypes.string,
   user: PropTypes.object,
-  setCurrentUser: PropTypes.func.isRequired,
+  setCurrentUser: PropTypes.func,
 }
 
 Header.defaultProps = {

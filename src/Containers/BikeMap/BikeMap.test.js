@@ -2,20 +2,26 @@ import React from 'react';
 import { BikeMap, mapStateToProps, mapDispatchToProps } from './BikeMap';
 import { shallow } from 'enzyme';
 import { fetchStations } from '../../thunks/fetchStations';
-import { toggleFavorite } from '../../actions';
+import { postFavorite } from '../../thunks/postFavorite';
+import { deleteFavorite } from '../../thunks/deleteFavorite';
 jest.mock('../../thunks/fetchStations');
+jest.mock('../../thunks/postFavorite');
+jest.mock('../../thunks/deleteFavorite');
 
 describe('BikeMap', () => {
   let wrapper;
   let fetchStationsMock;
-  let toggleFavoriteMock;
+  let deleteFavoriteMock;
+  let postFavoriteMock;
   let mockCities;
   let mockStations;
   let mockFavorites;
   let mockEvent;
   let mockHistory;
+  let mockUser;
 
   beforeEach(() => {
+    mockUser = { id: '1', name: 'Bob', email: 'bob@bob.com', password: 'password'};
     mockCities = [
       { name: 'Denver', stations: 26, id: 'denver' },
       { name: 'Capital Bikeshare', stations: 58, id: 'capital-bikeshare' }
@@ -26,7 +32,8 @@ describe('BikeMap', () => {
     ];
     mockFavorites = ['1'];
     fetchStationsMock = jest.fn();
-    toggleFavoriteMock = jest.fn();
+    deleteFavoriteMock = jest.fn();
+    postFavoriteMock = jest.fn();
     mockEvent = { target: { options: {id: '1'} } };
     mockHistory = { replace: jest.fn() };
     global.navigator.geolocation = {getCurrentPosition: jest.fn()};
@@ -35,8 +42,10 @@ describe('BikeMap', () => {
         cities={mockCities}
         stations={mockStations}
         favorites={mockFavorites}
+        user={mockUser}
         fetchStations={fetchStationsMock}
-        toggleFavorite={toggleFavoriteMock}
+        deleteFavorite={deleteFavoriteMock}
+        postFavorite={postFavoriteMock}
         history={mockHistory}
       />
     )
@@ -66,15 +75,15 @@ describe('BikeMap', () => {
   });
 
   describe('toggleFavorite', () => {
-    it('should call toggleFavorite with the correct params', () => {
+    it('should call deleteFavorite with the correct params', () => {
       wrapper.instance().toggleFavorite(mockEvent);
-      expect(wrapper.instance().props.toggleFavorite).toHaveBeenCalledWith('1');
+      expect(wrapper.instance().props.deleteFavorite).toHaveBeenCalledWith('1','1');
     });
 
-    it('should call setLocalStorage', () => {
-      wrapper.instance().setLocalStorage = jest.fn();
+    it('should call postFavorite with the correct params', () => {
+      mockEvent = { target: { options: { id: '5' } } };
       wrapper.instance().toggleFavorite(mockEvent);
-      expect(wrapper.instance().setLocalStorage).toHaveBeenCalled();
+      expect(wrapper.instance().props.postFavorite).toHaveBeenCalledWith('5', '1');
     });
   });
 
@@ -116,12 +125,14 @@ describe('BikeMap', () => {
         cities: mockCities,
         stations: mockStations,
         favorites: mockFavorites,
+        user: mockUser,
         otherState: false,
       };
       const expected = {
         cities: mockCities,
         stations: mockStations,
-        favorites: mockFavorites
+        favorites: mockFavorites,
+        user: mockUser,
       };
       const mappedProps = mapStateToProps(mockState);
       expect(mappedProps).toEqual(expected);
@@ -137,11 +148,19 @@ describe('BikeMap', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
 
-    it('should call dispatch when toggleFavorite is called', () => {
+    it('should call dispatch when deleteFavorite is called', () => {
       const mockDispatch = jest.fn();
-      const actionToDispatch = toggleFavorite();
+      const actionToDispatch = deleteFavorite();
       const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.toggleFavorite();
+      mappedProps.deleteFavorite();
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+
+    it('should call dispatch when postFavorite is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = postFavorite();
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.postFavorite();
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
   });

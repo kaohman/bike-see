@@ -59,10 +59,10 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 App.propTypes = {
-  fetchCities: PropTypes.func.isRequired,
-  fetchStations: PropTypes.func.isRequired,
-  fetchFavorites: PropTypes.func.isRequired,
-  setCurrentUser: PropTypes.func.isRequired,
+  fetchCities: PropTypes.func,
+  fetchStations: PropTypes.func,
+  fetchFavorites: PropTypes.func,
+  setCurrentUser: PropTypes.func,
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(App));
