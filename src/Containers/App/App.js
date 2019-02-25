@@ -12,12 +12,6 @@ import PropTypes from 'prop-types';
 
 export class App extends Component {
   pullFromLocalStorage = () => {
-    // if (localStorage.hasOwnProperty('bike-stops')) {
-    //   const savedStops = localStorage.getItem('bike-stops');
-    //   const favorites = JSON.parse(savedStops);
-    //   this.props.setFavorites(favorites);
-    // }
-
     if (localStorage.hasOwnProperty('current-city')) {
       const savedCity = localStorage.getItem('current-city');
       const currentCity = JSON.parse(savedCity);
@@ -31,7 +25,6 @@ export class App extends Component {
       const savedUser = localStorage.getItem('bike-user');
       const parsedUser = JSON.parse(savedUser);
       setCurrentUser(parsedUser);
-      // fetchUser(parsedUser, true);
       fetchFavorites(parsedUser.id);
     }
   }
