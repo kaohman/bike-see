@@ -7,32 +7,25 @@ import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
 import { fetchCities } from '../../thunks/fetchCities';
 import { fetchFavorites } from '../../thunks/fetchFavorites';
-import { setCurrentUser } from '../../actions';
 import PropTypes from 'prop-types';
+import { fetchUser } from '../../thunks/fetchUser';
 
 export class App extends Component {
-  pullFromLocalStorage = () => {
-    if (localStorage.hasOwnProperty('current-city')) {
-      const savedCity = localStorage.getItem('current-city');
-      const currentCity = JSON.parse(savedCity);
-      this.props.fetchStations(currentCity);
-    }
-  }
 
   getCurrentUser = () => {
-    const { setCurrentUser, fetchFavorites } = this.props;
+    const { fetchUser, fetchFavorites } = this.props;
     if (localStorage.hasOwnProperty('bike-user')) {
       const savedUser = localStorage.getItem('bike-user');
       const parsedUser = JSON.parse(savedUser);
-      setCurrentUser(parsedUser);
+      fetchUser(parsedUser);
       fetchFavorites(parsedUser.id);
+      fetchStations();
     }
   }
 
   componentDidMount() {
     this.props.fetchCities();
     this.getCurrentUser();
-    this.pullFromLocalStorage();
   }
 
   render() {
@@ -55,14 +48,14 @@ export const mapDispatchToProps = (dispatch) => ({
   fetchCities: (cities) => dispatch(fetchCities(cities)),
   fetchStations: (stations) => dispatch(fetchStations(stations)),
   fetchFavorites: (user) => dispatch(fetchFavorites(user)),
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  fetchUser: (user) => dispatch(fetchUser(user)),
 });
 
 App.propTypes = {
   fetchCities: PropTypes.func,
   fetchStations: PropTypes.func,
   fetchFavorites: PropTypes.func,
-  setCurrentUser: PropTypes.func,
+  fetchUser: PropTypes.func,
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(App));
