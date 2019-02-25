@@ -3,11 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { setCurrentUser } from '../../actions';
+import { setCurrentUser, setCurrentCity, setStations } from '../../actions';
 
-export const Header = ({ currentCity, loading, location, user, setCurrentUser }) => {
+export const Header = ({ currentCity, loading, location, user, setCurrentUser, setStations }) => {
   const signOut = () => {
     setCurrentUser({});
+    setCurrentCity('');
+    setStations([]);
     localStorage.removeItem('bike-user');
   }
 
@@ -73,6 +75,8 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  setCurrentCity: (city) => dispatch(setCurrentCity(city)),
+  setStations: (stations) => dispatch(setStations(stations)),
 });
 
 Header.propTypes = {
@@ -80,6 +84,8 @@ Header.propTypes = {
   currentCity: PropTypes.string,
   user: PropTypes.object,
   setCurrentUser: PropTypes.func,
+  setCurrentCity: PropTypes.func,
+  setStations: PropTypes.func,
 }
 
 Header.defaultProps = {

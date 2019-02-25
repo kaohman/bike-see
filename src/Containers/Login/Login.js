@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchUser } from '../../thunks/fetchUser';
 import { postUser } from '../../thunks/postUser';
-import { fetchFavorites } from '../../thunks/fetchFavorites';
 import { setError } from '../../actions';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -35,10 +34,9 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     this.clearError('');
-    const { login, fetchUser, postUser, fetchFavorites, user } = this.props;
+    const { login, fetchUser, postUser } = this.props;
     const { name, email, password} = this.state;
     login ? await fetchUser({email, password}) : await postUser({name, email, password});
-    login && await fetchFavorites(user.id);
     this.updatePath();
   }
   
@@ -91,7 +89,6 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   fetchUser: (user) => dispatch(fetchUser(user)),
   setError: (error) => dispatch(setError(error)),
-  fetchFavorites: (id) => dispatch(fetchFavorites(id)),
   postUser: (user) => dispatch(postUser(user)),
 });
 
@@ -100,7 +97,6 @@ Login.propTypes = {
   user: PropTypes.object,
   fetchUser: PropTypes.func,
   setError: PropTypes.func,
-  fetchFavorites: PropTypes.func,
   postUser: PropTypes.func,
 }
 

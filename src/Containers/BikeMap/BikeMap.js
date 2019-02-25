@@ -44,9 +44,8 @@ export class BikeMap extends Component {
   }
 
   getStations = (e) => {
-    const { fetchStations, history } = this.props;
-    fetchStations(e.target.options.id);
-    localStorage.setItem('current-city', JSON.stringify(e.target.options.id));
+    const { fetchStations, history, user } = this.props;
+    fetchStations(user.id, e.target.options.id);
     history.replace('/stations');
   }
 
@@ -208,7 +207,7 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchStations: (id) => dispatch(fetchStations(id)),
+  fetchStations: (user_id, city) => dispatch(fetchStations(user_id, city)),
   deleteFavorite: (station, user) => dispatch(deleteFavorite(station, user)),
   postFavorite: (station, user) => dispatch(postFavorite(station, user))
 });
