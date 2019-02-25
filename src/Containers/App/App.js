@@ -6,16 +6,17 @@ import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
 import { fetchCities } from '../../thunks/fetchCities';
-import { setFavorites } from '../../actions';
+import { fetchFavorites } from '../../thunks/fetchFavorites';
+import { setCurrentUser } from '../../actions';
 import PropTypes from 'prop-types';
 
 export class App extends Component {
   pullFromLocalStorage = () => {
-    if (localStorage.hasOwnProperty('bike-stops')) {
-      const savedStops = localStorage.getItem('bike-stops');
-      const favorites = JSON.parse(savedStops);
-      this.props.setFavorites(favorites);
-    }
+    // if (localStorage.hasOwnProperty('bike-stops')) {
+    //   const savedStops = localStorage.getItem('bike-stops');
+    //   const favorites = JSON.parse(savedStops);
+    //   this.props.setFavorites(favorites);
+    // }
 
     if (localStorage.hasOwnProperty('current-city')) {
       const savedCity = localStorage.getItem('current-city');
@@ -24,8 +25,20 @@ export class App extends Component {
     }
   }
 
+  getCurrentUser = () => {
+    const { setCurrentUser, fetchFavorites } = this.props;
+    if (localStorage.hasOwnProperty('bike-user')) {
+      const savedUser = localStorage.getItem('bike-user');
+      const parsedUser = JSON.parse(savedUser);
+      setCurrentUser(parsedUser);
+      // fetchUser(parsedUser, true);
+      fetchFavorites(parsedUser.id);
+    }
+  }
+
   componentDidMount() {
     this.props.fetchCities();
+    this.getCurrentUser();
     this.pullFromLocalStorage();
   }
 
@@ -48,13 +61,13 @@ export class App extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   fetchCities: (cities) => dispatch(fetchCities(cities)),
   fetchStations: (stations) => dispatch(fetchStations(stations)),
-  setFavorites: (favorites) => dispatch(setFavorites(favorites))
+  fetchFavorites: (user) => dispatch(fetchFavorites(user)),
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
 });
 
 App.propTypes = {
   fetchCities: PropTypes.func.isRequired,
   fetchStations: PropTypes.func.isRequired,
-  setFavorites: PropTypes.func.isRequired,
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(App));

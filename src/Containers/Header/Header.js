@@ -8,6 +8,7 @@ import { setCurrentUser } from '../../actions';
 export const Header = ({ currentCity, loading, location, user, setCurrentUser }) => {
   const signOut = () => {
     setCurrentUser({});
+    localStorage.removeItem('bike-user');
   }
 
   const setSubheader = () => {
@@ -38,24 +39,24 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser })
       </div>
       <nav>
         <NavLink exact className='nav-links' to='/'>
-          <i className="fas fa-map-marker-alt"></i>
+          <i className='fas fa-map-marker-alt'></i>
           <div>Cities</div>
         </NavLink>
         <NavLink exact className='nav-links' to='/stations'>
-          <i className="fas fa-bicycle"></i>
+          <i className='fas fa-bicycle'></i>
           <div>Stations</div>
         </NavLink>
         <NavLink className='nav-links' to='/my-stops'>
-          <i className="fas fa-clipboard-list"></i>
+          <i className='fas fa-clipboard-list'></i>
           <div>My Stops</div>
         </NavLink>
         {user.name ?
-          <button onClick={signOut}>
-            <i className="fas fa-user"></i>
+          <NavLink onClick={signOut} className='nav-links' to='/'>
+            <i className='fas fa-user'></i>
             <div>Sign Out</div>
-          </button> :
+          </NavLink> :
           <NavLink className='nav-links' to='/login'>
-            <i className="fas fa-user"></i>
+            <i className='fas fa-user'></i>
             <div>Login</div>
           </NavLink>
         }

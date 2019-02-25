@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchUser } from '../../thunks/fetchUser';
+import { fetchFavorites } from '../../thunks/fetchFavorites';
 import { setError } from '../../actions';
 import { connect } from 'react-redux';
 
@@ -32,9 +33,10 @@ class Login extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     this.clearError('');
-    const { login, fetchUser } = this.props;
+    const { login, fetchUser, fetchFavorites, user } = this.props;
     const { name, email, password} = this.state;
     await fetchUser({name, email, password}, login);
+    login && await fetchFavorites(user.id);
     this.updatePath();
   }
   
@@ -80,12 +82,14 @@ class Login extends Component {
 }
 
 export const mapStateToProps = (state) => ({
-  error: state.error
+  error: state.error,
+  user: state.user,
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchUser: (user, login) => dispatch(fetchUser(user, login)),
   setError: (error) => dispatch(setError(error)),
+  fetchFavorites: (id) => dispatch(fetchFavorites(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

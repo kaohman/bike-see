@@ -23,8 +23,13 @@ export const setStations = (stations) => ({
   stations,
 });
 
-export const toggleFavorite = (favorite) => ({
-  type: 'TOGGLE_FAVORITE',
+export const addFavorite = (favorite) => ({
+  type: 'ADD_FAVORITE',
+  favorite,
+});
+
+export const removeFavorite = (favorite) => ({
+  type: 'REMOVE_FAVORITE',
   favorite,
 });
 

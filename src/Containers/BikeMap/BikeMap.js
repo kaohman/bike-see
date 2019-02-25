@@ -4,7 +4,8 @@ import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
 import { fetchStations } from '../../thunks/fetchStations';
-import { toggleFavorite } from '../../actions';
+import { postFavorite } from '../../thunks/postFavorite';
+import { deleteFavorite } from '../../thunks/deleteFavorite';
 import PropTypes from 'prop-types';
 import getDistance from 'geodist';
 
@@ -50,8 +51,12 @@ export class BikeMap extends Component {
   }
 
   toggleFavorite = (e) => {
-    this.props.toggleFavorite(e.target.options.id);
-    this.setLocalStorage();
+    const { id } = e.target.options;
+    const { deleteFavorite, postFavorite, user, favorites } = this.props;
+    favorites.includes(e.target.options.id) ? 
+      deleteFavorite(id, user.id) :
+      postFavorite(id, user.id);
+    // this.setLocalStorage();
   }
 
   setLocalStorage = () => {
@@ -200,11 +205,13 @@ export const mapStateToProps = (state) => ({
   cities: state.cities,
   stations: state.stations,
   favorites: state.favorites,
+  user: state.user,
 });
 
 export const mapDispatchToProps = (dispatch) => ({
   fetchStations: (id) => dispatch(fetchStations(id)),
-  toggleFavorite: (id) => dispatch(toggleFavorite(id)),
+  deleteFavorite: (station, user) => dispatch(deleteFavorite(station, user)),
+  postFavorite: (station, user) => dispatch(postFavorite(station, user))
 });
 
 BikeMap.propTypes = {
@@ -212,7 +219,6 @@ BikeMap.propTypes = {
   stations: PropTypes.array,
   favorites: PropTypes.array,
   fetchStations: PropTypes.func.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
 }
 
 BikeMap.defaultProps = {
