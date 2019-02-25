@@ -65,13 +65,14 @@ exports[`Header should match the correct snapshot when loading 1`] = `
       activeClassName="active"
       aria-current="page"
       className="nav-links"
-      to="/login"
+      onClick={[Function]}
+      to="/"
     >
       <i
         className="fas fa-user"
       />
       <div>
-        Login
+        Sign Out
       </div>
     </NavLink>
   </nav>
@@ -150,13 +151,14 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
       activeClassName="active"
       aria-current="page"
       className="nav-links"
-      to="/login"
+      onClick={[Function]}
+      to="/"
     >
       <i
         className="fas fa-user"
       />
       <div>
-        Login
+        Sign Out
       </div>
     </NavLink>
   </nav>
@@ -228,13 +230,14 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
       activeClassName="active"
       aria-current="page"
       className="nav-links"
-      to="/login"
+      onClick={[Function]}
+      to="/"
     >
       <i
         className="fas fa-user"
       />
       <div>
-        Login
+        Sign Out
       </div>
     </NavLink>
   </nav>
@@ -307,13 +310,14 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
       activeClassName="active"
       aria-current="page"
       className="nav-links"
-      to="/login"
+      onClick={[Function]}
+      to="/"
     >
       <i
         className="fas fa-user"
       />
       <div>
-        Login
+        Sign Out
       </div>
     </NavLink>
   </nav>

@@ -57,13 +57,23 @@ describe('actions', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should return a type of TOGGLE_FAVORITE, with a favorite', () => {
+  it('should return a type of ADD_FAVORITE, with a favorite', () => {
     const favorite = '4';
     const expected = {
-      type: 'TOGGLE_FAVORITE',
+      type: 'ADD_FAVORITE',
       favorite
     };
-    const result = actions.toggleFavorite(favorite);
+    const result = actions.addFavorite(favorite);
+    expect(result).toEqual(expected);
+  });
+
+  it('should return a type of REMOVE_FAVORITE, with a favorite', () => {
+    const favorite = '4';
+    const expected = {
+      type: 'REMOVE_FAVORITE',
+      favorite
+    };
+    const result = actions.removeFavorite(favorite);
     expect(result).toEqual(expected);
   });
 
@@ -74,6 +84,16 @@ describe('actions', () => {
       favorites
     };
     const result = actions.setFavorites(favorites);
+    expect(result).toEqual(expected);
+  });
+
+  it('should return a type of SET_CURRENT_USER, with a user', () => {
+    const user = {name: 'Karin', email: 'k@k', password: 'password'};
+    const expected = {
+      type: 'SET_CURRENT_USER',
+      user
+    };
+    const result = actions.setCurrentUser(user);
     expect(result).toEqual(expected);
   });
   

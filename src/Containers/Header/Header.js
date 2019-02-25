@@ -85,7 +85,6 @@ Header.propTypes = {
 Header.defaultProps = {
   loading: true,
   currentCity: '',
-  user: {},
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

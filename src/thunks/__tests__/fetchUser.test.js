@@ -21,7 +21,7 @@ describe('fetchUser', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = fetchUser(mockUser);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users`, 'GET', mockUser);
+    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users`, 'POST', mockUser);
   });
 
   it('should dispatch setCurrentUser if response is ok', async () => {

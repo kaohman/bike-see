@@ -7,17 +7,20 @@ describe('Header', () => {
   let loadingMock;
   let currentCityMock;
   let locationMock;
+  let userMock;
 
   it('should match the correct snapshot when loading', () => {
     locationMock = { pathname: '/'};
     loadingMock = true;
     currentCityMock = '';
+    userMock = { name: 'Karin', email: 'k@k', password: 'password' };
 
     wrapper = shallow(
       <Header
         loading={loadingMock}
         currentCity={currentCityMock}
         location={locationMock}
+        user={userMock}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -33,6 +36,7 @@ describe('Header', () => {
         loading={loadingMock}
         currentCity={currentCityMock}
         location={locationMock}
+        user={userMock}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -48,6 +52,7 @@ describe('Header', () => {
         loading={loadingMock}
         currentCity={currentCityMock}
         location={locationMock}
+        user={userMock}
       />
     );
     expect(wrapper).toMatchSnapshot();
@@ -63,6 +68,7 @@ describe('Header', () => {
         loading={loadingMock}
         currentCity={currentCityMock}
         location={locationMock}
+        user={userMock}
       />
     );
     expect(wrapper).toMatchSnapshot();

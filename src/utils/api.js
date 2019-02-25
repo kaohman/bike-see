@@ -16,7 +16,6 @@ export const fetchData = async (path, method, data = null) => {
         }
       };
   }
-
   const response = await fetch(path, options);
 
   if (response.status === 204) {
