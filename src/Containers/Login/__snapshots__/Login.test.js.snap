@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login should match the correct snapshot 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <label>
+    Email
+    <input
+      id="email"
+      onChange={[Function]}
+      placeholder="Enter your email"
+      required={true}
+      type="email"
+    />
+  </label>
+  <label>
+    Password
+    <input
+      id="password"
+      onChange={[Function]}
+      placeholder="Enter your password"
+      required={true}
+      type="password"
+    />
+  </label>
+  <button
+    type="submit"
+  >
+    Submit
+  </button>
+  <Link
+    className="pop-up-link"
+    onClick={[Function]}
+    replace={false}
+    to="/sign-up"
+  >
+    Sign Up Here
+  </Link>
+</form>
+`;
