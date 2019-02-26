@@ -1,15 +1,16 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { setCurrentUser, setCurrentCity, setStations } from '../../actions';
+import { setCurrentUser, setCurrentCity, setStations, setFavorites } from '../../actions';
 
-export const Header = ({ currentCity, loading, location, user, setCurrentUser, setStations }) => {
+export const Header = ({ currentCity, loading, location, user, setCurrentUser, setFavorites, setCurrentCity, setStations }) => {
   const signOut = () => {
     setCurrentUser({});
     setCurrentCity('');
     setStations([]);
+    setFavorites([]);
     localStorage.removeItem('bike-user');
   }
 
@@ -25,10 +26,14 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser, s
               <h3 className='loading-text'>A bike share sightseeing app.</h3>
               <h3 className='loading-text large-screens'>Click on a purple city icon to view a bike share network and get started.</h3>
             </div>
-        default:
+        case '/stations':
           return currentCity === '' ?
             <h3 className='loading-text'>Choose a city to view stations</h3> :
             <h3 className='loading-text'>Viewing: {currentCity.toUpperCase()}</h3>
+        case '/my-stops':
+          return !user.name && <h3 className='loading-text'>Login to view My Stops</h3>
+        default:
+          return
       }
     }
   }
@@ -53,10 +58,10 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser, s
           <div>My Stops</div>
         </NavLink>
         {user.name ?
-          <NavLink onClick={signOut} className='nav-links' to='/'>
+          <Link exact onClick={signOut} id='sign-out' className='nav-links' to='/'>
             <i className='fas fa-user'></i>
             <div>Sign Out</div>
-          </NavLink> :
+          </Link> :
           <NavLink className='nav-links' to='/login'>
             <i className='fas fa-user'></i>
             <div>Login</div>
@@ -77,6 +82,7 @@ export const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
   setCurrentCity: (city) => dispatch(setCurrentCity(city)),
   setStations: (stations) => dispatch(setStations(stations)),
+  setFavorites: (favorites) => dispatch(setFavorites(favorites)),
 });
 
 Header.propTypes = {
@@ -91,6 +97,7 @@ Header.propTypes = {
 Header.defaultProps = {
   loading: true,
   currentCity: '',
+  user: {}
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

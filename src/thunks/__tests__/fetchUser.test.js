@@ -1,7 +1,11 @@
 import { fetchUser } from '../fetchUser';
 import { setLoading, setError, setCurrentUser } from '../../actions';
 import { fetchData } from '../../utils/api';
+import { fetchFavorites } from '../fetchFavorites';
+import { fetchCurrentCity } from '../fetchCurrentCity';
 jest.mock('../../utils/api');
+jest.mock('../fetchCurrentCity');
+jest.mock('../fetchFavorites');
 
 describe('fetchUser', () => {
   let mockDispatch;
@@ -32,6 +36,26 @@ describe('fetchUser', () => {
     const thunk = fetchUser(mockUser);
     await thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setCurrentUser(expected));
+  });
+
+  it('should dispatch fetchFavorites if response is ok', async () => {
+    const expected = { ...mockUser, id: '1', name: 'Bob' };
+    fetchData.mockImplementation(() => {
+      return expected
+    });
+    const thunk = fetchUser(mockUser);
+    await thunk(mockDispatch);
+    expect(mockDispatch).toHaveBeenCalledWith(fetchFavorites(expected.id));
+  });
+
+  it('should dispatch fetchCurrentCity if response is ok', async () => {
+    const expected = { ...mockUser, id: '1', name: 'Bob' };
+    fetchData.mockImplementation(() => {
+      return expected
+    });
+    const thunk = fetchUser(mockUser);
+    await thunk(mockDispatch);
+    expect(mockDispatch).toHaveBeenCalledWith(fetchCurrentCity(expected.id));
   });
 
   it('should dispatch setLoading(false)', async () => {

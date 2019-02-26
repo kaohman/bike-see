@@ -8,8 +8,14 @@ exports[`App should match the correct snapshot 1`] = `
   <Switch>
     <Route
       component={[Function]}
+      path="/not-found"
+    />
+    <Route
+      component={[Function]}
       path="/"
     />
+  </Switch>
+  <Switch>
     <Route
       component={[Function]}
       path="/stations"
@@ -18,14 +24,18 @@ exports[`App should match the correct snapshot 1`] = `
       component={[Function]}
       path="/my-stops"
     />
+    <Route
+      path="/login"
+      render={[Function]}
+    />
+    <Route
+      path="/sign-up"
+      render={[Function]}
+    />
+    <Route
+      path="/:anythingelse"
+      render={[Function]}
+    />
   </Switch>
-  <Route
-    path="/login"
-    render={[Function]}
-  />
-  <Route
-    path="/sign-up"
-    render={[Function]}
-  />
 </div>
 `;

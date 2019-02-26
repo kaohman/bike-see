@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PopUp should match the correct snapshot 1`] = `
+<div
+  className="overlay-div"
+>
+  <div
+    className="login-pop-up"
+  >
+    <i
+      className="fas fa-times close-icon"
+      onClick={[Function]}
+    />
+    <h3>
+      User Login
+    </h3>
+    <Connect(Login)
+      history={
+        Object {
+          "replace": [MockFunction],
+        }
+      }
+      login={true}
+    />
+  </div>
+</div>
+`;

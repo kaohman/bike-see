@@ -64,10 +64,11 @@ export class BikeMap extends Component {
   createStationMarkers = (data, icon) => {
     return data.map(marker => {
       const { name, latitude, longitude, free_bikes, empty_slots, timestamp, id } = marker;
-      const { favorites } = this.props;
+      const { favorites, user } = this.props;
 
       let newIcon;
       let buttonText;
+
       if (favorites.includes(id)) {
         newIcon = new L.icon({ ...icon, iconUrl: require('../../images/bike-purple.png') }); 
         buttonText = 'Click to remove from stops';
@@ -94,7 +95,7 @@ export class BikeMap extends Component {
               <p>Empty slots: {empty_slots}</p>
               <p>Free bikes: {free_bikes}</p>
               <p>Updated: {date}, {time}</p>
-              <p className='click-text'>{buttonText}</p>
+              {user.name && <p className='click-text'>{buttonText}</p>}
             </div>
           }</Tooltip>
         </Marker>

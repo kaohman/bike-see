@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import BikeMap from '../BikeMap/BikeMap';
 import PopUp from '../../Components/PopUp/PopUp';
-import { Route, Switch, withRouter } from 'react-router-dom';
+import NotFound from '../../Components/NotFound/NotFound';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCities } from '../../thunks/fetchCities';
 import PropTypes from 'prop-types';
@@ -29,12 +30,16 @@ export class App extends Component {
       <div id='app-div'>
         <Header />
         <Switch>
+          <Route path='/not-found' component={NotFound} />
           <Route path='/' component={BikeMap} />
+        </Switch>
+        <Switch>
           <Route path='/stations' component={BikeMap} />
           <Route path='/my-stops' component={BikeMap} />
+          <Route path='/login' render={() => <PopUp history={this.props.history} title='User Login'/>} />
+          <Route path='/sign-up' render={() => <PopUp history={this.props.history} title='User Sign Up' />} />
+          <Route path='/:anythingelse' render={() => <Redirect to={'/not-found'} />} />
         </Switch>
-        <Route path="/login" render={() => <PopUp history={this.props.history} title='User Login'/>} />
-        <Route path="/sign-up" render={() => <PopUp history={this.props.history} title='User Sign Up' />} />
       </div>
     );
   }

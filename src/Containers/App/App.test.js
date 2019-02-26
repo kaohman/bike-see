@@ -2,30 +2,22 @@ import React from 'react';
 import { App, mapDispatchToProps } from './App';
 import { shallow } from 'enzyme';
 import { fetchCities } from '../../thunks/fetchCities';
-import { fetchStations } from '../../thunks/fetchStations';
-import { fetchFavorites } from '../../thunks/fetchFavorites';
-import { setCurrentUser } from '../../actions';
+import { fetchUser } from '../../thunks/fetchUser';
 jest.mock('../../thunks/fetchCities');
-jest.mock('../../thunks/fetchStations');
-jest.mock('../../thunks/fetchFavorites');
+jest.mock('../../thunks/fetchUser');
 
 describe('App', () => {
   let wrapper;
-  let fetchStationsMock;
   let fetchCitiesMock;
-  let setFavoritesMock;
-  let getCurrentUserMock;
+  let fetchUserMock;
 
   beforeEach(() => {
-    fetchStationsMock = jest.fn();
     fetchCitiesMock = jest.fn();
-    setFavoritesMock = jest.fn();
-    getCurrentUserMock = jest.fn();
+    fetchUserMock = jest.fn();
     wrapper = shallow(
       <App
-        fetchStations={fetchStationsMock}
         fetchCities={fetchCitiesMock}
-        setFavorites={setFavoritesMock}
+        fetchUser={fetchUserMock}
       />
     )
   });
@@ -45,16 +37,15 @@ describe('App', () => {
       wrapper.instance().componentDidMount();
       expect(wrapper.instance().getCurrentUser).toHaveBeenCalled();
     });
-
-    it('should call pullFromLocalStorage', () => {
-      wrapper.instance().pullFromLocalStorage = jest.fn();
-      wrapper.instance().componentDidMount();
-      expect(wrapper.instance().pullFromLocalStorage).toHaveBeenCalled();
-    });
   });
 
-  describe('pullFromLocalStorage', () => {
-
+  describe('getCurrentUser', () => {
+    it('should fetch user if it exists in local storage', () => {
+      const mockUser = { id: '1', name: 'Karin', email: 'k@k', password: 'password'};
+      localStorage.setItem('bike-user', JSON.stringify(mockUser));
+      wrapper.instance().getCurrentUser();
+      expect(wrapper.instance().props.fetchUser)
+    });
   });
 
   describe('mapDispatchToProps', () => {
@@ -66,27 +57,11 @@ describe('App', () => {
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
 
-    it('should call dispatch when fetchStations is called', () => {
+    it('should call dispatch when fetchUser is called', () => {
       const mockDispatch = jest.fn();
-      const actionToDispatch = fetchStations();
+      const actionToDispatch = fetchUser();
       const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.fetchStations();
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-    });
-
-    it('should call dispatch when fetchFavorites is called', () => {
-      const mockDispatch = jest.fn();
-      const actionToDispatch = fetchFavorites();
-      const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.fetchFavorites();
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-    });
-
-    it('should call dispatch when setCurrentUser is called', () => {
-      const mockDispatch = jest.fn();
-      const actionToDispatch = setCurrentUser();
-      const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.setCurrentUser();
+      mappedProps.fetchUser();
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
   });

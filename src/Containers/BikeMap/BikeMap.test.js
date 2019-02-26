@@ -65,7 +65,7 @@ describe('BikeMap', () => {
   describe('getStations', () => {
     it('should call fetchStations with the correct params', () => {
       wrapper.instance().getStations(mockEvent);
-      expect(fetchStationsMock).toHaveBeenCalledWith('1');
+      expect(fetchStationsMock).toHaveBeenCalledWith('1','1');
     });
 
     it('should update the path', () => {

@@ -15,13 +15,13 @@ describe('favoritesReducer', () => {
 
   it('should be able to add a favorite to store', () => {
     const expected = ['1', '2', '3', '4'];
-    const result = favoritesReducer(['1', '2', '3'], actions.toggleFavorite('4'));
+    const result = favoritesReducer(['1', '2', '3'], actions.addFavorite('4'));
     expect(result).toEqual(expected);
   })
 
   it('should remove a favorite from store', () => {
     const expected = ['1', '2', '3'];
-    const result = favoritesReducer(['1', '2', '3', '4'], actions.toggleFavorite('4'));
+    const result = favoritesReducer(['1', '2', '3', '4'], actions.removeFavorite('4'));
     expect(result).toEqual(expected);
   })
 });

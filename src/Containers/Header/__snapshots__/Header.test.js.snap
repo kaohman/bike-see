@@ -61,11 +61,12 @@ exports[`Header should match the correct snapshot when loading 1`] = `
         My Stops
       </div>
     </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
+    <Link
       className="nav-links"
+      exact={true}
+      id="sign-out"
       onClick={[Function]}
+      replace={false}
       to="/"
     >
       <i
@@ -74,7 +75,7 @@ exports[`Header should match the correct snapshot when loading 1`] = `
       <div>
         Sign Out
       </div>
-    </NavLink>
+    </Link>
   </nav>
 </header>
 `;
@@ -147,11 +148,12 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
         My Stops
       </div>
     </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
+    <Link
       className="nav-links"
+      exact={true}
+      id="sign-out"
       onClick={[Function]}
+      replace={false}
       to="/"
     >
       <i
@@ -160,12 +162,12 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
       <div>
         Sign Out
       </div>
-    </NavLink>
+    </Link>
   </nav>
 </header>
 `;
 
-exports[`Header should match the correct snapshot when on the my-stops page 1`] = `
+exports[`Header should match the correct snapshot when on the login page 1`] = `
 <header>
   <div
     className="title-div"
@@ -178,11 +180,6 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
     >
       BikeSee
     </NavLink>
-    <h3
-      className="loading-text"
-    >
-      Choose a city to view stations
-    </h3>
   </div>
   <nav>
     <NavLink
@@ -226,11 +223,12 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
         My Stops
       </div>
     </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
+    <Link
       className="nav-links"
+      exact={true}
+      id="sign-out"
       onClick={[Function]}
+      replace={false}
       to="/"
     >
       <i
@@ -239,7 +237,82 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
       <div>
         Sign Out
       </div>
+    </Link>
+  </nav>
+</header>
+`;
+
+exports[`Header should match the correct snapshot when on the my-stops page 1`] = `
+<header>
+  <div
+    className="title-div"
+  >
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      id="title"
+      to="/"
+    >
+      BikeSee
     </NavLink>
+  </div>
+  <nav>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/"
+    >
+      <i
+        className="fas fa-map-marker-alt"
+      />
+      <div>
+        Cities
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      exact={true}
+      to="/stations"
+    >
+      <i
+        className="fas fa-bicycle"
+      />
+      <div>
+        Stations
+      </div>
+    </NavLink>
+    <NavLink
+      activeClassName="active"
+      aria-current="page"
+      className="nav-links"
+      to="/my-stops"
+    >
+      <i
+        className="fas fa-clipboard-list"
+      />
+      <div>
+        My Stops
+      </div>
+    </NavLink>
+    <Link
+      className="nav-links"
+      exact={true}
+      id="sign-out"
+      onClick={[Function]}
+      replace={false}
+      to="/"
+    >
+      <i
+        className="fas fa-user"
+      />
+      <div>
+        Sign Out
+      </div>
+    </Link>
   </nav>
 </header>
 `;
@@ -306,11 +379,12 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
         My Stops
       </div>
     </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
+    <Link
       className="nav-links"
+      exact={true}
+      id="sign-out"
       onClick={[Function]}
+      replace={false}
       to="/"
     >
       <i
@@ -319,7 +393,7 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
       <div>
         Sign Out
       </div>
-    </NavLink>
+    </Link>
   </nav>
 </header>
 `;
