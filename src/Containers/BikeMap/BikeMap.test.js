@@ -19,6 +19,7 @@ describe('BikeMap', () => {
   let mockEvent;
   let mockHistory;
   let mockUser;
+  let mockLocation;
 
   beforeEach(() => {
     mockUser = { id: '1', name: 'Bob', email: 'bob@bob.com', password: 'password'};
@@ -36,6 +37,7 @@ describe('BikeMap', () => {
     postFavoriteMock = jest.fn();
     mockEvent = { target: { options: {id: '1'} } };
     mockHistory = { replace: jest.fn() };
+    mockLocation = { pathname: '/' };
     global.navigator.geolocation = {getCurrentPosition: jest.fn()};
     wrapper = shallow(
       <BikeMap
@@ -47,11 +49,46 @@ describe('BikeMap', () => {
         deleteFavorite={deleteFavoriteMock}
         postFavorite={postFavoriteMock}
         history={mockHistory}
+        location={mockLocation}
       />
     )
   });
 
-  it('should match the correct snapshot', () => {
+  it('should match the correct snapshot for cities', () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot for stations', () => {
+    mockLocation = { pathname: '/stations' };
+    wrapper = shallow(
+      <BikeMap
+        cities={mockCities}
+        stations={mockStations}
+        favorites={mockFavorites}
+        user={mockUser}
+        fetchStations={fetchStationsMock}
+        deleteFavorite={deleteFavoriteMock}
+        postFavorite={postFavoriteMock}
+        history={mockHistory}
+      />
+    );
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should match the correct snapshot for stops', () => {
+    mockLocation = { pathname: '/my-stops' };
+    wrapper = shallow(
+      <BikeMap
+        cities={mockCities}
+        stations={mockStations}
+        favorites={mockFavorites}
+        user={mockUser}
+        fetchStations={fetchStationsMock}
+        deleteFavorite={deleteFavoriteMock}
+        postFavorite={postFavoriteMock}
+        history={mockHistory}
+      />
+    );
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -87,21 +124,53 @@ describe('BikeMap', () => {
     });
   });
 
-  describe('createStationMarkers', () => {
-    it('', () => {
-
-    });
-  });
-
-  describe('createCityMarkers', () => {
-    it('', () => {
-
-    });
-  });
-
   describe('showMarkers', () => {
-    it('', () => {
+    it('should call createStationMarkers when on my-stops page', () => {
+      mockLocation = { pathname: '/my-stops' };
+      wrapper = shallow(
+        <BikeMap
+          cities={mockCities}
+          stations={mockStations}
+          favorites={mockFavorites}
+          history={mockHistory}
+          location={mockLocation}
+        />
+      );
+      wrapper.instance().createStationMarkers = jest.fn();
+      wrapper.instance().showMarkers();
+      expect(wrapper.instance().createStationMarkers).toHaveBeenCalled();
+    });
 
+    it('should call createStationMarkers when on stations page', () => {
+      mockLocation = { pathname: '/stations' };
+      wrapper = shallow(
+        <BikeMap
+          cities={mockCities}
+          stations={mockStations}
+          favorites={mockFavorites}
+          history={mockHistory}
+          location={mockLocation}
+        />
+      );
+      wrapper.instance().createStationMarkers = jest.fn();
+      wrapper.instance().showMarkers();
+      expect(wrapper.instance().createStationMarkers).toHaveBeenCalled();
+    });
+
+    it('should call createCityMarkers when on home page', () => {
+      mockLocation = { pathname: '/' };
+      wrapper = shallow(
+        <BikeMap
+          cities={mockCities}
+          stations={mockStations}
+          favorites={mockFavorites}
+          history={mockHistory}
+          location={mockLocation}
+        />
+      );
+      wrapper.instance().createCityMarkers = jest.fn();
+      wrapper.instance().showMarkers();
+      expect(wrapper.instance().createCityMarkers).toHaveBeenCalled();
     });
   });
 
@@ -112,7 +181,7 @@ describe('BikeMap', () => {
       expect(wrapper.instance().getLocation).toHaveBeenCalled();
     });
 
-    it('should set loading in state to false', () => {
+    it.skip('should set loading in state to false', () => {
       wrapper.instance().getLocation = jest.fn();
       wrapper.instance().componentDidMount();
       expect(wrapper.state('loading')).toEqual(false);

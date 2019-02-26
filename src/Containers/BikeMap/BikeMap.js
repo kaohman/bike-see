@@ -57,10 +57,6 @@ export class BikeMap extends Component {
       postFavorite(id, user.id);
   }
 
-  setLocalStorage = () => {
-    localStorage.setItem('bike-stops', JSON.stringify(this.props.favorites));
-  }
-
   createStationMarkers = (data, icon) => {
     return data.map(marker => {
       const { name, latitude, longitude, free_bikes, empty_slots, timestamp, id } = marker;
