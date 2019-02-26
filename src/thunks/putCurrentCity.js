@@ -8,7 +8,7 @@ export const putCurrentCity = (user_id, city) => {
       await fetchData(`http://localhost:3001/api/v1/users/${user_id}/city`, 'PUT', { user_id, city });
       dispatch(setCurrentCity(city));
     } catch (error) {
-      dispatch(setError(error.message));
+      dispatch(setError('Error updating current city.'));
     }
     dispatch(setLoading(false));
   }

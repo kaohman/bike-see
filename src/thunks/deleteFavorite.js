@@ -8,7 +8,7 @@ export const deleteFavorite = (station_id, user_id) => {
       await fetchData(`http://localhost:3001/api/v1/users/${user_id}/favorites/${station_id}`, 'DELETE');
       dispatch(removeFavorite(station_id));
     } catch (error) {
-      dispatch(setError(error.message));
+      dispatch(setError('Error deleting favorite.'));
     }
     dispatch(setLoading(false));
   }

@@ -25,26 +25,38 @@ export class Login extends Component {
     e.preventDefault();
     const { id, value } = e.target;
     if (id === 'email') {
-      this.setState({ [id]: value.toLowerCase() })
+      this.setState({ [id]: value.toLowerCase() });
     } else {
-      this.setState({ [id]: value })
+      this.setState({ [id]: value });
     }
   }
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    this.clearError('');
-    const { login, fetchUser, postUser } = this.props;
-    const { name, email, password} = this.state;
-    login ? await fetchUser({email, password}) : await postUser({name, email, password});
+    const { login } = this.props;
+    login ? await this.loginUser() : await this.signUpUser();
     this.updatePath();
+  }
+
+  signUpUser = async () => {
+    const { postUser, setError } = this.props;
+    const { name, email, password, verifyPassword } = this.state;
+    if (password === verifyPassword) {
+      await postUser({ name, email, password });
+    } else {
+      setError('Passwords do not match.');
+    }
+  }
+
+  loginUser = async () => {
+    const { fetchUser } = this.props;
+    const { email, password } = this.state;
+    await fetchUser({ email, password });
   }
   
   updatePath = () => {
     const { error, history } = this.props;
-    if (error === '') {
-      history.replace('/');
-    }
+    error === '' && history.replace('/');
   }
 
   render() {
@@ -72,10 +84,7 @@ export class Login extends Component {
           <Link onClick={this.clearError} className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
           <Link onClick={this.clearError} className='pop-up-link' to='/login'>Login Here</Link>
         }
-        {login ?
-          error !== '' && <p className='error-text'>Login Unsuccessful. Please sign up or try again.</p> :
-          error !== '' && <p className='error-text'>Sign up unsuccessful. Please try again.</p>
-        }
+        <p className='error-text'>{error}</p>
       </form>
     )
   }

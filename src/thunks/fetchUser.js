@@ -13,7 +13,7 @@ export const fetchUser = (user) => {
       dispatch(fetchFavorites(fetchedUser.id));
       dispatch(fetchCurrentCity(fetchedUser.id));
     } catch (error) {
-      dispatch(setError(error.message));
+      dispatch(setError('Error logging in user. Please sign up or try again.'));
     }
     dispatch(setLoading(false));
   }

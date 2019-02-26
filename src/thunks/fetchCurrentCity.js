@@ -14,7 +14,7 @@ export const fetchCurrentCity = (user_id) => {
       }
 
     } catch (error) {
-      dispatch(setError(error.message));
+      dispatch(setError('Error getting current city.'));
     }
     dispatch(setLoading(false));
   }

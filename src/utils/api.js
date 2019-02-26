@@ -23,6 +23,6 @@ export const fetchData = async (path, method, data = null) => {
   } else if (response.ok) {
     return response.json();
   } else {
-    throw Error(`Error fetching data: ${response.statusText}`);
+    throw Error(response.statusText);
   }
 };

@@ -9,7 +9,7 @@ export const fetchFavorites = (id) => {
       const favoriteStations = favorites.map(favorite => favorite.station_id);
       dispatch(setFavorites(favoriteStations));
     } catch (error) {
-      dispatch(setError(error.message));
+      dispatch(setError('Error getting favorites'));
     }
     dispatch(setLoading(false));
   }
