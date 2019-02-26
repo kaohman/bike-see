@@ -44,6 +44,6 @@ describe('postFavorite', () => {
     });
     const thunk = postFavorite(mockStationId, mockUserId);
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('Error adding favorite.'));
   });
 });

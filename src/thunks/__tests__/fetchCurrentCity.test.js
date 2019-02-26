@@ -58,6 +58,6 @@ describe('fetchCurrentCity', () => {
     });
     const thunk = fetchCurrentCity(mockUserId);
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('Error getting current city.'));
   });
 });

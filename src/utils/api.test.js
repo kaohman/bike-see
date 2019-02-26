@@ -55,7 +55,7 @@ describe('fetchData', () => {
   });
 
   it('should throw an error if everything is not okay', async () => {
-    const expected = Error('Error fetching data: Error posting data');
+    const expected = Error('Error posting data');
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
       statusText: 'Error posting data',
       ok: false

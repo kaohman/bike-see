@@ -70,6 +70,6 @@ describe('fetchUser', () => {
     });
     const thunk = fetchUser(mockUser);
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('Error logging in user. Please sign up or try again.'));
   });
 });

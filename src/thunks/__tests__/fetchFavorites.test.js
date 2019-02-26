@@ -30,7 +30,7 @@ describe('fetchFavorites', () => {
     });
     const thunk = fetchFavorites(mockUserId);
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('Error getting favorites'));
   });
 
   it('should dispatch setFavorites if response is ok', async () => {

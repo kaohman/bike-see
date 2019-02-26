@@ -68,6 +68,6 @@ describe('fetchStations', () => {
     });
     const thunk = fetchStations(mockUserId, mockCity);
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('Error getting stations.'));
   });
 });

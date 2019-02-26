@@ -80,22 +80,13 @@ describe('Login', () => {
   });
 
   describe('handleSubmit', () => {
-    it('should call clearError', async () => {
-      mockEvent = {
-        preventDefault: jest.fn()
-      };
-      wrapper.instance().clearError = jest.fn();
+    it('should call loginUser with the correct params', async () => {
+      wrapper.instance().loginUser = jest.fn();
       await wrapper.instance().handleSubmit(mockEvent);
-      expect(wrapper.instance().clearError).toHaveBeenCalled();
+      expect(wrapper.instance().loginUser).toHaveBeenCalled();
     });
 
-    it('should call fetchUser with the correct params', async () => {
-      wrapper.instance().clearError = jest.fn();
-      await wrapper.instance().handleSubmit(mockEvent);
-      expect(wrapper.instance().props.fetchUser).toHaveBeenCalledWith({email: '', password: ''});
-    });
-
-    it('should call postUser with the correct params', async () => {
+    it('should call signUpUser with the correct params', async () => {
       wrapper = shallow(
         <Login
           user={mockUser}
@@ -105,9 +96,9 @@ describe('Login', () => {
           login={false}
         />
       );
-      wrapper.instance().clearError = jest.fn();
+      wrapper.instance().signUpUser = jest.fn();
       await wrapper.instance().handleSubmit(mockEvent);
-      expect(wrapper.instance().props.postUser).toHaveBeenCalledWith({ name: '', email: '', password: '' });
+      expect(wrapper.instance().signUpUser).toHaveBeenCalled();
     });
 
     it('should call updatePath', async () => {
@@ -115,6 +106,26 @@ describe('Login', () => {
       wrapper.instance().updatePath = jest.fn();
       await wrapper.instance().handleSubmit(mockEvent);
       expect(wrapper.instance().updatePath).toHaveBeenCalled();
+    });
+  });
+
+  describe('signUpUser', () => {
+    it('should call postUser with the correct params', async () => {
+      await wrapper.instance().signUpUser(mockEvent);
+      expect(wrapper.instance().props.postUser).toHaveBeenCalledWith({ name: '', email: '', password: '' });
+    });
+
+    it('should call setError if passwords dont match', async () => {
+      wrapper.setState({ password: 'bleep', verifyPassword: 'bloop'});
+      await wrapper.instance().signUpUser(mockEvent);
+      expect(wrapper.instance().props.setError).toHaveBeenCalled();
+    });
+  });
+
+  describe('loginUser', () => {
+    it('should call fetchUser with the correct params', async () => {
+      await wrapper.instance().loginUser(mockEvent);
+      expect(wrapper.instance().props.fetchUser).toHaveBeenCalledWith({ email: '', password: '' });
     });
   });
 

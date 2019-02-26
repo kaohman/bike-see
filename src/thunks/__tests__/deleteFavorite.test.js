@@ -44,6 +44,6 @@ describe('deleteFavorite', () => {
     });
     const thunk = deleteFavorite(mockStationId, mockUserId);
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('Error deleting favorite.'));
   });
 });

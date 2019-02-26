@@ -46,6 +46,6 @@ describe('postUser', () => {
     });
     const thunk = postUser(mockUser);
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('User already exists. Please log in.'));
   });
 });

@@ -28,7 +28,7 @@ describe('fetchCities', () => {
     });
     const thunk = fetchCities();
     await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching data'));
+    expect(mockDispatch).toHaveBeenCalledWith(setError('Error fetching cities.'));
   });
 
   it('should dispatch setCities if response is ok', async () => {
