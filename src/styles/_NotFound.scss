@@ -5,3 +5,10 @@
     margin-top: 50px;
   }
 }
+
+@media screen and (max-width: 670px) {
+  .not-found-div {
+    height: 510px;
+    order: -1;
+  }
+}

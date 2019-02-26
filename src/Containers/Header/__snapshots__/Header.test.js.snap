@@ -63,7 +63,6 @@ exports[`Header should match the correct snapshot when loading 1`] = `
     </NavLink>
     <Link
       className="nav-links"
-      exact={true}
       id="sign-out"
       onClick={[Function]}
       replace={false}
@@ -150,7 +149,6 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
     </NavLink>
     <Link
       className="nav-links"
-      exact={true}
       id="sign-out"
       onClick={[Function]}
       replace={false}
@@ -225,7 +223,6 @@ exports[`Header should match the correct snapshot when on the login page 1`] = `
     </NavLink>
     <Link
       className="nav-links"
-      exact={true}
       id="sign-out"
       onClick={[Function]}
       replace={false}
@@ -300,7 +297,6 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
     </NavLink>
     <Link
       className="nav-links"
-      exact={true}
       id="sign-out"
       onClick={[Function]}
       replace={false}
@@ -381,7 +377,6 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
     </NavLink>
     <Link
       className="nav-links"
-      exact={true}
       id="sign-out"
       onClick={[Function]}
       replace={false}

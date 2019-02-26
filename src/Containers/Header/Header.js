@@ -58,7 +58,7 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser, s
           <div>My Stops</div>
         </NavLink>
         {user.name ?
-          <Link exact onClick={signOut} id='sign-out' className='nav-links' to='/'>
+          <Link onClick={signOut} id='sign-out' className='nav-links' to='/'>
             <i className='fas fa-user'></i>
             <div>Sign Out</div>
           </Link> :
