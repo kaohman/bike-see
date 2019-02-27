@@ -50,6 +50,6 @@ Run npm test from the root directory
 
 ### Wireframes
 ![wireframe 1](./public/assets/wireframe-1.png)
-![wireframe 2](./public/assets/wireframe-2.png)
-![wireframe 3](./public/assets/wireframe-3.png)
+![wireframe 2](./public/assets/wireframe-2.png =280x500)
+![wireframe 3](./public/assets/wireframe-3.png =280x500)
 
