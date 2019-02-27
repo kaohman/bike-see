@@ -2,393 +2,438 @@
 
 exports[`Header should match the correct snapshot when loading 1`] = `
 <header>
-  <div
-    className="title-div"
+  <h3
+    className="loading-text welcome-text"
   >
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      id="title"
-      to="/"
+    Welcome Back Karin
+  </h3>
+  <div
+    className="header-div"
+  >
+    <div
+      className="title-div"
     >
-      BikeSee
-    </NavLink>
-    <h3
-      className="loading-text"
-    >
-      Loading Data...
-    </h3>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        id="title"
+        to="/"
+      >
+        BikeSee
+      </NavLink>
+      <h3
+        className="loading-text"
+      >
+        Loading Data...
+      </h3>
+    </div>
+    <nav>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/"
+      >
+        <i
+          className="fas fa-map-marker-alt"
+        />
+        <div>
+          Cities
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/stations"
+      >
+        <i
+          className="fas fa-bicycle"
+        />
+        <div>
+          Stations
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        to="/my-stops"
+      >
+        <i
+          className="fas fa-clipboard-list"
+        />
+        <div>
+          My Stops
+        </div>
+      </NavLink>
+      <Link
+        className="nav-links"
+        id="sign-out"
+        onClick={[Function]}
+        replace={false}
+        to="/"
+      >
+        <i
+          className="fas fa-user"
+        />
+        <div>
+          Sign Out
+        </div>
+      </Link>
+    </nav>
   </div>
-  <nav>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/"
-    >
-      <i
-        className="fas fa-map-marker-alt"
-      />
-      <div>
-        Cities
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/stations"
-    >
-      <i
-        className="fas fa-bicycle"
-      />
-      <div>
-        Stations
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      to="/my-stops"
-    >
-      <i
-        className="fas fa-clipboard-list"
-      />
-      <div>
-        My Stops
-      </div>
-    </NavLink>
-    <Link
-      className="nav-links"
-      id="sign-out"
-      onClick={[Function]}
-      replace={false}
-      to="/"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Sign Out
-      </div>
-    </Link>
-  </nav>
 </header>
 `;
 
 exports[`Header should match the correct snapshot when on the home page 1`] = `
 <header>
-  <div
-    className="title-div"
+  <h3
+    className="loading-text welcome-text"
   >
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      id="title"
-      to="/"
+    Welcome Back Karin
+  </h3>
+  <div
+    className="header-div"
+  >
+    <div
+      className="title-div"
     >
-      BikeSee
-    </NavLink>
-    <div>
-      <h3
-        className="loading-text"
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        id="title"
+        to="/"
       >
-        A bike share sightseeing app.
-      </h3>
-      <h3
-        className="loading-text large-screens"
-      >
-        Click on a purple city icon to view a bike share network and get started.
-      </h3>
+        BikeSee
+      </NavLink>
+      <div>
+        <h3
+          className="loading-text"
+        >
+          A bike share sightseeing app.
+        </h3>
+        <h3
+          className="loading-text large-screens"
+        >
+          Click on a purple city icon to view a bike share network and get started.
+        </h3>
+      </div>
     </div>
+    <nav>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/"
+      >
+        <i
+          className="fas fa-map-marker-alt"
+        />
+        <div>
+          Cities
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/stations"
+      >
+        <i
+          className="fas fa-bicycle"
+        />
+        <div>
+          Stations
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        to="/my-stops"
+      >
+        <i
+          className="fas fa-clipboard-list"
+        />
+        <div>
+          My Stops
+        </div>
+      </NavLink>
+      <Link
+        className="nav-links"
+        id="sign-out"
+        onClick={[Function]}
+        replace={false}
+        to="/"
+      >
+        <i
+          className="fas fa-user"
+        />
+        <div>
+          Sign Out
+        </div>
+      </Link>
+    </nav>
   </div>
-  <nav>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/"
-    >
-      <i
-        className="fas fa-map-marker-alt"
-      />
-      <div>
-        Cities
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/stations"
-    >
-      <i
-        className="fas fa-bicycle"
-      />
-      <div>
-        Stations
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      to="/my-stops"
-    >
-      <i
-        className="fas fa-clipboard-list"
-      />
-      <div>
-        My Stops
-      </div>
-    </NavLink>
-    <Link
-      className="nav-links"
-      id="sign-out"
-      onClick={[Function]}
-      replace={false}
-      to="/"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Sign Out
-      </div>
-    </Link>
-  </nav>
 </header>
 `;
 
 exports[`Header should match the correct snapshot when on the login page 1`] = `
 <header>
-  <div
-    className="title-div"
+  <h3
+    className="loading-text welcome-text"
   >
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      id="title"
-      to="/"
+    Welcome Back Karin
+  </h3>
+  <div
+    className="header-div"
+  >
+    <div
+      className="title-div"
     >
-      BikeSee
-    </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        id="title"
+        to="/"
+      >
+        BikeSee
+      </NavLink>
+    </div>
+    <nav>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/"
+      >
+        <i
+          className="fas fa-map-marker-alt"
+        />
+        <div>
+          Cities
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/stations"
+      >
+        <i
+          className="fas fa-bicycle"
+        />
+        <div>
+          Stations
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        to="/my-stops"
+      >
+        <i
+          className="fas fa-clipboard-list"
+        />
+        <div>
+          My Stops
+        </div>
+      </NavLink>
+      <Link
+        className="nav-links"
+        id="sign-out"
+        onClick={[Function]}
+        replace={false}
+        to="/"
+      >
+        <i
+          className="fas fa-user"
+        />
+        <div>
+          Sign Out
+        </div>
+      </Link>
+    </nav>
   </div>
-  <nav>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/"
-    >
-      <i
-        className="fas fa-map-marker-alt"
-      />
-      <div>
-        Cities
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/stations"
-    >
-      <i
-        className="fas fa-bicycle"
-      />
-      <div>
-        Stations
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      to="/my-stops"
-    >
-      <i
-        className="fas fa-clipboard-list"
-      />
-      <div>
-        My Stops
-      </div>
-    </NavLink>
-    <Link
-      className="nav-links"
-      id="sign-out"
-      onClick={[Function]}
-      replace={false}
-      to="/"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Sign Out
-      </div>
-    </Link>
-  </nav>
 </header>
 `;
 
 exports[`Header should match the correct snapshot when on the my-stops page 1`] = `
 <header>
-  <div
-    className="title-div"
+  <h3
+    className="loading-text welcome-text"
   >
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      id="title"
-      to="/"
+    Welcome Back Karin
+  </h3>
+  <div
+    className="header-div"
+  >
+    <div
+      className="title-div"
     >
-      BikeSee
-    </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        id="title"
+        to="/"
+      >
+        BikeSee
+      </NavLink>
+    </div>
+    <nav>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/"
+      >
+        <i
+          className="fas fa-map-marker-alt"
+        />
+        <div>
+          Cities
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/stations"
+      >
+        <i
+          className="fas fa-bicycle"
+        />
+        <div>
+          Stations
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        to="/my-stops"
+      >
+        <i
+          className="fas fa-clipboard-list"
+        />
+        <div>
+          My Stops
+        </div>
+      </NavLink>
+      <Link
+        className="nav-links"
+        id="sign-out"
+        onClick={[Function]}
+        replace={false}
+        to="/"
+      >
+        <i
+          className="fas fa-user"
+        />
+        <div>
+          Sign Out
+        </div>
+      </Link>
+    </nav>
   </div>
-  <nav>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/"
-    >
-      <i
-        className="fas fa-map-marker-alt"
-      />
-      <div>
-        Cities
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/stations"
-    >
-      <i
-        className="fas fa-bicycle"
-      />
-      <div>
-        Stations
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      to="/my-stops"
-    >
-      <i
-        className="fas fa-clipboard-list"
-      />
-      <div>
-        My Stops
-      </div>
-    </NavLink>
-    <Link
-      className="nav-links"
-      id="sign-out"
-      onClick={[Function]}
-      replace={false}
-      to="/"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Sign Out
-      </div>
-    </Link>
-  </nav>
 </header>
 `;
 
 exports[`Header should match the correct snapshot when on the stations page 1`] = `
 <header>
-  <div
-    className="title-div"
+  <h3
+    className="loading-text welcome-text"
   >
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      id="title"
-      to="/"
+    Welcome Back Karin
+  </h3>
+  <div
+    className="header-div"
+  >
+    <div
+      className="title-div"
     >
-      BikeSee
-    </NavLink>
-    <h3
-      className="loading-text"
-    >
-      Viewing: 
-      DENVER
-    </h3>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        id="title"
+        to="/"
+      >
+        BikeSee
+      </NavLink>
+      <h3
+        className="loading-text"
+      >
+        Viewing: 
+        DENVER
+      </h3>
+    </div>
+    <nav>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/"
+      >
+        <i
+          className="fas fa-map-marker-alt"
+        />
+        <div>
+          Cities
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        exact={true}
+        to="/stations"
+      >
+        <i
+          className="fas fa-bicycle"
+        />
+        <div>
+          Stations
+        </div>
+      </NavLink>
+      <NavLink
+        activeClassName="active"
+        aria-current="page"
+        className="nav-links"
+        to="/my-stops"
+      >
+        <i
+          className="fas fa-clipboard-list"
+        />
+        <div>
+          My Stops
+        </div>
+      </NavLink>
+      <Link
+        className="nav-links"
+        id="sign-out"
+        onClick={[Function]}
+        replace={false}
+        to="/"
+      >
+        <i
+          className="fas fa-user"
+        />
+        <div>
+          Sign Out
+        </div>
+      </Link>
+    </nav>
   </div>
-  <nav>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/"
-    >
-      <i
-        className="fas fa-map-marker-alt"
-      />
-      <div>
-        Cities
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      exact={true}
-      to="/stations"
-    >
-      <i
-        className="fas fa-bicycle"
-      />
-      <div>
-        Stations
-      </div>
-    </NavLink>
-    <NavLink
-      activeClassName="active"
-      aria-current="page"
-      className="nav-links"
-      to="/my-stops"
-    >
-      <i
-        className="fas fa-clipboard-list"
-      />
-      <div>
-        My Stops
-      </div>
-    </NavLink>
-    <Link
-      className="nav-links"
-      id="sign-out"
-      onClick={[Function]}
-      replace={false}
-      to="/"
-    >
-      <i
-        className="fas fa-user"
-      />
-      <div>
-        Sign Out
-      </div>
-    </Link>
-  </nav>
 </header>
 `;

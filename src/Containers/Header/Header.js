@@ -40,7 +40,11 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser, s
 
   return (
     <header>
-      {user.name ? <h3 className='loading-text welcome-text'>Welcome Back {user.name}</h3> :  <h3></h3>}
+      <h3 className='loading-text welcome-text'>
+      {
+        user.name ? `Welcome Back ${user.name}` : 'Please sign in'
+      }
+      </h3>
       <div className='header-div'>
         <div className='title-div'>
           <NavLink id='title' to='/'>BikeSee</NavLink>
