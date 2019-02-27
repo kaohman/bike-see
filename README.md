@@ -48,7 +48,7 @@ Run npm test from the root directory
 - Include other landmarks on the interactive map.
 
 ### Contributors
-[Karin Ohman](https://github.com/kaohman) & 
+[Karin Ohman](https://github.com/kaohman)
 
 ### Wireframes
 <img src='./public/assets/wireframe-1.png' width='700px'>
