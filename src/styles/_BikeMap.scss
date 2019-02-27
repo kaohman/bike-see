@@ -11,6 +11,12 @@
   z-index: 10;
 }
 
+.marker {
+  &:focus {
+    outline: none;
+  }
+}
+
 .tooltip {
   padding: 10px;
   background-color: $background-color;

@@ -52,9 +52,11 @@ export class BikeMap extends Component {
   toggleFavorite = (e) => {
     const { id } = e.target.options;
     const { deleteFavorite, postFavorite, user, favorites } = this.props;
-    favorites.includes(e.target.options.id) ? 
-      deleteFavorite(id, user.id) :
-      postFavorite(id, user.id);
+    if (user.name) {
+      favorites.includes(e.target.options.id) ? 
+        deleteFavorite(id, user.id) :
+        postFavorite(id, user.id);
+    }
   }
 
   createStationMarkers = (data, icon) => {
@@ -79,6 +81,7 @@ export class BikeMap extends Component {
       const time = temp.toTimeString().substring(0,5);
       return (
         <Marker
+          className='marker'
           onClick={this.toggleFavorite}
           position={[latitude, longitude]}
           icon={newIcon}
@@ -105,6 +108,7 @@ export class BikeMap extends Component {
       const { city, country, latitude, longitude } = marker.location;
       return (
         <Marker
+          className='marker'
           onClick={this.getStations}
           position={[latitude, longitude]}
           icon={icon}
