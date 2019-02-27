@@ -49,7 +49,7 @@ Run npm test from the root directory
 [Karin Ohman](https://github.com/kaohman) & 
 
 ### Wireframes
-![wireframe 1](./public/assets/wireframe-1.png)
-![wireframe 2](./public/assets/wireframe-2.png =280x500)
-![wireframe 3](./public/assets/wireframe-3.png =280x500)
+<img src='./public/assets/wireframe-1.png' width='700px'>
+<img src='./public/assets/wireframe-2.png' height='500px'>
+<img src='./public/assets/wireframe-3.png' height='500px'>
 
