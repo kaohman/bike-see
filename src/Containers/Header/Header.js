@@ -40,34 +40,37 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser, s
 
   return (
     <header>
-      <div className='title-div'>
-        <NavLink id='title' to='/'>BikeSee</NavLink>
-        {setSubheader()}
-      </div>
-      <nav>
-        <NavLink exact className='nav-links' to='/'>
-          <i className='fas fa-map-marker-alt'></i>
-          <div>Cities</div>
-        </NavLink>
-        <NavLink exact className='nav-links' to='/stations'>
-          <i className='fas fa-bicycle'></i>
-          <div>Stations</div>
-        </NavLink>
-        <NavLink className='nav-links' to='/my-stops'>
-          <i className='fas fa-clipboard-list'></i>
-          <div>My Stops</div>
-        </NavLink>
-        {user.name ?
-          <Link onClick={signOut} id='sign-out' className='nav-links' to='/'>
-            <i className='fas fa-user'></i>
-            <div>Sign Out</div>
-          </Link> :
-          <NavLink className='nav-links' to='/login'>
-            <i className='fas fa-user'></i>
-            <div>Login</div>
+      {user.name ? <h3 className='loading-text welcome-text'>Welcome Back {user.name}</h3> :  <h3></h3>}
+      <div className='header-div'>
+        <div className='title-div'>
+          <NavLink id='title' to='/'>BikeSee</NavLink>
+          {setSubheader()}
+        </div>
+        <nav>
+          <NavLink exact className='nav-links' to='/'>
+            <i className='fas fa-map-marker-alt'></i>
+            <div>Cities</div>
           </NavLink>
-        }
-      </nav>
+          <NavLink exact className='nav-links' to='/stations'>
+            <i className='fas fa-bicycle'></i>
+            <div>Stations</div>
+          </NavLink>
+          <NavLink className='nav-links' to='/my-stops'>
+            <i className='fas fa-clipboard-list'></i>
+            <div>My Stops</div>
+          </NavLink>
+          {user.name ?
+            <Link onClick={signOut} id='sign-out' className='nav-links' to='/'>
+              <i className='fas fa-user'></i>
+              <div>Sign Out</div>
+            </Link> :
+            <NavLink className='nav-links' to='/login'>
+              <i className='fas fa-user'></i>
+              <div>Login</div>
+            </NavLink>
+          }
+        </nav>
+      </div>
     </header>
   )
 }

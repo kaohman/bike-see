@@ -1,8 +1,11 @@
 header {
   background-color: $background-color;
+  padding: 30px;
+}
+
+.header-div {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  padding: 30px;
   align-items: flex-end;
 }
 
@@ -29,13 +32,19 @@ header {
 .loading-text {
   text-align: left;
   margin: 6px 15px;
-  font-size: 18px;
+  font-size: 16px;
   color: #BB6BD9;
+}
+
+.welcome-text {
+  text-align: right;
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 nav {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
 }
 
 .nav-links {
@@ -54,13 +63,13 @@ nav {
 }
 
 @media screen and (max-width: 1275px) {
-  header {
+  .header-div {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media screen and (max-width: 1140px) {
-  header {
+  .header-div {
     grid-template-columns: 1fr 1fr;
   }
 
@@ -68,18 +77,29 @@ nav {
     margin: 4px 10px;
     font-size: 14px;
   }
+
+  .welcome-text {
+    font-size: 16px;
+  }
 }
 
 @media screen and (max-width: 910px) {
   header {
+    padding: 20px;
+  }
+
+  .welcome-text {
+    display: none;
+  }
+
+  .header-div {
     grid-template-columns: 1fr;
   }
 }
 
 @media screen and (max-width: 670px) {
-  header {
+  .header-div {
     grid-template-columns: 1fr;
-    padding: 20px;
   }
 
   nav {
