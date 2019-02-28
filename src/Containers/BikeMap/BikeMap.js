@@ -33,8 +33,16 @@ export class BikeMap extends Component {
 
   showCurrentLocation = () => {
     const { lat, lon } = this.state;
+    const icon = new L.icon({
+      iconSize: [25, 25],
+      iconAnchor: [12,25],
+      popupAnchor: [1, -34],
+      iconUrl: require('../../images/button.png')
+    });
+
     return (
       <Marker
+        icon={icon}
         position={[lat, lon]}
         key={'geoloc'}
         id={'geoloc'}>
