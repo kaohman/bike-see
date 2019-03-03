@@ -139,37 +139,6 @@ export class BikeMap extends Component {
     });
   }
 
-  // showMarkers = () => {
-  //   const { pathname } = this.props.location;
-  //   const { stations, cities, favorites } = this.props;
-  //   let icon = {
-  //     iconSize: [25, 25],
-  //     iconAnchor: [12, 41],
-  //     popupAnchor: [1, -25],
-  //   };
-  //   let data;
-
-  //   switch (pathname) {
-  //     case '/my-stops':
-  //       data = stations.filter(station => favorites.includes(station.id));
-  //       return this.createStationMarkers(data, icon)
-  //     case '/stations':
-  //       data = stations;
-  //       return this.createStationMarkers(data, icon)
-  //     default:
-  //       const newIcon = new L.icon({
-  //         iconSize: [25, 41],
-  //         iconAnchor: [12, 41],
-  //         popupAnchor: [1, -34],
-  //         shadowSize: [41, 41],
-  //         shadowUrl: require('../../images/marker-shadow.png'),
-  //         iconUrl: require('../../images/marker-icon-violet.png')
-  //       });
-  //       data = cities;
-  //       return this.createCityMarkers(data, newIcon)
-  //   }
-  // }
-
   showMarkers = () => {
     const { pathname } = this.props.location;
     const { stations, cities, favorites } = this.props;
