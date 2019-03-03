@@ -29,9 +29,11 @@ export class BikeMap extends Component {
   getLocation = () => {
     this.setState({ lat: 0, lon: 0 });
     navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
       this.setState({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude
+        lat: latitude,
+        lon: longitude,
+        map: { lat: latitude, lon: longitude }
       });
     });
   }
@@ -153,10 +155,7 @@ export class BikeMap extends Component {
       case '/my-stops':
         data = stations.filter(station => favorites.includes(station.id));
         return this.createStationMarkers(data, icon)
-      case '/stations':
-        data = stations;
-        return this.createStationMarkers(data, icon)
-      default:
+      case '/cities':
         const newIcon = new L.icon({
           iconSize: [25, 41],
           iconAnchor: [12, 41],
@@ -167,6 +166,9 @@ export class BikeMap extends Component {
         });
         data = cities;
         return this.createCityMarkers(data, newIcon)
+      default:
+        data = stations;
+        return this.createStationMarkers(data, icon)
     }
   }
   
@@ -188,18 +190,20 @@ export class BikeMap extends Component {
     }
   }
 
+  updateMapCenter = () => {
+    const leafletMap = this.leafletMap.leafletElement;
+    const center = leafletMap.getCenter();
+    this.setState({
+      map: { lat: center.lat, lon: center.lng },
+    });
+    this.getNetwork();
+  }
+
   componentDidMount() {
     this.getLocation();
     setTimeout(() => {
       this.setState({ loading: false });
-      const leafletMap = this.leafletMap.leafletElement;
-      leafletMap.on('move', () => {
-        const center = leafletMap.getCenter();
-        this.setState({
-          map: { lat: center.lat, lon: center.lng },
-        });
-        this.getNetwork();
-      });
+      this.getNetwork();
     }, 100);
   }
 
@@ -210,6 +214,7 @@ export class BikeMap extends Component {
         {!loading && <i onClick={this.getLocation} className="fas fa-location-arrow"></i>}
         {!loading && 
           <Map
+            onmove={this.updateMapCenter}
             ref={(ref) => { this.leafletMap = ref; }}
             id='map'
             minZoom='3'
@@ -245,6 +250,7 @@ export const mapStateToProps = (state) => ({
   stations: state.stations,
   favorites: state.favorites,
   user: state.user,
+  loading: state.loading
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -264,7 +270,7 @@ BikeMap.propTypes = {
 }
 
 BikeMap.defaultProps = {
-  cities: [],
+  // cities: [],
   stations: [],
   favorites: [],
   user: {},

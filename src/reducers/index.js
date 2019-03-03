@@ -4,7 +4,6 @@ import { stationsReducer } from './stationsReducer/stationsReducer';
 import { favoritesReducer } from './favoritesReducer/favoritesReducer';
 import { errorReducer } from './errorReducer/errorReducer';
 import { loadingReducer } from './loadingReducer/loadingReducer';
-import { currentCityReducer } from './currentCityReducer/currentCityReducer';
 import { userReducer } from './userReducer/userReducer';
 
 const rootReducer = combineReducers({
@@ -13,7 +12,6 @@ const rootReducer = combineReducers({
   cities: citiesReducer,
   error: errorReducer,
   loading: loadingReducer,
-  currentCity: currentCityReducer,
   user: userReducer,
 });
 
