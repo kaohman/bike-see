@@ -117,29 +117,29 @@ export class BikeMap extends Component {
     });
   }
 
-  createCityMarkers = (data, icon) => {
-    return data.map(marker => {
-      const { name, id } = marker;
-      const { city, country, latitude, longitude } = marker.location;
-      return (
-        <Marker
-          className='marker'
-          onClick={this.getStations}
-          position={[latitude, longitude]}
-          icon={icon}
-          key={id}
-          id={id}>
-          <Tooltip className='tooltip'>{
-            <div>
-              <h4>{name}</h4>
-              <h4>{city}, {country}</h4>
-              <p className='click-text'>Click to view stations</p>
-            </div>}
-          </Tooltip>
-        </Marker>
-      )
-    });
-  }
+  // createCityMarkers = (data, icon) => {
+  //   return data.map(marker => {
+  //     const { name, id } = marker;
+  //     const { city, country, latitude, longitude } = marker.location;
+  //     return (
+  //       <Marker
+  //         className='marker'
+  //         onClick={this.getStations}
+  //         position={[latitude, longitude]}
+  //         icon={icon}
+  //         key={id}
+  //         id={id}>
+  //         <Tooltip className='tooltip'>{
+  //           <div>
+  //             <h4>{name}</h4>
+  //             <h4>{city}, {country}</h4>
+  //             <p className='click-text'>Click to view stations</p>
+  //           </div>}
+  //         </Tooltip>
+  //       </Marker>
+  //     )
+  //   });
+  // }
 
   showMarkers = () => {
     const { pathname } = this.props.location;
@@ -155,17 +155,17 @@ export class BikeMap extends Component {
       case '/my-stops':
         data = stations.filter(station => favorites.includes(station.id));
         return this.createStationMarkers(data, icon)
-      case '/cities':
-        const newIcon = new L.icon({
-          iconSize: [25, 41],
-          iconAnchor: [12, 41],
-          popupAnchor: [1, -34],
-          shadowSize: [41, 41],
-          shadowUrl: require('../../images/marker-shadow.png'),
-          iconUrl: require('../../images/marker-icon-violet.png')
-        });
-        data = cities;
-        return this.createCityMarkers(data, newIcon)
+      // case '/cities':
+      //   const newIcon = new L.icon({
+      //     iconSize: [25, 41],
+      //     iconAnchor: [12, 41],
+      //     popupAnchor: [1, -34],
+      //     shadowSize: [41, 41],
+      //     shadowUrl: require('../../images/marker-shadow.png'),
+      //     iconUrl: require('../../images/marker-icon-violet.png')
+      //   });
+      //   data = cities;
+      //   return this.createCityMarkers(data, newIcon)
       default:
         data = stations;
         return this.createStationMarkers(data, icon)
@@ -203,8 +203,8 @@ export class BikeMap extends Component {
     this.getLocation();
     setTimeout(() => {
       this.setState({ loading: false });
-      // this.getNetwork();
     }, 100);
+    // this.getNetwork();
   }
 
   render() {
@@ -256,7 +256,7 @@ export const mapStateToProps = (state) => ({
 export const mapDispatchToProps = (dispatch) => ({
   fetchStations: (user_id, city) => dispatch(fetchStations(user_id, city)),
   deleteFavorite: (station, user) => dispatch(deleteFavorite(station, user)),
-  postFavorite: (station, user) => dispatch(postFavorite(station, user))
+  postFavorite: (station, user) => dispatch(postFavorite(station, user)),
 });
 
 BikeMap.propTypes = {
