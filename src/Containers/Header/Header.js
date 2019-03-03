@@ -23,7 +23,7 @@ export const Header = ({ loading, location, user, setCurrentUser, setFavorites, 
         case '/':
           return <div>
               <h3 className='loading-text'>A bike share sightseeing app.</h3>
-              <h3 className='loading-text large-screens'>Click on a purple city icon to view a bike share network and get started.</h3>
+              <h3 className='loading-text large-screens'>Click on a bike icon to view a station and get started.</h3>
             </div>
         case '/my-stops':
           return !user.name && <h3 className='loading-text'>Login to view My Stops</h3>
@@ -54,10 +54,6 @@ export const Header = ({ loading, location, user, setCurrentUser, setFavorites, 
             <i className='fas fa-clipboard-list'></i>
             <div>My Stops</div>
           </NavLink>
-          {/* <NavLink exact className='nav-links' to='/cities'>
-            <i className='fas fa-map-marker-alt'></i>
-            <div>Cities</div>
-          </NavLink> */}
           {user.name ?
             <Link onClick={signOut} id='sign-out' className='nav-links' to='/'>
               <i className='fas fa-user'></i>

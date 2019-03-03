@@ -18,23 +18,20 @@ export class BikeMap extends Component {
       lat: 0,
       lon: 0,
       loading: true,
-      map: {
-        lat: 0,
-        lon: 0,
-      },
       closestNetwork: '',
     }
   }
 
   getLocation = () => {
-    this.setState({ lat: 0, lon: 0 });
+    this.setState({ lat: 0, lon: 0, loading: true });
     navigator.geolocation.getCurrentPosition((position) => {
       const { latitude, longitude } = position.coords;
       this.setState({
         lat: latitude,
         lon: longitude,
-        map: { lat: latitude, lon: longitude }
+        loading: false,
       });
+      this.getNetwork(latitude, longitude);
     });
   }
 
@@ -117,30 +114,6 @@ export class BikeMap extends Component {
     });
   }
 
-  // createCityMarkers = (data, icon) => {
-  //   return data.map(marker => {
-  //     const { name, id } = marker;
-  //     const { city, country, latitude, longitude } = marker.location;
-  //     return (
-  //       <Marker
-  //         className='marker'
-  //         onClick={this.getStations}
-  //         position={[latitude, longitude]}
-  //         icon={icon}
-  //         key={id}
-  //         id={id}>
-  //         <Tooltip className='tooltip'>{
-  //           <div>
-  //             <h4>{name}</h4>
-  //             <h4>{city}, {country}</h4>
-  //             <p className='click-text'>Click to view stations</p>
-  //           </div>}
-  //         </Tooltip>
-  //       </Marker>
-  //     )
-  //   });
-  // }
-
   showMarkers = () => {
     const { pathname } = this.props.location;
     const { stations, cities, favorites } = this.props;
@@ -155,30 +128,19 @@ export class BikeMap extends Component {
       case '/my-stops':
         data = stations.filter(station => favorites.includes(station.id));
         return this.createStationMarkers(data, icon)
-      // case '/cities':
-      //   const newIcon = new L.icon({
-      //     iconSize: [25, 41],
-      //     iconAnchor: [12, 41],
-      //     popupAnchor: [1, -34],
-      //     shadowSize: [41, 41],
-      //     shadowUrl: require('../../images/marker-shadow.png'),
-      //     iconUrl: require('../../images/marker-icon-violet.png')
-      //   });
-      //   data = cities;
-      //   return this.createCityMarkers(data, newIcon)
       default:
         data = stations;
         return this.createStationMarkers(data, icon)
     }
   }
   
-  getNetwork = () => {
+  getNetwork = (lat, lon) => {
     const { cities, fetchStations } = this.props;
     let shortestDistance = 100000;
     let closestNetwork;
     cities.forEach(city => {
       const { latitude, longitude } = city.location;
-      const distance = getDistance({ lat: this.state.map.lat, lon: this.state.map.lon }, { lat: latitude, lon: longitude }, { exact: true, unit: 'mi' });
+      const distance = getDistance({ lat, lon }, { lat: latitude, lon: longitude }, { exact: true, unit: 'mi' });
       if (distance < shortestDistance) {
         shortestDistance = distance;
         closestNetwork = city.id;
@@ -193,10 +155,7 @@ export class BikeMap extends Component {
   updateMapCenter = () => {
     const leafletMap = this.leafletMap.leafletElement;
     const center = leafletMap.getCenter();
-    this.setState({
-      map: { lat: center.lat, lon: center.lng },
-    });
-    this.getNetwork();
+    this.getNetwork(center.lat, center.lng);
   }
 
   componentDidMount() {
@@ -204,7 +163,6 @@ export class BikeMap extends Component {
     setTimeout(() => {
       this.setState({ loading: false });
     }, 100);
-    // this.getNetwork();
   }
 
   render() {
@@ -212,12 +170,12 @@ export class BikeMap extends Component {
     return (
       <div className='map-container'>
         {!loading && <i onClick={this.getLocation} className="fas fa-location-arrow"></i>}
-        {!loading && 
+        {!loading &&
           <Map
-            onmove={this.updateMapCenter}
             ref={(ref) => { this.leafletMap = ref; }}
+            onMove={this.updateMapCenter}
             id='map'
-            minZoom='3'
+            minZoom='13'
             maxZoom='19'
             center={[lat, lon]}
             zoom='13'>
@@ -229,6 +187,7 @@ export class BikeMap extends Component {
               showMarker={false}
               showPopup={true}
               openSearchOnLoad={true}
+              zoom={13}
             />
             <TileLayer
               url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
