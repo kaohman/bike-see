@@ -54,10 +54,10 @@ export const Header = ({ loading, location, user, setCurrentUser, setFavorites, 
             <i className='fas fa-clipboard-list'></i>
             <div>My Stops</div>
           </NavLink>
-          <NavLink exact className='nav-links' to='/cities'>
+          {/* <NavLink exact className='nav-links' to='/cities'>
             <i className='fas fa-map-marker-alt'></i>
             <div>Cities</div>
-          </NavLink>
+          </NavLink> */}
           {user.name ?
             <Link onClick={signOut} id='sign-out' className='nav-links' to='/'>
               <i className='fas fa-user'></i>

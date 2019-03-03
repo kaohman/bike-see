@@ -203,7 +203,7 @@ export class BikeMap extends Component {
     this.getLocation();
     setTimeout(() => {
       this.setState({ loading: false });
-      this.getNetwork();
+      // this.getNetwork();
     }, 100);
   }
 
@@ -270,7 +270,7 @@ BikeMap.propTypes = {
 }
 
 BikeMap.defaultProps = {
-  // cities: [],
+  cities: [],
   stations: [],
   favorites: [],
   user: {},
