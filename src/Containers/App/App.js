@@ -3,7 +3,7 @@ import Header from '../Header/Header';
 import BikeMap from '../BikeMap/BikeMap';
 import PopUp from '../PopUp/PopUp';
 import NotFound from '../../Components/NotFound/NotFound';
-import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchCities } from '../../thunks/fetchCities';
 import PropTypes from 'prop-types';
@@ -38,7 +38,6 @@ export class App extends Component {
         <Switch>
           <Route path='/login' render={() => <PopUp history={this.props.history} title='User Login'/>} />
           <Route path='/sign-up' render={() => <PopUp history={this.props.history} title='User Sign Up' />} />
-          {/* <Route path='*' render={() => <Redirect to={'/not-found'} />} /> */}
         </Switch>
       </div>
     );

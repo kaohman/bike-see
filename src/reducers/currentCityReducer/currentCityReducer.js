@@ -1,4 +1,4 @@
-export const currentCityReducer = (state = '', action) => {
+export const currentCityReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_CURRENT_CITY':
       return action.city

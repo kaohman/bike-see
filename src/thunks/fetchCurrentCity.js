@@ -7,10 +7,9 @@ export const fetchCurrentCity = (user_id) => {
     try {
       dispatch(setLoading(true));
       const fetchedCity = await fetchData(`http://localhost:3001/api/v1/users/${user_id}/city`, 'GET');
-
-      if (fetchedCity !== '') {
+      if (fetchedCity.city.name) {
         dispatch(setCurrentCity(fetchedCity.city));
-        dispatch(fetchStations(user_id, fetchedCity.city));
+        dispatch(fetchStations(user_id, fetchedCity.city.id));
       }
 
     } catch (error) {

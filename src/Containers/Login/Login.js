@@ -62,7 +62,7 @@ export class Login extends Component {
   render() {
     const { login, error } = this.props;
     return (
-      <form autocomplete='off' onSubmit={this.handleSubmit}>
+      <form autoComplete='off' onSubmit={this.handleSubmit}>
         {!login &&
           <label>Name
             <input onChange={this.updateState} required type='text' placeholder='Enter your name' id='name' />

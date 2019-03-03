@@ -8,7 +8,7 @@ import { setCurrentUser, setCurrentCity, setStations, setFavorites } from '../..
 export const Header = ({ currentCity, loading, location, user, setCurrentUser, setFavorites, setCurrentCity, setStations }) => {
   const signOut = () => {
     setCurrentUser({});
-    setCurrentCity('');
+    setCurrentCity({});
     setStations([]);
     setFavorites([]);
     localStorage.removeItem('bike-user');
@@ -27,9 +27,12 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser, s
               <h3 className='loading-text large-screens'>Click on a purple city icon to view a bike share network and get started.</h3>
             </div>
         case '/stations':
-          return currentCity === '' ?
-            <h3 className='loading-text'>Choose a city to view stations</h3> :
-            <h3 className='loading-text'>Viewing: {currentCity.toUpperCase()}</h3>
+          return currentCity.name ?
+            <div>
+              <h3 className='loading-text'>Viewing: {currentCity.name.toUpperCase()}</h3>
+              <h3 className='loading-text'>{currentCity.city.toUpperCase()}, {currentCity.country.toUpperCase()}</h3>
+            </div> :
+            <h3 className='loading-text'>Choose a city to view stations</h3>;
         case '/my-stops':
           return !user.name && <h3 className='loading-text'>Login to view My Stops</h3>
         default:
@@ -42,7 +45,7 @@ export const Header = ({ currentCity, loading, location, user, setCurrentUser, s
     <header>
       <h3 className='loading-text welcome-text'>
       {
-        user.name ? `Welcome Back ${user.name}` : 'Please sign in'
+        user.name ? `Welcome ${user.name}` : 'Please sign in'
       }
       </h3>
       <div className='header-div'>
@@ -94,7 +97,7 @@ export const mapDispatchToProps = (dispatch) => ({
 
 Header.propTypes = {
   loading: PropTypes.bool,
-  currentCity: PropTypes.string,
+  currentCity: PropTypes.object,
   user: PropTypes.object,
   setCurrentUser: PropTypes.func,
   setCurrentCity: PropTypes.func,
@@ -103,7 +106,7 @@ Header.propTypes = {
 
 Header.defaultProps = {
   loading: true,
-  currentCity: '',
+  currentCity: {},
   user: {}
 }
 
