@@ -18,6 +18,11 @@ export class BikeMap extends Component {
       lat: 0,
       lon: 0,
       loading: true,
+      map: {
+        lat: 0,
+        lon: 0,
+      },
+      closestNetwork: '',
     }
   }
 
@@ -134,6 +139,37 @@ export class BikeMap extends Component {
     });
   }
 
+  // showMarkers = () => {
+  //   const { pathname } = this.props.location;
+  //   const { stations, cities, favorites } = this.props;
+  //   let icon = {
+  //     iconSize: [25, 25],
+  //     iconAnchor: [12, 41],
+  //     popupAnchor: [1, -25],
+  //   };
+  //   let data;
+
+  //   switch (pathname) {
+  //     case '/my-stops':
+  //       data = stations.filter(station => favorites.includes(station.id));
+  //       return this.createStationMarkers(data, icon)
+  //     case '/stations':
+  //       data = stations;
+  //       return this.createStationMarkers(data, icon)
+  //     default:
+  //       const newIcon = new L.icon({
+  //         iconSize: [25, 41],
+  //         iconAnchor: [12, 41],
+  //         popupAnchor: [1, -34],
+  //         shadowSize: [41, 41],
+  //         shadowUrl: require('../../images/marker-shadow.png'),
+  //         iconUrl: require('../../images/marker-icon-violet.png')
+  //       });
+  //       data = cities;
+  //       return this.createCityMarkers(data, newIcon)
+  //   }
+  // }
+
   showMarkers = () => {
     const { pathname } = this.props.location;
     const { stations, cities, favorites } = this.props;
@@ -164,11 +200,37 @@ export class BikeMap extends Component {
         return this.createCityMarkers(data, newIcon)
     }
   }
+  
+  getNetwork = () => {
+    const { cities, fetchStations } = this.props;
+    let shortestDistance = 100000;
+    let closestNetwork;
+    cities.forEach(city => {
+      const { latitude, longitude } = city.location;
+      const distance = getDistance({ lat: this.state.map.lat, lon: this.state.map.lon }, { lat: latitude, lon: longitude }, { exact: true, unit: 'mi' });
+      if (distance < shortestDistance) {
+        shortestDistance = distance;
+        closestNetwork = city.id;
+      }
+    });
+    if (closestNetwork !== this.state.closestNetwork) {
+      this.setState({ closestNetwork });
+      fetchStations(null, closestNetwork);
+    }
+  }
 
   componentDidMount() {
     this.getLocation();
     setTimeout(() => {
-      this.setState({ loading: false })
+      this.setState({ loading: false });
+      const leafletMap = this.leafletMap.leafletElement;
+      leafletMap.on('move', () => {
+        const center = leafletMap.getCenter();
+        this.setState({
+          map: { lat: center.lat, lon: center.lng },
+        });
+        this.getNetwork();
+      });
     }, 100);
   }
 
@@ -179,6 +241,7 @@ export class BikeMap extends Component {
         {!loading && <i onClick={this.getLocation} className="fas fa-location-arrow"></i>}
         {!loading && 
           <Map
+            ref={(ref) => { this.leafletMap = ref; }}
             id='map'
             minZoom='3'
             maxZoom='19'

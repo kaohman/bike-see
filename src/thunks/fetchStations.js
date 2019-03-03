@@ -8,7 +8,7 @@ export const fetchStations = (user_id, city) => {
       dispatch(setLoading(true));
       const results = await fetchData(`http://api.citybik.es/v2/networks/${city}`, 'GET');
       const info = { id: city, city: results.network.location.city, country: results.network.location.country, name: results.network.name };
-      dispatch(putCurrentCity(user_id, info));
+      user_id && dispatch(putCurrentCity(user_id, info));
       dispatch(setStations(results.network.stations));
     } catch (error) {
       dispatch(setError('Error getting stations.'));
