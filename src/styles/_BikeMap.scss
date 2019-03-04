@@ -84,6 +84,18 @@
   }
 }
 
+.leaflet-search-control-input {
+  font-family: $main-font;
+  margin-bottom: 5px;
+}
+
+
+.leaflet-search-control-info-li {
+  p {
+    font-family: $main-font;
+  }
+}
+
 
 .leaflet-search-control,
 .leaflet-search-control-active {
@@ -106,41 +118,37 @@
   }
 
   .leaflet-search-control-info {
+    font-family: $main-font;
     border: 1px solid lightgrey;
     top: 65px;
     right: 5px;
-    width: 280px;
+    width: 300px;
   }
 }
 
 @media screen and (max-width: 1140px) {
   .fa-location-arrow {
-    top: 192px;
+    top: 190px;
   }
 }
 
 @media screen and (max-width: 910px) {
   .fa-location-arrow {
-    top: 260px;
+    top: 213px;
   }
 }
 
 @media screen and (max-width: 670px) {
   .fa-location-arrow {
-    top: 22px;
+    top: 20px;
   }
 
   .map-container {
-    // height: 510px;
     order: -1;
   }
 }
 
 @media screen and (max-width: 350px) {
-  // .map-container {
-  //   height: 415px;
-  // }
-
   .leaflet-control-zoom {
     display: none;
   }

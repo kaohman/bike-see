@@ -21,10 +21,7 @@ export const Header = ({ loading, location, user, setCurrentUser, setFavorites, 
     if (!loading) {
       switch (location.pathname) {
         case '/':
-          return <div>
-              <h3 className='loading-text'>A bike share sightseeing app.</h3>
-              <h3 className='loading-text large-screens'>Click on a bike icon to view a station and get started.</h3>
-            </div>
+          return <h3 className='loading-text'>Click on a bike icon to view a station and get started.</h3>
         case '/my-stops':
           return !user.name && <h3 className='loading-text'>Login to view My Stops</h3>
         default:
@@ -35,15 +32,15 @@ export const Header = ({ loading, location, user, setCurrentUser, setFavorites, 
 
   return (
     <header>
-      <h3 className='loading-text welcome-text'>
-      {
-        user.name ? `Welcome ${user.name}` : 'Please sign in'
-      }
-      </h3>
       <div className='header-div'>
         <div className='title-div'>
           <NavLink id='title' to='/'>BikeSee</NavLink>
-          {setSubheader()}
+          <div>
+            <h3 className='loading-text'>
+              {user.name ? `Welcome ${user.name}` : ''}
+            </h3>
+            {setSubheader()}
+          </div>
         </div>
         <nav>
           <NavLink exact className='nav-links' to='/'>

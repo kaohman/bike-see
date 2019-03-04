@@ -106,12 +106,12 @@ nav {
     grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
   }
 
-  #title {
-    font-size: 40px;
+  .loading-text {
+    font-size: 12px;
   }
 
-  .large-screens {
-    display: none;
+  #title {
+    font-size: 40px;
   }
 
   .nav-links {
