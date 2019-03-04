@@ -8,7 +8,6 @@ import { setCurrentUser, setStations, setFavorites } from '../../actions';
 export const Header = ({ loading, location, user, setCurrentUser, setFavorites, setCurrentCity, setStations }) => {
   const signOut = () => {
     setCurrentUser({});
-    setStations([]);
     setFavorites([]);
     localStorage.removeItem('bike-user');
   }
