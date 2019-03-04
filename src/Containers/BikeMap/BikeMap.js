@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Map, Marker, Tooltip, TileLayer, withLeaflet } from 'react-leaflet';
+import { Map, Marker, Tooltip, Popup, TileLayer, withLeaflet } from 'react-leaflet';
 import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
@@ -62,10 +62,10 @@ export class BikeMap extends Component {
   }
 
   toggleFavorite = (e) => {
-    const { id } = e.target.options;
+    const { id } = e.target;
     const { deleteFavorite, postFavorite, user, favorites } = this.props;
     if (user.name) {
-      favorites.includes(e.target.options.id) ? 
+      favorites.includes(id) ? 
         deleteFavorite(id, user.id) :
         postFavorite(id, user.id);
     }
@@ -94,21 +94,30 @@ export class BikeMap extends Component {
       return (
         <Marker
           className='marker'
-          onClick={this.toggleFavorite}
           position={[latitude, longitude]}
           icon={newIcon}
           key={id}
-          id={id}>
-          <Tooltip className='tooltip'>{
+          >
+          <Popup className='tooltip'>{
             <div>
               <h4>{name}</h4>
+              <h4>{this.state.networkName}</h4>
               <p>Distance away: {distance.toFixed(1)} mi</p>
               <p>Empty slots: {empty_slots}</p>
               <p>Free bikes: {free_bikes}</p>
               <p>Updated: {date}, {time}</p>
-              {user.name && <p className='click-text'>{buttonText}</p>}
+              {user.name && 
+                <p 
+                id={id}
+                onClick={this.toggleFavorite}
+                className='click-text'
+                >
+                  {buttonText}
+                </p>
+              }
             </div>
-          }</Tooltip>
+            }
+          </Popup>
         </Marker>
       )
     });
@@ -116,7 +125,7 @@ export class BikeMap extends Component {
 
   showMarkers = () => {
     const { pathname } = this.props.location;
-    const { stations, cities, favorites } = this.props;
+    const { stations, favorites } = this.props;
     let icon = {
       iconSize: [25, 25],
       iconAnchor: [12, 41],
@@ -138,22 +147,24 @@ export class BikeMap extends Component {
     const { cities, fetchStations } = this.props;
     let shortestDistance = 100000;
     let closestNetwork;
+    let networkName;
     cities.forEach(city => {
       const { latitude, longitude } = city.location;
       const distance = getDistance({ lat, lon }, { lat: latitude, lon: longitude }, { exact: true, unit: 'mi' });
       if (distance < shortestDistance) {
         shortestDistance = distance;
         closestNetwork = city.id;
+        networkName = city.name;
       }
     });
     if (closestNetwork !== this.state.closestNetwork) {
-      this.setState({ closestNetwork });
+      this.setState({ closestNetwork, networkName });
       fetchStations(null, closestNetwork);
     }
   }
 
-  updateMapCenter = () => {
-    const leafletMap = this.leafletMap.leafletElement;
+  updateMapCenter = (e) => {
+    const leafletMap = e.target;
     const center = leafletMap.getCenter();
     this.getNetwork(center.lat, center.lng);
   }
@@ -172,7 +183,6 @@ export class BikeMap extends Component {
         {!loading && <i onClick={this.getLocation} className="fas fa-location-arrow"></i>}
         {!loading &&
           <Map
-            ref={(ref) => { this.leafletMap = ref; }}
             onMove={this.updateMapCenter}
             id='map'
             minZoom='13'

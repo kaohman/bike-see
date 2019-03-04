@@ -17,37 +17,52 @@
   }
 }
 
+.leaflet-popup-content-wrapper {
+  background-color: #4F4F4F;
+}
+
+.leaflet-popup-tip {
+  background-color: #4F4F4F;
+}
+
+.leaflet-popup-close-button {
+  display: none;
+}
+
+.leaflet-marker-icon {
+  &:focus {
+    outline: none;
+  }
+}
+
 .tooltip {
-  padding: 10px;
-  background-color: $background-color;
   border: none;
   border-radius: 10px;
-
-  .stations-link {
-    font-family: $main-font;
-    color: $main-text-color;
-    font-size: 14px;
-    display: block;
-    margin: 5px auto;
-  }
 
   h4 {
     font-family: $main-font;
     font-size: 14px;
     font-weight: 400;
     color: $header-text-color;
-    margin: 5px;
+    margin: 3px 0;
     text-align: center;
   }
   
   p {
     font-family: $main-font;
     color: $main-text-color;
-    margin: 5px;
+    margin: 2px 0;
   }
 
   .click-text {
-    color: $hover-color;
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 5px;
+    cursor: pointer;
+
+    &:hover {
+      color: $hover-color;
+    }
   }
 }
 
