@@ -32,7 +32,6 @@ export class App extends Component {
         <Switch>
           <Route path='/not-found' component={NotFound} />
           <Route path='/' component={BikeMap} />
-          {/* <Route path='/cities' component={BikeMap} /> */}
           <Route path='/my-stops' component={BikeMap} />
         </Switch>
         <Switch>

@@ -166,6 +166,7 @@ export class BikeMap extends Component {
   updateMapCenter = (e) => {
     const leafletMap = e.target;
     const center = leafletMap.getCenter();
+    const bounds = leafletMap.getBounds();
     this.getNetwork(center.lat, center.lng);
   }
 
