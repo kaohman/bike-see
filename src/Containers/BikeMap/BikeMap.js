@@ -101,7 +101,7 @@ export class BikeMap extends Component {
           <Popup className='tooltip'>{
             <div>
               <h4>{name}</h4>
-              <h4>{this.state.networkName}</h4>
+              <h4 className='network-name-text'>{this.state.networkName}</h4>
               <p>Distance away: {distance.toFixed(1)} mi</p>
               <p>Empty slots: {empty_slots}</p>
               <p>Free bikes: {free_bikes}</p>

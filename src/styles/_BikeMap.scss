@@ -41,14 +41,19 @@
 
   h4 {
     font-family: $main-font;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: $header-text-color;
     margin: 3px 0;
     text-align: center;
   }
+
+  .network-name-text {
+    margin-bottom: 7px;
+  }
   
   p {
+    font-size: 14px;
     font-family: $main-font;
     color: $main-text-color;
     margin: 2px 0;
@@ -57,7 +62,7 @@
   .click-text {
     text-decoration: underline;
     text-align: center;
-    margin-top: 5px;
+    margin-top: 7px;
     cursor: pointer;
 
     &:hover {
