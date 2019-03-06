@@ -3,6 +3,7 @@ import { Map, Marker, Tooltip, Popup, TileLayer, withLeaflet } from 'react-leafl
 import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
+import { fetchCities } from '../../thunks/fetchCities';
 import { fetchStations } from '../../thunks/fetchStations';
 import { postFavorite } from '../../thunks/postFavorite';
 import { deleteFavorite } from '../../thunks/deleteFavorite';
@@ -166,11 +167,11 @@ export class BikeMap extends Component {
   updateMapCenter = (e) => {
     const leafletMap = e.target;
     const center = leafletMap.getCenter();
-    const bounds = leafletMap.getBounds();
     this.getNetwork(center.lat, center.lng);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await this.props.fetchCities();
     this.getLocation();
     setTimeout(() => {
       this.setState({ loading: false });
@@ -224,6 +225,7 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch) => ({
+  fetchCities: () => dispatch(fetchCities()),
   fetchStations: (user_id, city) => dispatch(fetchStations(user_id, city)),
   deleteFavorite: (station, user) => dispatch(deleteFavorite(station, user)),
   postFavorite: (station, user) => dispatch(postFavorite(station, user)),

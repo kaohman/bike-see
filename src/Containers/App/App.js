@@ -21,7 +21,6 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchCities();
     this.getCurrentUser();
   }
 
