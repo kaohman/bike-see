@@ -5,7 +5,6 @@ import PopUp from '../PopUp/PopUp';
 import NotFound from '../../Components/NotFound/NotFound';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCities } from '../../thunks/fetchCities';
 import PropTypes from 'prop-types';
 import { fetchUser } from '../../thunks/fetchUser';
 
@@ -43,12 +42,10 @@ export class App extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchCities: (cities) => dispatch(fetchCities(cities)),
   fetchUser: (user) => dispatch(fetchUser(user)),
 });
 
 App.propTypes = {
-  fetchCities: PropTypes.func,
   fetchUser: PropTypes.func,
 }
 
