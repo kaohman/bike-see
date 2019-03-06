@@ -3,9 +3,9 @@ import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { setCurrentUser, setStations, setFavorites } from '../../actions';
+import { setCurrentUser, setFavorites } from '../../actions';
 
-export const Header = ({ loading, location, user, setCurrentUser, setFavorites, setCurrentCity, setStations }) => {
+export const Header = ({ loading, location, user, setCurrentUser, setFavorites }) => {
   const signOut = () => {
     setCurrentUser({});
     setFavorites([]);
@@ -34,7 +34,7 @@ export const Header = ({ loading, location, user, setCurrentUser, setFavorites, 
       <div className='header-div'>
         <div className='title-div'>
           <NavLink id='title' to='/'>BikeSee</NavLink>
-          <div>
+          <div className='subheader-container'>
             <h3 className='loading-text'>
               {user.name ? `Welcome ${user.name}` : ''}
             </h3>
@@ -73,7 +73,6 @@ export const mapStateToProps = (state) => ({
 
 export const mapDispatchToProps = (dispatch) => ({
   setCurrentUser: (user) => dispatch(setCurrentUser(user)),
-  setStations: (stations) => dispatch(setStations(stations)),
   setFavorites: (favorites) => dispatch(setFavorites(favorites)),
 });
 
@@ -81,7 +80,6 @@ Header.propTypes = {
   loading: PropTypes.bool,
   user: PropTypes.object,
   setCurrentUser: PropTypes.func,
-  setStations: PropTypes.func,
 }
 
 Header.defaultProps = {

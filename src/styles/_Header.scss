@@ -98,6 +98,13 @@ nav {
 }
 
 @media screen and (max-width: 670px) {
+  .subheader-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-end;
+    height: 55px;
+  }
+
   .header-div {
     grid-template-columns: 1fr;
   }
