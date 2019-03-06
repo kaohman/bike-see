@@ -2,14 +2,15 @@
 #### A bike share sightseeing app for viewing bike share information around the world.
 
 ### Set-Up Back-End
-Clone back-end repo: ```git clone https://github.com/kaohman/bike-see-server.git```
-Run ```npm install``` from root directory
-Run ```npm start```
+- Clone back-end repo: ```git clone https://github.com/kaohman/bike-see-server.git```
+- If you don't have PostgreSQl, follow the steps to setup PostgreSQL [HERE](https://postgresapp.com/)
+- Run ```npm install``` from root directory
+- Run ```npm start```
 
 ### Set-Up Front-End
-Clone this repo: ```git clone https://github.com/kaohman/bike-see.git```
-Run ```npm install``` from root directory
-Run ```npm start``` and visit localhost:3000 in your browser
+- Clone this repo: ```git clone https://github.com/kaohman/bike-see.git```
+- Run ```npm install``` from root directory
+- Run ```npm start``` and visit localhost:3000 in your browser
 
 ### Deployed Website
 Soon to come.
@@ -33,6 +34,7 @@ This is an app for tourists who are interested in using bike shares in other cit
 - React Router
 - NodeJS
 - Express
+- Postgres
 - Jest
 - Enzyme
 - SASS/SCSS
@@ -44,7 +46,6 @@ Run npm test from the root directory
 
 #### Enhancements
 - Deploy website on Heroku
-- Add backend database using MongoDB to store users.
 - Include other landmarks on the interactive map.
 
 ### Contributors
