@@ -19,13 +19,13 @@ This is an app for tourists who are interested in using bike shares in other cit
 
 #### Screenshots
 ##### Overall page:
-<img src='./public/assets/stations.png' width='700px'>
+<img src='./public/assets/stations1.png' width='800px'>
 
 ##### User sign up:
-<img src='./public/assets/signup.png' height='500px'>
+<img src='./public/assets/signup1.png' height='500px'>
 
 ##### Map search:
-<img src='./public/assets/search.png' height='500px'>
+<img src='./public/assets/search1.png' height='500px'>
 
 ### Primary Technologies Used
 - ReactJS
