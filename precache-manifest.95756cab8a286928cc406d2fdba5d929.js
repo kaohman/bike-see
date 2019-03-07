@@ -4,15 +4,15 @@ self.__precacheManifest = [
     "url": "/bike-see/static/js/runtime~main.45a6dcdd.js"
   },
   {
-    "revision": "eb6ca25309e95820daa8",
-    "url": "/bike-see/static/js/main.eb6ca253.chunk.js"
+    "revision": "b7005b9523fbeabc51ba",
+    "url": "/bike-see/static/js/main.b7005b95.chunk.js"
   },
   {
     "revision": "ca9bff253cdd21cb3c65",
     "url": "/bike-see/static/js/2.ca9bff25.chunk.js"
   },
   {
-    "revision": "eb6ca25309e95820daa8",
+    "revision": "b7005b9523fbeabc51ba",
     "url": "/bike-see/static/css/main.b7ffc518.chunk.css"
   },
   {
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/bike-see/static/css/2.1daab933.chunk.css"
   },
   {
-    "revision": "a13af36431e084e4fc7cde41e3285488",
+    "revision": "95b31268638876c46ac75d67bb3bbc54",
     "url": "/bike-see/index.html"
   }
 ];
