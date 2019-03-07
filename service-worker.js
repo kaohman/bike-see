@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/bike-see/precache-manifest.639a399cb75abaf3dda51e54b8fa7cef.js"
+  "/bike-see/precache-manifest.0f8f47c49c11f621788a0fa43e1ef6ec.js"
 );
 
 workbox.clientsClaim();
