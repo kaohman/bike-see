@@ -1,5 +1,5 @@
 # bikeSee
-#### A bike share sightseeing app for viewing bike share information around the world.
+#### A bike share sightseeing app for viewing bike share information around the world. [SEE IT LIVE](https://kaohman.github.io/bike-see/)
 
 ### Set-Up Back-End
 - Clone back-end repo: ```git clone https://github.com/kaohman/bike-see-server.git```
@@ -13,7 +13,7 @@
 - Run ```npm start``` and visit localhost:3000 in your browser
 
 ### Deployed Website
-Soon to come.
+https://kaohman.github.io/bike-see/
 
 #### Background/About
 This is an app for tourists who are interested in using bike shares in other cities. The interactive map displays bike share networks and stations around the world. Users can sign-up and login to add stations to my-stops and view a map of their stops. View original assigment [here](http://frontend.turing.io/projects/binary-challenge.html).
