@@ -28,13 +28,13 @@ export class App extends Component {
       <div id='app-div'>
         <Header />
         <Switch>
-          <Route path='bike-see/not-found' component={NotFound} />
-          <Route path='bike-see/' component={BikeMap} />
-          <Route path='bike-see/my-stops' component={BikeMap} />
+          <Route path='/not-found' component={NotFound} />
+          <Route path='/' component={BikeMap} />
+          <Route path='/my-stops' component={BikeMap} />
         </Switch>
         <Switch>
-          <Route path='bike-see/login' render={() => <PopUp history={this.props.history} title='User Login'/>} />
-          <Route path='bike-see/sign-up' render={() => <PopUp history={this.props.history} title='User Sign Up' />} />
+          <Route path='/login' render={() => <PopUp history={this.props.history} title='User Login'/>} />
+          <Route path='/sign-up' render={() => <PopUp history={this.props.history} title='User Sign Up' />} />
         </Switch>
       </div>
     );
