@@ -6,16 +6,16 @@ import NotFound from '../../Components/NotFound/NotFound';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchUser } from '../../thunks/fetchUser';
+import { fetchExistingUser } from '../../thunks/fetchExistingUser';
 
 export class App extends Component {
 
   getCurrentUser = () => {
-    const { fetchUser } = this.props;
+    const { fetchExistingUser } = this.props;
     if (localStorage.hasOwnProperty('bike-user')) {
       const savedUser = localStorage.getItem('bike-user');
       const parsedUser = JSON.parse(savedUser);
-      fetchUser(parsedUser);
+      fetchExistingUser(parsedUser.id);
     }
   }
 
@@ -42,7 +42,7 @@ export class App extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchUser: (user) => dispatch(fetchUser(user)),
+  fetchExistingUser: (id) => dispatch(fetchExistingUser(id)),
 });
 
 App.propTypes = {
