@@ -16,10 +16,6 @@ exports[`App should match the correct snapshot 1`] = `
     />
     <Route
       component={[Function]}
-      path="/stations"
-    />
-    <Route
-      component={[Function]}
       path="/my-stops"
     />
   </Switch>

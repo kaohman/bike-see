@@ -1,16 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BikeMap should match the correct snapshot for cities 1`] = `
-<div
-  className="map-container"
-/>
-`;
-
-exports[`BikeMap should match the correct snapshot for stations 1`] = `
-<div
-  className="map-container"
-/>
-`;
+exports[`BikeMap should match the correct snapshot for stations 1`] = `undefined`;
 
 exports[`BikeMap should match the correct snapshot for stops 1`] = `
 <div

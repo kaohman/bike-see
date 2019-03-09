@@ -1,9 +1,7 @@
 import { fetchStations } from '../fetchStations';
 import { setLoading, setError, setStations } from '../../actions';
 import { fetchData } from '../../utils/api';
-import { putCurrentCity } from '../putCurrentCity';
 jest.mock('../../utils/api');
-jest.mock('../../thunks/putCurrentCity');
 
 describe('fetchStations', () => {
   let mockDispatch;
@@ -25,13 +23,7 @@ describe('fetchStations', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = fetchStations(mockUserId, mockCity);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`http://api.citybik.es/v2/networks/${mockCity}`, 'GET');
-  });
-
-  it('should call putCurrentCity with the correct params', async () => {
-    const thunk = fetchStations(mockUserId, mockCity);
-    await thunk(mockDispatch);
-    expect(putCurrentCity).toHaveBeenCalledWith(mockUserId, mockCity);
+    expect(fetchData).toHaveBeenCalledWith(`https://api.citybik.es/v2/networks/${mockCity}`, 'GET');
   });
 
   it('should dispatch setStations if response is ok', async () => {

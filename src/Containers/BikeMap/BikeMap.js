@@ -56,12 +56,6 @@ export class BikeMap extends Component {
     )
   }
 
-  getStations = (e) => {
-    const { fetchStations, history, user } = this.props;
-    fetchStations(user.id, e.target.options.id);
-    history.replace('/stations');
-  }
-
   toggleFavorite = (e) => {
     const { id } = e.target;
     const { deleteFavorite, postFavorite, user, favorites } = this.props;

@@ -23,7 +23,7 @@ describe('deleteFavorite', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = deleteFavorite(mockStationId, mockUserId);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users/${mockUserId}/favorites/${mockStationId}`, 'DELETE');
+    expect(fetchData).toHaveBeenCalledWith(`https://bike-see.herokuapp.com/api/v1/users/${mockUserId}/favorites/${mockStationId}`, 'DELETE');
   });
 
   it('should dispatch removeFavorite if response is ok', async () => {

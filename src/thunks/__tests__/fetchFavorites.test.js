@@ -21,7 +21,7 @@ describe('fetchFavorites', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = fetchFavorites(mockUserId);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users/${mockUserId}/favorites`, 'GET');
+    expect(fetchData).toHaveBeenCalledWith(`https://bike-see.herokuapp.com/api/v1/users/${mockUserId}/favorites`, 'GET');
   });
 
   it('should dispatch setError with message if response is not ok', async () => {

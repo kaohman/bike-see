@@ -19,7 +19,7 @@ describe('fetchCities', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = fetchCities();
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith('http://api.citybik.es/v2/networks', 'GET');
+    expect(fetchData).toHaveBeenCalledWith('https://api.citybik.es/v2/networks', 'GET');
   });
 
   it('should dispatch setError with message if response is not ok', async () => {

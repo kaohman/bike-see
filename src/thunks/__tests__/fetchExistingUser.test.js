@@ -1,53 +1,43 @@
-import { fetchUser } from '../fetchUser';
-import { setLoading, setError, setCurrentUser } from '../../actions';
+import { fetchExistingUser } from '../fetchExistingUser';
+import { setLoading, setError } from '../../actions';
 import { fetchData } from '../../utils/api';
 import { fetchFavorites } from '../fetchFavorites';
 jest.mock('../../utils/api');
 jest.mock('../fetchFavorites');
 
-describe('fetchUser', () => {
+describe('fetchExistingUser', () => {
   let mockDispatch;
-  let mockUser;
+  let mockUserId;
 
   beforeEach(() => {
-    mockUser = { email: 'bob@bob', password: 'password' };
+    mockUserId = '1';
     mockDispatch = jest.fn();
   });
 
   it('should call dispatch with the setLoading action', () => {
-    const thunk = fetchUser(mockUser);
+    const thunk = fetchExistingUser(mockUserId);
     thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(true));
   });
 
   it('should call fetchData with the correct params', async () => {
-    const thunk = fetchUser(mockUser);
+    const thunk = fetchExistingUser(mockUserId);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`https://bike-see.herokuapp.com/api/v1/users`, 'POST', mockUser);
-  });
-
-  it('should dispatch setCurrentUser if response is ok', async () => {
-    const expected = { ...mockUser, id: '1', name: 'Bob' };
-    fetchData.mockImplementation(() => {
-      return expected
-    });
-    const thunk = fetchUser(mockUser);
-    await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setCurrentUser(expected));
+    expect(fetchData).toHaveBeenCalledWith(`https://bike-see.herokuapp.com/api/v1/users/${mockUserId}`, 'GET');
   });
 
   it('should dispatch fetchFavorites if response is ok', async () => {
-    const expected = { ...mockUser, id: '1', name: 'Bob' };
+    const expected = { ...mockUserId, id: '1', name: 'Bob' };
     fetchData.mockImplementation(() => {
       return expected
     });
-    const thunk = fetchUser(mockUser);
+    const thunk = fetchExistingUser(mockUserId);
     await thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(fetchFavorites(expected.id));
   });
 
   it('should dispatch setLoading(false)', async () => {
-    const thunk = fetchUser(mockUser);
+    const thunk = fetchExistingUser(mockUserId);
     await thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setLoading(false));
   });
@@ -56,7 +46,7 @@ describe('fetchUser', () => {
     fetchData.mockImplementation(() => {
       throw { message: 'Error fetching data' }
     });
-    const thunk = fetchUser(mockUser);
+    const thunk = fetchExistingUser(mockUserId);
     await thunk(mockDispatch);
     expect(mockDispatch).toHaveBeenCalledWith(setError('Error logging in user. Please sign up or try again.'));
   });

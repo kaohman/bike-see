@@ -46,7 +46,7 @@ export const mapDispatchToProps = (dispatch) => ({
 });
 
 App.propTypes = {
-  fetchUser: PropTypes.func,
+  fetchExistingUser: PropTypes.func,
 }
 
 export default withRouter(connect(null, mapDispatchToProps)(App));

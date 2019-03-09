@@ -34,16 +34,6 @@ describe('actions', () => {
     expect(result).toEqual(expected);
   });
 
-  it('should return a type of SET_CURRENT_CITY, with a current city', () => {
-    const city = 'Denver';
-    const expected = {
-      type: 'SET_CURRENT_CITY',
-      city
-    };
-    const result = actions.setCurrentCity(city);
-    expect(result).toEqual(expected);
-  });
-
   it('should return a type of SET_STATIONS, with an array of stations', () => {
     const stations = [
       { name: '30th & Blake', id: '1', bikes_available: 8 },

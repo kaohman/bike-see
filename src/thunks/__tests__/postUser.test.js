@@ -1,5 +1,5 @@
 import { postUser } from '../postUser';
-import { setLoading, setError, setCurrentUser } from '../../actions';
+import { setLoading, setError } from '../../actions';
 import { fetchData } from '../../utils/api';
 jest.mock('../../utils/api');
 
@@ -21,17 +21,7 @@ describe('postUser', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = postUser(mockUser);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users/new`, 'POST', mockUser);
-  });
-
-  it('should dispatch setCurrentUser if response is ok', async () => {
-    const expected = { ...mockUser, id: '1' };
-    fetchData.mockImplementation(() => {
-      return expected
-    });
-    const thunk = postUser(mockUser);
-    await thunk(mockDispatch);
-    expect(mockDispatch).toHaveBeenCalledWith(setCurrentUser(expected));
+    expect(fetchData).toHaveBeenCalledWith(`https://bike-see.herokuapp.com/api/v1/users/new`, 'POST', mockUser);
   });
 
   it('should dispatch setLoading(false)', async () => {

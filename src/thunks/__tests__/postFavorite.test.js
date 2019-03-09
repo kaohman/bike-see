@@ -23,7 +23,7 @@ describe('postFavorite', () => {
   it('should call fetchData with the correct params', async () => {
     const thunk = postFavorite(mockStationId, mockUserId);
     await thunk(mockDispatch);
-    expect(fetchData).toHaveBeenCalledWith(`http://localhost:3001/api/v1/users/favorites/new`, 'POST', {user_id: mockUserId, station_id: mockStationId});
+    expect(fetchData).toHaveBeenCalledWith(`https://bike-see.herokuapp.com/api/v1/users/favorites/new`, 'POST', {user_id: mockUserId, station_id: mockStationId});
   });
 
   it('should dispatch addFavorite if response is ok', async () => {

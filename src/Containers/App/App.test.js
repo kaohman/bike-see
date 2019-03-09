@@ -1,23 +1,18 @@
 import React from 'react';
 import { App, mapDispatchToProps } from './App';
 import { shallow } from 'enzyme';
-import { fetchCities } from '../../thunks/fetchCities';
-import { fetchUser } from '../../thunks/fetchUser';
-jest.mock('../../thunks/fetchCities');
-jest.mock('../../thunks/fetchUser');
+import { fetchExistingUser } from '../../thunks/fetchExistingUser';
+jest.mock('../../thunks/fetchExistingUser');
 
 describe('App', () => {
   let wrapper;
-  let fetchCitiesMock;
-  let fetchUserMock;
+  let fetchExistingUserMock;
 
   beforeEach(() => {
-    fetchCitiesMock = jest.fn();
-    fetchUserMock = jest.fn();
+    fetchExistingUserMock = jest.fn();
     wrapper = shallow(
       <App
-        fetchCities={fetchCitiesMock}
-        fetchUser={fetchUserMock}
+        fetchExistingUser={fetchExistingUserMock}
       />
     )
   });
@@ -27,11 +22,6 @@ describe('App', () => {
   });
 
   describe('componentDidMount', () => {
-    it('should call fetchCities', () => {
-      wrapper.instance().componentDidMount();
-      expect(wrapper.instance().props.fetchCities).toHaveBeenCalled();
-    });
-
     it('should call getCurrentUser', () => {
       wrapper.instance().getCurrentUser = jest.fn();
       wrapper.instance().componentDidMount();
@@ -41,27 +31,19 @@ describe('App', () => {
 
   describe('getCurrentUser', () => {
     it('should fetch user if it exists in local storage', () => {
-      const mockUser = { id: '1', name: 'Karin', email: 'k@k', password: 'password'};
+      const mockUser = { id: '1', name: 'Karin' };
       localStorage.setItem('bike-user', JSON.stringify(mockUser));
       wrapper.instance().getCurrentUser();
-      expect(wrapper.instance().props.fetchUser)
+      expect(wrapper.instance().props.fetchExistingUser)
     });
   });
 
   describe('mapDispatchToProps', () => {
-    it('should call dispatch when fetchCities is called', () => {
+    it('should call dispatch when fetchExistingUser is called', () => {
       const mockDispatch = jest.fn();
-      const actionToDispatch = fetchCities();
+      const actionToDispatch = fetchExistingUser();
       const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.fetchCities();
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-    });
-
-    it('should call dispatch when fetchUser is called', () => {
-      const mockDispatch = jest.fn();
-      const actionToDispatch = fetchUser();
-      const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.fetchUser();
+      mappedProps.fetchExistingUser();
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
     });
   });

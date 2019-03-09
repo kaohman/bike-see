@@ -2,11 +2,6 @@
 
 exports[`Header should match the correct snapshot when loading 1`] = `
 <header>
-  <h3
-    className="loading-text welcome-text"
-  >
-    Welcome Back Karin
-  </h3>
   <div
     className="header-div"
   >
@@ -21,11 +16,20 @@ exports[`Header should match the correct snapshot when loading 1`] = `
       >
         BikeSee
       </NavLink>
-      <h3
-        className="loading-text"
+      <div
+        className="subheader-container"
       >
-        Loading Data...
-      </h3>
+        <h3
+          className="loading-text"
+        >
+          Welcome Karin
+        </h3>
+        <h3
+          className="loading-text"
+        >
+          Loading Data...
+        </h3>
+      </div>
     </div>
     <nav>
       <NavLink
@@ -34,20 +38,6 @@ exports[`Header should match the correct snapshot when loading 1`] = `
         className="nav-links"
         exact={true}
         to="/"
-      >
-        <i
-          className="fas fa-map-marker-alt"
-        />
-        <div>
-          Cities
-        </div>
-      </NavLink>
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-links"
-        exact={true}
-        to="/stations"
       >
         <i
           className="fas fa-bicycle"
@@ -90,11 +80,6 @@ exports[`Header should match the correct snapshot when loading 1`] = `
 
 exports[`Header should match the correct snapshot when on the home page 1`] = `
 <header>
-  <h3
-    className="loading-text welcome-text"
-  >
-    Welcome Back Karin
-  </h3>
   <div
     className="header-div"
   >
@@ -109,16 +94,18 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
       >
         BikeSee
       </NavLink>
-      <div>
+      <div
+        className="subheader-container"
+      >
         <h3
           className="loading-text"
         >
-          A bike share sightseeing app.
+          Welcome Karin
         </h3>
         <h3
-          className="loading-text large-screens"
+          className="loading-text"
         >
-          Click on a purple city icon to view a bike share network and get started.
+          Click on a bike icon to view a station and get started.
         </h3>
       </div>
     </div>
@@ -129,20 +116,6 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
         className="nav-links"
         exact={true}
         to="/"
-      >
-        <i
-          className="fas fa-map-marker-alt"
-        />
-        <div>
-          Cities
-        </div>
-      </NavLink>
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-links"
-        exact={true}
-        to="/stations"
       >
         <i
           className="fas fa-bicycle"
@@ -185,11 +158,6 @@ exports[`Header should match the correct snapshot when on the home page 1`] = `
 
 exports[`Header should match the correct snapshot when on the login page 1`] = `
 <header>
-  <h3
-    className="loading-text welcome-text"
-  >
-    Welcome Back Karin
-  </h3>
   <div
     className="header-div"
   >
@@ -204,6 +172,15 @@ exports[`Header should match the correct snapshot when on the login page 1`] = `
       >
         BikeSee
       </NavLink>
+      <div
+        className="subheader-container"
+      >
+        <h3
+          className="loading-text"
+        >
+          Welcome Karin
+        </h3>
+      </div>
     </div>
     <nav>
       <NavLink
@@ -212,20 +189,6 @@ exports[`Header should match the correct snapshot when on the login page 1`] = `
         className="nav-links"
         exact={true}
         to="/"
-      >
-        <i
-          className="fas fa-map-marker-alt"
-        />
-        <div>
-          Cities
-        </div>
-      </NavLink>
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-links"
-        exact={true}
-        to="/stations"
       >
         <i
           className="fas fa-bicycle"
@@ -268,11 +231,6 @@ exports[`Header should match the correct snapshot when on the login page 1`] = `
 
 exports[`Header should match the correct snapshot when on the my-stops page 1`] = `
 <header>
-  <h3
-    className="loading-text welcome-text"
-  >
-    Welcome Back Karin
-  </h3>
   <div
     className="header-div"
   >
@@ -287,6 +245,15 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
       >
         BikeSee
       </NavLink>
+      <div
+        className="subheader-container"
+      >
+        <h3
+          className="loading-text"
+        >
+          Welcome Karin
+        </h3>
+      </div>
     </div>
     <nav>
       <NavLink
@@ -295,20 +262,6 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
         className="nav-links"
         exact={true}
         to="/"
-      >
-        <i
-          className="fas fa-map-marker-alt"
-        />
-        <div>
-          Cities
-        </div>
-      </NavLink>
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-links"
-        exact={true}
-        to="/stations"
       >
         <i
           className="fas fa-bicycle"
@@ -351,11 +304,6 @@ exports[`Header should match the correct snapshot when on the my-stops page 1`] 
 
 exports[`Header should match the correct snapshot when on the stations page 1`] = `
 <header>
-  <h3
-    className="loading-text welcome-text"
-  >
-    Welcome Back Karin
-  </h3>
   <div
     className="header-div"
   >
@@ -370,12 +318,15 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
       >
         BikeSee
       </NavLink>
-      <h3
-        className="loading-text"
+      <div
+        className="subheader-container"
       >
-        Viewing: 
-        DENVER
-      </h3>
+        <h3
+          className="loading-text"
+        >
+          Welcome Karin
+        </h3>
+      </div>
     </div>
     <nav>
       <NavLink
@@ -384,20 +335,6 @@ exports[`Header should match the correct snapshot when on the stations page 1`] 
         className="nav-links"
         exact={true}
         to="/"
-      >
-        <i
-          className="fas fa-map-marker-alt"
-        />
-        <div>
-          Cities
-        </div>
-      </NavLink>
-      <NavLink
-        activeClassName="active"
-        aria-current="page"
-        className="nav-links"
-        exact={true}
-        to="/stations"
       >
         <i
           className="fas fa-bicycle"

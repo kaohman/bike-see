@@ -2,6 +2,7 @@
 
 exports[`Login should match the correct snapshot 1`] = `
 <form
+  autoComplete="off"
   onSubmit={[Function]}
 >
   <label>
