@@ -39,9 +39,8 @@ export class BikeMap extends Component {
   showCurrentLocation = () => {
     const { lat, lon } = this.state;
     const icon = new L.icon({
-      iconSize: [25, 25],
-      iconAnchor: [12,25],
-      popupAnchor: [1, -34],
+      iconSize: [20, 20],
+      iconAnchor: [10,20],
       iconUrl: require('../../images/button.png')
     });
 
@@ -51,7 +50,6 @@ export class BikeMap extends Component {
         position={[lat, lon]}
         key={'geoloc'}
         id={'geoloc'}>
-        <Tooltip className='tooltip'>{<h4>You Are Here</h4>}</Tooltip>
       </Marker>
     )
   }
@@ -124,7 +122,7 @@ export class BikeMap extends Component {
     let icon = {
       iconSize: [25, 25],
       iconAnchor: [12, 41],
-      popupAnchor: [1, -25],
+      popupAnchor: [0, -35],
     };
     let data;
 
