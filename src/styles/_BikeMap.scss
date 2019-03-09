@@ -4,6 +4,16 @@
   height: 80vh;
 }
 
+.leaflet-pulsing-icon {
+  box-shadow: none;
+}
+
+.leaflet-pulsing-icon:after {
+  height: 200%;
+  width: 200%;
+  margin: -50% 0 0 -48%;
+}
+
 #map {
   margin: 0;
   width: 100%;

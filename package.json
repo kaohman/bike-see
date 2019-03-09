@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ansur/leaflet-pulse-icon": "^0.1.1",
     "babel-polyfill": "^6.26.0",
     "geodist": "^0.2.1",
     "leaflet": "^1.4.0",

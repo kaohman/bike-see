@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Map, Marker, Tooltip, Popup, TileLayer, withLeaflet } from 'react-leaflet';
+import { Map, Marker, Popup, TileLayer, withLeaflet } from 'react-leaflet';
+import '../../../node_modules/@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse';
 import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
@@ -38,15 +39,16 @@ export class BikeMap extends Component {
 
   showCurrentLocation = () => {
     const { lat, lon } = this.state;
-    const icon = new L.icon({
-      iconSize: [20, 20],
-      iconAnchor: [10,20],
-      iconUrl: require('../../images/button.png')
+    const pulsingIcon = new L.icon.pulse({ 
+      iconSize: [12, 12], 
+      color: '#59A579', 
+      fillColor: '#59A579',
+      heartbeat: 2
     });
 
     return (
       <Marker
-        icon={icon}
+        icon={pulsingIcon}
         position={[lat, lon]}
         key={'geoloc'}
         id={'geoloc'}>
