@@ -85,7 +85,7 @@
   font-size: 16px;
   color: grey;
   position: absolute;
-  top: 165px;
+  top: 159px;
   right: 15px;
   z-index: 12;
 
@@ -137,8 +137,12 @@
 }
 
 @media screen and (max-width: 910px) {
+  .map-container {
+    height: 73vh;
+  }
+
   .fa-location-arrow {
-    top: 213px;
+    top: 207px;
   }
 }
 
@@ -148,7 +152,7 @@
   }
 
   .map-container {
-    height: 76.5vh;
+    height: 75vh;
     order: -1;
   }
 }

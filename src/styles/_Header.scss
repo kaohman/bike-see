@@ -1,6 +1,7 @@
 header {
   background-color: $background-color;
   padding: 30px;
+  height: 20vh;
 }
 
 .header-div {
@@ -69,10 +70,6 @@ nav {
 }
 
 @media screen and (max-width: 1140px) {
-  .header-div {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .loading-text {
     margin: 4px 10px;
     font-size: 14px;
@@ -85,6 +82,7 @@ nav {
 
 @media screen and (max-width: 910px) {
   header {
+    height: 27vh;
     padding: 20px;
   }
 
@@ -98,6 +96,10 @@ nav {
 }
 
 @media screen and (max-width: 670px) {
+  header {
+    height: 25vh;
+  }
+  
   .subheader-container {
     display: grid;
     grid-template-columns: 1fr;
