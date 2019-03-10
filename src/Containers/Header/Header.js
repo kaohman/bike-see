@@ -20,7 +20,7 @@ export const Header = ({ loading, location, user, setCurrentUser, setFavorites }
     if (!loading) {
       switch (location.pathname) {
         case '/':
-          return <h3 className='loading-text'>Click on a bike icon to view a station and get started.</h3>
+          return <h3 className='loading-text'>Click on a bike icon or group to get started.</h3>
         case '/my-stops':
           return !user.name && <h3 className='loading-text'>Login to view My Stops</h3>
         default:

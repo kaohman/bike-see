@@ -61,39 +61,46 @@ export class Login extends Component {
   }
 
   render() {
-    const { login, error } = this.props;
-    return (
-      <form autoComplete='off' onSubmit={this.handleSubmit}>
-        {!login &&
-          <label>Name
-            <input onChange={this.updateState} required type='text' placeholder='Enter your name' id='name' />
+    const { login, error, loading } = this.props;
+    if (loading) {
+      return (
+        <div className='lds-roller'><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      )
+    } else {
+      return (
+        <form autoComplete='off' onSubmit={this.handleSubmit}>
+          {!login &&
+            <label>Name
+              <input onChange={this.updateState} required type='text' placeholder='Enter your name' id='name' />
+            </label>
+          }
+          <label>Email
+            <input onChange={this.updateState} required type='email' placeholder='Enter your email'  id='email'/>
           </label>
-        }
-        <label>Email
-          <input onChange={this.updateState} required type='email' placeholder='Enter your email'  id='email'/>
-        </label>
-        <label>Password
-          <input onChange={this.updateState} required type='password' placeholder='Enter your password' id='password'/>
-        </label>
-        {!login &&
-          <label>Verify Password
-            <input onChange={this.updateState} required type='password' placeholder='Enter your password' id='verifyPassword'/>
+          <label>Password
+            <input onChange={this.updateState} required type='password' placeholder='Enter your password' id='password'/>
           </label>
-        }
-        <button type='submit'>Submit</button>
-        {login ? 
-          <Link onClick={this.clearError} className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
-          <Link onClick={this.clearError} className='pop-up-link' to='/login'>Login Here</Link>
-        }
-        <p className='error-text'>{error}</p>
-      </form>
-    )
+          {!login &&
+            <label>Verify Password
+              <input onChange={this.updateState} required type='password' placeholder='Enter your password' id='verifyPassword'/>
+            </label>
+          }
+          <button type='submit'>Submit</button>
+          {login ? 
+            <Link onClick={this.clearError} className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
+            <Link onClick={this.clearError} className='pop-up-link' to='/login'>Login Here</Link>
+          }
+          <p className='error-text'>{error}</p>
+        </form>
+      )
+    }
   }
 }
 
 export const mapStateToProps = (state) => ({
   error: state.error,
   user: state.user,
+  loading: state.loading,
 });
 
 export const mapDispatchToProps = (dispatch) => ({
@@ -105,6 +112,7 @@ export const mapDispatchToProps = (dispatch) => ({
 Login.propTypes = {
   error: PropTypes.string,
   user: PropTypes.object,
+  loading: PropTypes.bool,
   fetchUser: PropTypes.func,
   setError: PropTypes.func,
   postUser: PropTypes.func,
@@ -113,6 +121,7 @@ Login.propTypes = {
 Login.defaultProps = {
   error: '',
   user: {},
+  loading: false
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
