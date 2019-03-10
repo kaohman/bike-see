@@ -199,7 +199,10 @@ export class BikeMap extends Component {
             center={[lat, lon]}
             zoom='13'>
             {this.showCurrentLocation()}
-            <MarkerClusterGroup>
+            <MarkerClusterGroup
+              showCoverageOnHover={false}
+              maxClusterRadius={40}
+            >
               {this.showMarkers()}
             </MarkerClusterGroup>
             <MapSearch 
