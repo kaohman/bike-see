@@ -139,16 +139,8 @@ export class BikeMap extends Component {
       iconAnchor: [12, 41],
       popupAnchor: [0, -35],
     };
-    let data;
-
-    switch (pathname) {
-      case '/my-stops':
-        data = stations.filter(station => favorites.includes(station.id));
-        return this.createStationMarkers(data, icon)
-      default:
-        data = stations;
-        return this.createStationMarkers(data, icon)
-    }
+    const data = pathname === '/my-stops' ? stations.filter(station => favorites.includes(station.id)) : stations;
+    return this.createStationMarkers(data, icon)
   }
   
   getNetwork = (lat, lon) => {
