@@ -40,6 +40,7 @@ export class Login extends Component {
 
   signUpUser = async () => {
     const { postUser, setError } = this.props;
+    setError('');
     const { name, email, password, verifyPassword } = this.state;
     if (password === verifyPassword) {
       await postUser({ name, email, password });
