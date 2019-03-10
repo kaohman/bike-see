@@ -66,6 +66,17 @@ export class BikeMap extends Component {
     }
   }
 
+  setMarkerColor = (free, empty) => {
+    const percent = free / (free + empty);
+    if (percent <= 0.25) {
+      return 'few_bikes'
+    } else if (percent > 0.75) {
+      return 'many_bikes'
+    } else {
+      return 'bike'
+    }
+  }
+
   createStationMarkers = (data, icon) => {
     return data.map(marker => {
       const { name, latitude, longitude, free_bikes, empty_slots, timestamp, id } = marker;
@@ -78,7 +89,8 @@ export class BikeMap extends Component {
         newIcon = new L.icon({ ...icon, iconUrl: require('../../images/bike-purple.png') }); 
         buttonText = 'Click to remove from stops';
       } else {
-        newIcon = new L.icon({ ...icon, iconUrl: require('../../images/bike.png') });
+        const bikeIcon = this.setMarkerColor(free_bikes, empty_slots);
+        newIcon = new L.icon({ ...icon, iconUrl: require(`../../images/${bikeIcon}.png`) });
         buttonText = 'Click to add to stops';
       }
       
@@ -181,7 +193,7 @@ export class BikeMap extends Component {
           <Map
             onMove={this.updateMapCenter}
             id='map'
-            minZoom='13'
+            minZoom='11'
             maxZoom='19'
             center={[lat, lon]}
             zoom='13'>
