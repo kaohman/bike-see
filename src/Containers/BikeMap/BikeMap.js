@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Map, Marker, Popup, TileLayer, withLeaflet } from 'react-leaflet';
 import '../../../node_modules/@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse';
+import MarkerClusterGroup from 'react-leaflet-markercluster/dist/react-leaflet-markercluster';
 import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
@@ -69,11 +70,11 @@ export class BikeMap extends Component {
   setMarkerColor = (free, empty) => {
     const percent = free / (free + empty);
     if (percent <= 0.25) {
-      return 'few_bikes'
+      return 'bike-light'
     } else if (percent > 0.75) {
-      return 'many_bikes'
+      return 'bike-dark'
     } else {
-      return 'bike'
+      return 'bike-mid'
     }
   }
 
@@ -84,13 +85,13 @@ export class BikeMap extends Component {
 
       let newIcon;
       let buttonText;
+      const bikeIcon = this.setMarkerColor(free_bikes, empty_slots);
 
       if (favorites.includes(id)) {
-        newIcon = new L.icon({ ...icon, iconUrl: require('../../images/bike-purple.png') }); 
+        newIcon = new L.icon({ ...icon, iconUrl: require(`../../images/${bikeIcon}-purple.png`) }); 
         buttonText = 'Click to remove from stops';
       } else {
-        const bikeIcon = this.setMarkerColor(free_bikes, empty_slots);
-        newIcon = new L.icon({ ...icon, iconUrl: require(`../../images/${bikeIcon}.png`) });
+        newIcon = new L.icon({ ...icon, iconUrl: require(`../../images/${bikeIcon}-blue.png`) });
         buttonText = 'Click to add to stops';
       }
       
@@ -198,7 +199,9 @@ export class BikeMap extends Component {
             center={[lat, lon]}
             zoom='13'>
             {this.showCurrentLocation()}
-            {this.showMarkers()}
+            <MarkerClusterGroup>
+              {this.showMarkers()}
+            </MarkerClusterGroup>
             <MapSearch 
               position='topright'
               inputPlaceholder="Search by location"
