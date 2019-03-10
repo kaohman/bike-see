@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, Marker, Popup, TileLayer, withLeaflet } from 'react-leaflet';
 import '../../../node_modules/@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse';
-import MarkerClusterGroup from 'react-leaflet-markercluster/dist/react-leaflet-markercluster';
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 import { ReactLeafletSearch } from 'react-leaflet-search';
 import L from 'leaflet';
 import { connect } from 'react-redux';
@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import getDistance from 'geodist';
 
 const MapSearch = withLeaflet(ReactLeafletSearch);
+const MarkerCluster = withLeaflet(MarkerClusterGroup);
 
 export class BikeMap extends Component {
   constructor(props) {
@@ -106,7 +107,10 @@ export class BikeMap extends Component {
           icon={newIcon}
           key={id}
           >
-          <Popup className='tooltip'>{
+          <Popup 
+            className='tooltip' 
+            closeButton={false}
+          >{
             <div>
               <h4>{name}</h4>
               <h4 className='network-name-text'>{this.state.networkName}</h4>
@@ -191,12 +195,12 @@ export class BikeMap extends Component {
             center={[lat, lon]}
             zoom='13'>
             {this.showCurrentLocation()}
-            <MarkerClusterGroup
+            <MarkerCluster
               showCoverageOnHover={false}
               maxClusterRadius={40}
             >
               {this.showMarkers()}
-            </MarkerClusterGroup>
+            </MarkerCluster>
             <MapSearch 
               position='topright'
               inputPlaceholder="Search by location"
