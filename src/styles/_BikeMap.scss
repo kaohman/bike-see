@@ -1,6 +1,6 @@
 .marker-cluster-small,
 .marker-cluster-medium,
-.marker-cluster-large, {
+.marker-cluster-large {
   background-color: rgba(45, 156, 219, 0.6);
 
   div {
@@ -158,7 +158,7 @@
   }
 
   .map-container {
-    height: 75vh;
+    height: 70vh;
     order: -1;
   }
 }
