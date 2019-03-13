@@ -17,10 +17,6 @@ export class Login extends Component {
     }
   }
 
-  clearError = () => {
-    this.props.setError('');
-  }
-
   updateState = (e) => {
     e.preventDefault();
     const { id, value } = e.target;
@@ -33,15 +29,13 @@ export class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { setError, login } = this.props;
-    setError('');
+    const { login } = this.props;
     login ? await this.loginUser() : await this.signUpUser();
     this.updatePath();
   }
 
   signUpUser = async () => {
     const { postUser, setError } = this.props;
-    setError('');
     const { name, email, password, verifyPassword } = this.state;
     if (password === verifyPassword) {
       await postUser({ name, email, password });
@@ -62,6 +56,7 @@ export class Login extends Component {
   }
 
   render() {
+    this.props.setError('');
     const { login, error, loading } = this.props;
     if (loading) {
       return (
@@ -88,8 +83,8 @@ export class Login extends Component {
           }
           <button type='submit'>Submit</button>
           {login ? 
-            <Link onClick={this.clearError} className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
-            <Link onClick={this.clearError} className='pop-up-link' to='/login'>Login Here</Link>
+            <Link className='pop-up-link' to='/sign-up'>Sign Up Here</Link> : 
+            <Link className='pop-up-link' to='/login'>Login Here</Link>
           }
           <p className='error-text'>{error}</p>
         </form>
