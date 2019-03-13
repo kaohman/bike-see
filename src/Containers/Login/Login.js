@@ -33,7 +33,8 @@ export class Login extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    const { login } = this.props;
+    const { setError, login } = this.props;
+    setError('');
     login ? await this.loginUser() : await this.signUpUser();
     this.updatePath();
   }

@@ -11,7 +11,7 @@ export const fetchUser = (user) => {
       localStorage.setItem('bike-user', JSON.stringify(fetchedUser));
       dispatch(fetchFavorites(fetchedUser.id));
     } catch (error) {
-      dispatch(setError('Error logging in user. Please sign up or try again.'));
+      dispatch(setError(error.message));
     }
     dispatch(setLoading(false));
   }

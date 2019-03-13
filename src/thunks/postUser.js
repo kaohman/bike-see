@@ -9,7 +9,7 @@ export const postUser = (user) => {
       dispatch(setCurrentUser(fetchedUser));
       localStorage.setItem('bike-user', JSON.stringify(fetchedUser));
     } catch (error) {
-      dispatch(setError('User already exists. Please log in.'));
+      dispatch(setError(error.message));
     }
     dispatch(setLoading(false));
   }

@@ -17,12 +17,13 @@ export const fetchData = async (path, method, data = null) => {
       };
   }
   const response = await fetch(path, options);
+  const json = await response.json();
 
   if (response.status === 204) {
     return
   } else if (response.ok) {
-    return response.json();
+    return json;
   } else {
-    throw Error(response.statusText);
+    throw Error(json);
   }
 };
