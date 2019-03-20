@@ -15,7 +15,7 @@ export const fetchData = async (path, method, data = null) => {
           'Content-type': 'application/json'
         }
       };
-  }
+  } 
   const url = path.includes('citybik.es') ? path : process.env.REACT_APP_BACKEND_URL + path;
   const response = await fetch(url, options);
   const json = await response.json();
