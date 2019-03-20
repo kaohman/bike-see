@@ -6,7 +6,7 @@ export const fetchExistingUser = (id) => {
   return async (dispatch) => {
     try {
       dispatch(setLoading(true));
-      const fetchedUser = await fetchData(`https://bike-see.herokuapp.com/api/v1/users/${id}`, 'GET');
+      const fetchedUser = await fetchData(`/api/v1/users/${id}`, 'GET');
       dispatch(setCurrentUser(fetchedUser));
       dispatch(fetchFavorites(fetchedUser.id));
     } catch (error) {

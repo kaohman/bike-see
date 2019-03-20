@@ -16,7 +16,7 @@ export const fetchData = async (path, method, data = null) => {
         }
       };
   }
-  const response = await fetch(path, options);
+  const response = await fetch(process.env.REACT_APP_BACKEND_URL + path, options);
   const json = await response.json();
 
   if (response.status === 204) {
